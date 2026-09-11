@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjg4bjnrfrb3d"]
+
+[ext_resource type="Script" uid="uid://bh8773j8r1mjo" path="res://characters/base_character.gd" id="1_r08u6"]
+
+[node name="BaseCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_sprite2D", "_animation", "_spawnArea")]
+script = ExtResource("1_r08u6")
+_sprite2D = NodePath("Texture")
+_animation = NodePath("Animation")
+_spawnArea = NodePath("SpawnArea")
+
+[node name="Texture" type="Sprite2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+position_smoothing_enabled = true
+
+[node name="SpawnArea" type="Area2D" parent="."]
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="HitTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

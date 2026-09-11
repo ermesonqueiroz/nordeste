@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://m3bcvwi7jkjw"]
+
+[ext_resource type="PackedScene" uid="uid://cm4p3w1o35o0p" path="res://projectiles/base_projectile.tscn" id="1_00hk2"]
+[ext_resource type="Script" uid="uid://b5qo724t0q2kd" path="res://projectiles/melee/melee_projectile.gd" id="2_gpfce"]
+[ext_resource type="Texture2D" uid="uid://ch36gjwmy13j2" path="res://projectiles/melee/meele-attack.png" id="2_wf1xo"]
+[ext_resource type="AudioStream" uid="uid://dhedm1ynwpeso" path="res://projectiles/melee/melee-sfx.mp3" id="4_gpfce"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wf1xo"]
+radius = 8.0
+
+[node name="MeleeProjectile" unique_id=1954930187 instance=ExtResource("1_00hk2")]
+script = ExtResource("2_gpfce")
+speed = 400.0
+
+[node name="Texture" parent="." index="0" unique_id=542292043]
+texture = ExtResource("2_wf1xo")
+
+[node name="LifeTimer" parent="." index="1" unique_id=1622763274]
+wait_time = 0.3
+
+[node name="Collision" parent="." index="2" unique_id=1801896036]
+position = Vector2(-3, 0)
+shape = SubResource("CircleShape2D_wf1xo")
+
+[node name="Audio" parent="." index="3" unique_id=1246407866]
+stream = ExtResource("4_gpfce")
+volume_db = -4.0
+autoplay = true

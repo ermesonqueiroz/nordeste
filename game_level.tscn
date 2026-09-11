@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dy5ohsliondnc"]
+
+[ext_resource type="PackedScene" uid="uid://cfqbo8j4ong43" path="res://terrain/terrain.tscn" id="1_df5pp"]
+[ext_resource type="Script" uid="uid://x3nh58tt2w1k" path="res://game_level.gd" id="1_qsd0w"]
+[ext_resource type="PackedScene" uid="uid://d1xetkxta1t88" path="res://characters/bird/bird_character.tscn" id="2_df5pp"]
+[ext_resource type="Script" uid="uid://n46mefqj3ivn" path="res://gui/healthbar.gd" id="3_ibsu8"]
+
+[sub_resource type="SystemFont" id="SystemFont_ibsu8"]
+font_names = PackedStringArray("DM Sans")
+font_weight = 700
+
+[sub_resource type="LabelSettings" id="LabelSettings_ibsu8"]
+font = SubResource("SystemFont_ibsu8")
+
+[node name="GameLevel" type="Node2D" unique_id=1376921944]
+script = ExtResource("1_qsd0w")
+
+[node name="Terrain" parent="." unique_id=1863512682 instance=ExtResource("1_df5pp")]
+
+[node name="BirdCharacter" parent="." unique_id=1315815508 node_paths=PackedStringArray("_gameLevel") instance=ExtResource("2_df5pp")]
+position = Vector2(232, 160)
+_gameLevel = NodePath("..")
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=473141386]
+
+[node name="HealthBar" type="ProgressBar" parent="GUI" unique_id=1519982147 node_paths=PackedStringArray("character")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 51.0
+grow_horizontal = 0
+script = ExtResource("3_ibsu8")
+character = NodePath("../../BirdCharacter")
+
+[node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/GameOver" unique_id=1746675783]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/GameOver/PanelContainer" unique_id=2025975398]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="GUI/GameOver/PanelContainer/MarginContainer" unique_id=1380702913]
+layout_mode = 2
+text = "MORREU, NEWBA!"
+label_settings = SubResource("LabelSettings_ibsu8")
