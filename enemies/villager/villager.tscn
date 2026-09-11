@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dnpkr2wmdisu5"]
+
+[ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://enemies/base_enemy.tscn" id="1_sc6qu"]
+[ext_resource type="Texture2D" uid="uid://c2w2jmxgwggoe" path="res://enemies/enemy_placeholder.png" id="2_8toot"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82bim"]
+size = Vector2(16, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_653pk"]
+size = Vector2(16, 16)
+
+[node name="Villager" unique_id=847179869 instance=ExtResource("1_sc6qu")]
+
+[node name="Collision" parent="." index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_82bim")
+
+[node name="Texture" parent="." index="1"]
+position = Vector2(0, -8)
+texture = ExtResource("2_8toot")
+
+[node name="Hitbox" parent="." index="2"]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0" unique_id=1468508981]
+shape = SubResource("RectangleShape2D_653pk")

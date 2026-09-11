@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://ctylnuv3ks32y"]
+
+[ext_resource type="PackedScene" uid="uid://cjg4bjnrfrb3d" path="res://characters/base_character.tscn" id="1_1dnfl"]
+[ext_resource type="Script" uid="uid://dnte7kfdwdbvl" path="res://characters/vampire/vampire.gd" id="2_7350v"]
+[ext_resource type="Texture2D" uid="uid://b60lmfju7c5e6" path="res://characters/vampire/idle.png" id="2_bx6mw"]
+[ext_resource type="Texture2D" uid="uid://bjrgbb84w330d" path="res://characters/vampire/run.png" id="3_ugs2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1dnfl"]
+size = Vector2(10, 3)
+
+[sub_resource type="Animation" id="Animation_bx6mw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_bx6mw")]
+}
+
+[sub_resource type="Animation" id="Animation_1dnfl"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_bx6mw")]
+}
+
+[sub_resource type="Animation" id="Animation_7350v"]
+resource_name = "run"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ugs2l")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kb5y"]
+_data = {
+&"RESET": SubResource("Animation_bx6mw"),
+&"idle": SubResource("Animation_1dnfl"),
+&"run": SubResource("Animation_7350v")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7350v"]
+radius = 90.13878
+
+[node name="Vampire" unique_id=1100483938 instance=ExtResource("1_1dnfl")]
+script = ExtResource("2_7350v")
+
+[node name="Texture" parent="." index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("2_bx6mw")
+hframes = 2
+
+[node name="Collision" parent="." index="1"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_1dnfl")
+
+[node name="Animation" parent="." index="2"]
+libraries/ = SubResource("AnimationLibrary_4kb5y")
+
+[node name="Camera" parent="." index="3"]
+limit_enabled = false
+position_smoothing_enabled = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea" index="0" unique_id=203933661]
+shape = SubResource("CircleShape2D_7350v")
