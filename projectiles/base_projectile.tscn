@@ -5,17 +5,13 @@
 [node name="BaseProjectile" type="Area2D" unique_id=1412444270]
 script = ExtResource("1_ufnha")
 
-[node name="Texture" type="Sprite2D" parent="." unique_id=542292043]
-
-[node name="LifeTimer" type="Timer" parent="." unique_id=1622763274]
-wait_time = 0.4
-one_shot = true
-autostart = true
-
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1801896036]
 
 [node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1246407866]
 volume_db = -2.862
 
+[node name="SpriteGroup" type="Node2D" parent="." unique_id=1065004391]
+
+[node name="Texture" type="Sprite2D" parent="SpriteGroup" unique_id=542292043]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

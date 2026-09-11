@@ -23,7 +23,7 @@ signal healthUpdated
 }
 
 var enemy: PackedScene = load("res://enemies/mosquito/mosquito.tscn")
-var projectile: PackedScene = load("res://projectiles/melee/melee_projectile.tscn")
+var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.tscn")
 
 var last_direction: Vector2 = Vector2.RIGHT
 var maxHealth = 100

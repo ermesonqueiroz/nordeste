@@ -36,6 +36,7 @@ script = ExtResource("3_ibsu8")
 character = NodePath("../../BirdCharacter")
 
 [node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dhl3eq8q2ursb"]
+
+[ext_resource type="PackedScene" uid="uid://cm4p3w1o35o0p" path="res://projectiles/base_projectile.tscn" id="1_aa150"]
+[ext_resource type="Script" uid="uid://qvwr8xrkvhin" path="res://projectiles/bullet/bullet_projectile.gd" id="2_m3xje"]
+[ext_resource type="Texture2D" uid="uid://drv4i8jqd0unw" path="res://projectiles/bullet/bullet.png" id="2_of6ip"]
+[ext_resource type="AudioStream" uid="uid://befwuxlxxrfr8" path="res://projectiles/bullet/shoot.wav" id="3_a555w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aa150"]
+radius = 3.1622777
+
+[sub_resource type="Curve" id="Curve_of6ip"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_of6ip"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.9764706, 0.26666668, 0.12156863, 1, 0.98039216, 0.5294118, 0.03137255, 1, 1, 0.8980392, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
+
+[node name="BulletProjectile" unique_id=1412444270 instance=ExtResource("1_aa150")]
+script = ExtResource("2_m3xje")
+
+[node name="Collision" parent="." index="0" unique_id=1801896036]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_aa150")
+
+[node name="Audio" parent="." index="1" unique_id=1246407866]
+stream = ExtResource("3_a555w")
+
+[node name="Particles" type="CPUParticles2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1065004391) index="0" unique_id=2129209163]
+amount = 100
+preprocess = 0.1
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_curve = SubResource("Curve_of6ip")
+color_ramp = SubResource("Gradient_of6ip")
+
+[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1065004391) index="1" unique_id=542292043]
+texture = ExtResource("2_of6ip")

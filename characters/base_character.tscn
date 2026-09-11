@@ -1,31 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjg4bjnrfrb3d"]
+[gd_scene format=3 uid="uid://cjg4bjnrfrb3d"]
 
 [ext_resource type="Script" uid="uid://bh8773j8r1mjo" path="res://characters/base_character.gd" id="1_r08u6"]
 
-[node name="BaseCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_sprite2D", "_animation", "_spawnArea")]
+[node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 node_paths=PackedStringArray("_animation", "_spawnArea")]
 script = ExtResource("1_r08u6")
-_sprite2D = NodePath("Texture")
 _animation = NodePath("Animation")
 _spawnArea = NodePath("SpawnArea")
 
-[node name="Texture" type="Sprite2D" parent="."]
+[node name="Texture" type="Sprite2D" parent="." unique_id=1474570970]
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=209974859]
 
-[node name="Animation" type="AnimationPlayer" parent="."]
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=314084126]
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=1821164045]
 zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true
 
-[node name="SpawnArea" type="Area2D" parent="."]
+[node name="SpawnArea" type="Area2D" parent="." unique_id=1582915570]
 
-[node name="EnemySpawnTimer" type="Timer" parent="."]
+[node name="EnemySpawnTimer" type="Timer" parent="." unique_id=1182587177]
 autostart = true
 
-[node name="HitTimer" type="Timer" parent="."]
+[node name="HitTimer" type="Timer" parent="." unique_id=976274122]
 autostart = true
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

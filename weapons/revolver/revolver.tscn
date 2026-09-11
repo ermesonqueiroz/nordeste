@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://caj7txmcy151e"]
+
+[ext_resource type="PackedScene" uid="uid://0n77a6gehfw3" path="res://weapons/base_weapon.tscn" id="1_rja2j"]
+[ext_resource type="Script" uid="uid://cwdy64sbqvike" path="res://weapons/revolver/revolver.gd" id="2_i7ghb"]
+[ext_resource type="Texture2D" uid="uid://3fyttaxhhi7i" path="res://weapons/revolver/texture.png" id="3_hfse1"]
+
+[node name="Revolver" unique_id=1820149675 instance=ExtResource("1_rja2j")]
+script = ExtResource("2_i7ghb")
+
+[node name="Texture" parent="." index="0" unique_id=1083896037]
+position = Vector2(7, -2)
+texture = ExtResource("3_hfse1")

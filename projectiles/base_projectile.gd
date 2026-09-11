@@ -3,6 +3,7 @@ class_name BaseProjectile
 
 @export_category("Variables")
 @export var speed = 180.0
+@export var lifespan: float = 1.0
 
 @onready var _audio: AudioStreamPlayer = $Audio
 
@@ -17,11 +18,11 @@ func _ready():
 	if _audio and _audio.stream:
 		_audio.play()
 
+	await get_tree().create_timer(lifespan).timeout
+	queue_free()
+
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
-
-func _on_life_timer_timeout() -> void:
-	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is BaseEnemy:
