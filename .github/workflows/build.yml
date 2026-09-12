@@ -1,0 +1,35 @@
+name: Release Game
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    name: "Build and Publish Release"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Godot Export
+        uses: firebelley/godot-export@v6.0.0
+        with:
+          godot_export_version: 4.3
+
+      - name: Zip Builds
+        run: |
+          cd /root/.local/share/godot/exported/
+          for dir in */; do
+            if [ -d "$dir" ]; then
+              zip -r "${dir%/}.zip" "$dir"
+            fi
+          done
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: /root/.local/share/godot/exported/*.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
