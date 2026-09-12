@@ -1,4 +1,5 @@
 extends Camera2D
+class_name BaseCharacterCamera
 
 var shake_intensity = 0.0
 var active_shake_time = 0.0

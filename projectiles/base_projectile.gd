@@ -28,3 +28,4 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is BaseEnemy:
 		var enemy = area.get_parent()
 		enemy.take_damage(20)
+		enemy.apply_knockback((enemy.global_position - global_position).normalized(), 200, 0.15)

@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name BaseCharacter
 
 signal healthUpdated
+signal water_collected
+signal level_updated
 
 @export_category("Variables")
 @export var _move_speed: float = 128.0
@@ -22,14 +24,40 @@ signal healthUpdated
 	"run_bottom": "run_bottom",
 }
 
+@onready var _camera: BaseCharacterCamera = $Camera
+@onready var _texture: Sprite2D = $SpriteGroup/Texture
+@onready var _audio: AudioStreamPlayer = $Audio
+
 var enemy: PackedScene = load("res://enemies/mosquito/mosquito.tscn")
 var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.tscn")
 
 var last_direction: Vector2 = Vector2.RIGHT
+
 var maxHealth = 100
 var currentHealth = maxHealth
 
-func _physics_process(_delta: float) -> void:
+var knockback: Vector2 = Vector2.ZERO
+var knockback_timer: float = 0.0
+var is_invulnerable: bool = false
+
+var current_water_amount = 0
+var current_level = 1
+var water_amount_to_next_level = 20
+
+func _ready() -> void:
+	water_collected.connect(_on_water_collected)
+
+func _physics_process(delta: float) -> void:
+	if knockback_timer > 0:
+		velocity = knockback
+		knockback_timer -= delta
+
+		if knockback_timer <= 0:
+			knockback = Vector2.ZERO
+
+		move_and_slide()
+		return
+
 	_move()
 	_animate()
 
@@ -78,6 +106,7 @@ func _attack() -> void:
 	new_projectile.spawn_rotation = mouse_position.angle()
 
 	get_parent().add_child.call_deferred(new_projectile)
+	_camera.screen_shake(3, 0.3)
 
 func _get_spawn_area_collision() -> CollisionShape2D:
 	if _spawnArea.get_child(0) is not CollisionShape2D:
@@ -85,20 +114,28 @@ func _get_spawn_area_collision() -> CollisionShape2D:
 
 	return _spawnArea.get_child(0) as CollisionShape2D
 
-func _on_enemy_spawn_timer_timeout() -> void:
-	var rect = _get_spawn_area_collision().shape.get_rect()
-	var newEnemy: BaseEnemy = enemy.instantiate()
-	newEnemy.player = self
-	newEnemy.spawnPosition = Vector2(
-		randi_range(global_position.x - (rect.size.x / 2), global_position.x + (rect.size.x / 2)),
-		randi_range(global_position.x - (rect.size.y / 2), global_position.x + (rect.size.y / 2))
-	)
+func _on_hit_timer_timeout() -> void:
+	_attack()
 
-	get_parent().add_child(newEnemy)
+func _on_water_collected() -> void:
+	while current_water_amount >= water_amount_to_next_level:
+		current_water_amount -= water_amount_to_next_level
+		_level_up()
+
+func _level_up() -> void:
+	current_level += 1
+
+	if current_level < 20:
+		water_amount_to_next_level = int(10 + (current_level * 10))
+
+	level_updated.emit()
 
 func take_damage(damage: float) -> void:
 	currentHealth -= damage
 	healthUpdated.emit()
+
+	_camera.screen_shake(8, 0.3)
+	_audio.play()
 
 	if currentHealth <= 0:
 		die()
@@ -107,5 +144,42 @@ func die():
 	if _gameLevel:
 		_gameLevel.showGameOver()
 
-func _on_hit_timer_timeout() -> void:
-	_attack()
+func apply_knockback(direction: Vector2, intensity: float, knockback_duration: float):
+	knockback = direction * intensity
+	knockback_timer = knockback_duration
+
+	var tween = get_tree().create_tween()
+	tween.tween_property($SpriteGroup, "scale", Vector2(0.8, 0.8), knockback_duration / 2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property($SpriteGroup, "scale", Vector2(1, 1), knockback_duration / 2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+
+	apply_invulnerability(2)
+
+func apply_invulnerability(duration: float):
+	if is_invulnerable:
+		return
+
+	is_invulnerable = true
+
+	if _texture.material is ShaderMaterial:
+		var flash_cycles = max(1, int(duration / 0.3))
+		var tween = get_tree().create_tween()
+		tween.set_loops(flash_cycles)
+
+		tween.tween_method(
+			func(val): _texture.material.set_shader_parameter("flash_value", val),
+			0, 1, 0.15
+		)
+		tween.tween_method(
+			func(val): _texture.material.set_shader_parameter("flash_value", val),
+			1, 0, 0.15
+		)
+
+	await get_tree().create_timer(duration).timeout
+	is_invulnerable = false
+
+	if _texture.material is ShaderMaterial:
+		_texture.material.set_shader_parameter("flash_value", 0.0)
+
+func add_water(amount: int):
+	current_water_amount += amount
+	water_collected.emit()

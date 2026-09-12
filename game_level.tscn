@@ -3,14 +3,32 @@
 [ext_resource type="PackedScene" uid="uid://cfqbo8j4ong43" path="res://terrain/terrain.tscn" id="1_df5pp"]
 [ext_resource type="Script" uid="uid://x3nh58tt2w1k" path="res://game_level.gd" id="1_qsd0w"]
 [ext_resource type="PackedScene" uid="uid://d1xetkxta1t88" path="res://characters/bird/bird_character.tscn" id="2_df5pp"]
+[ext_resource type="PackedScene" uid="uid://8ymptcs7v4pt" path="res://enemies/mosquito/mosquito.tscn" id="2_v7qp1"]
 [ext_resource type="Script" uid="uid://n46mefqj3ivn" path="res://gui/healthbar.gd" id="3_ibsu8"]
+[ext_resource type="Texture2D" uid="uid://fxuxs8brjps1" path="res://collectables/water/texture.png" id="5_g7mx2"]
+[ext_resource type="Script" uid="uid://7ten3ukw4cnd" path="res://level_label.gd" id="5_wqyo1"]
+[ext_resource type="Script" uid="uid://c0otutvn8eyvh" path="res://water_label.gd" id="6_efyo6"]
+[ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
+[ext_resource type="PackedScene" uid="uid://8p1p1luyh4tu" path="res://enemies/tapuru/tapuru_enemy.tscn" id="10_jpbmx"]
 
 [sub_resource type="SystemFont" id="SystemFont_ibsu8"]
 font_names = PackedStringArray("DM Sans")
 font_weight = 700
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ibsu8"]
 font = SubResource("SystemFont_ibsu8")
+
+[sub_resource type="SystemFont" id="SystemFont_efyo6"]
+font_names = PackedStringArray("JetBrains Mono")
+font_weight = 700
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_g7mx2"]
+font = SubResource("SystemFont_efyo6")
+font_size = 14
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="GameLevel" type="Node2D" unique_id=1376921944]
 script = ExtResource("1_qsd0w")
@@ -69,3 +87,46 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 text = "MORREU, NEWBA!"
 label_settings = SubResource("LabelSettings_ibsu8")
+
+[node name="LevelLabel" type="Label" parent="GUI" unique_id=1558409833 node_paths=PackedStringArray("character")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -9.0
+offset_bottom = 18.0
+grow_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-22, 95)
+text = "Lvl 0"
+label_settings = SubResource("LabelSettings_g7mx2")
+script = ExtResource("5_wqyo1")
+character = NodePath("../../BirdCharacter")
+
+[node name="Container" type="HBoxContainer" parent="GUI" unique_id=2070453398]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_top = 60.0
+offset_right = -22.0
+offset_bottom = 92.0
+grow_horizontal = 0
+theme_override_constants/separation = 7
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Container" unique_id=459006493]
+layout_mode = 2
+texture = ExtResource("5_g7mx2")
+stretch_mode = 3
+
+[node name="WaterLabel" type="Label" parent="GUI/Container" unique_id=584832468 node_paths=PackedStringArray("character")]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_g7mx2")
+script = ExtResource("6_efyo6")
+character = NodePath("../../../BirdCharacter")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=2010455193 node_paths=PackedStringArray("_player")]
+script = ExtResource("8_v7qp1")
+_enemies_to_spawn = Array[PackedScene]([ExtResource("2_v7qp1"), ExtResource("10_jpbmx")])
+_player = NodePath("../BirdCharacter")
+metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"

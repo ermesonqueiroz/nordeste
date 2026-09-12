@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxv8y585h1m6t"
-path="res://.godot/imported/texture.png-26f4f96c3e65f75f55b56220f127b4f0.ctex"
+uid="uid://bb54p5vbc7g2b"
+path="res://.godot/imported/terrain_nordeste.png-c95602574c22abe74baec58c37d79178.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/mosquito/texture.png"
-dest_files=["res://.godot/imported/texture.png-26f4f96c3e65f75f55b56220f127b4f0.ctex"]
+source_file="res://terrain/terrain_nordeste.png"
+dest_files=["res://.godot/imported/terrain_nordeste.png-c95602574c22abe74baec58c37d79178.ctex"]
 
 [params]
 

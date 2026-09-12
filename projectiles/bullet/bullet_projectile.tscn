@@ -28,8 +28,10 @@ shape = SubResource("CircleShape2D_aa150")
 
 [node name="Audio" parent="." index="1" unique_id=1246407866]
 stream = ExtResource("3_a555w")
+volume_db = -10.0
 
 [node name="Particles" type="CPUParticles2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1065004391) index="0" unique_id=2129209163]
+position = Vector2(-2, 0)
 amount = 100
 preprocess = 0.1
 local_coords = true

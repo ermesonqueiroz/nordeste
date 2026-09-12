@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d3cswtsor34r1"]
+
+[ext_resource type="PackedScene" uid="uid://b0nbnxpanmbm2" path="res://collectables/base_collectable.tscn" id="1_wxeup"]
+[ext_resource type="Texture2D" uid="uid://fxuxs8brjps1" path="res://collectables/water/texture.png" id="2_nly7e"]
+[ext_resource type="Script" uid="uid://dxyp62vg0faf3" path="res://collectables/water/water_collectable.gd" id="2_oh2cy"]
+[ext_resource type="AudioStream" uid="uid://uwkp5tvyw0ju" path="res://collectables/water/collect_audio.wav" id="4_oh2cy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8pxp"]
+radius = 7.0
+
+[node name="WaterCollectable" unique_id=596021622 instance=ExtResource("1_wxeup")]
+script = ExtResource("2_oh2cy")
+
+[node name="Texture" parent="." index="0" unique_id=1043436902]
+texture = ExtResource("2_nly7e")
+
+[node name="Collision" parent="." index="1" unique_id=1014183451]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_v8pxp")
+
+[node name="CollectAudio" type="AudioStreamPlayer" parent="." index="2" unique_id=1875203653]
+stream = ExtResource("4_oh2cy")

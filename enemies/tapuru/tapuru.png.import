@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2w2jmxgwggoe"
-path="res://.godot/imported/enemy_placeholder.png-7a0d9a44ce70c54b51cb183d1bf7d8f1.ctex"
+uid="uid://dr8fuf1fwr6fs"
+path="res://.godot/imported/tapuru.png-dc173826b24197254df9c3fd6c8b3c40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/enemy_placeholder.png"
-dest_files=["res://.godot/imported/enemy_placeholder.png-7a0d9a44ce70c54b51cb183d1bf7d8f1.ctex"]
+source_file="res://enemies/tapuru/tapuru.png"
+dest_files=["res://.godot/imported/tapuru.png-dc173826b24197254df9c3fd6c8b3c40.ctex"]
 
 [params]
 

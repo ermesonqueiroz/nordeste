@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b0nbnxpanmbm2"]
+
+[ext_resource type="Script" uid="uid://d2e5lkabsbvct" path="res://collectables/base_collectable.gd" id="1_odegq"]
+
+[node name="BaseCollectable" type="Area2D" unique_id=596021622]
+script = ExtResource("1_odegq")
+
+[node name="Texture" type="Sprite2D" parent="." unique_id=1043436902]
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1014183451]
