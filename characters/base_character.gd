@@ -23,6 +23,7 @@ signal level_updated
 	"run_top": "run_top",
 	"run_bottom": "run_bottom",
 }
+@export var _upgrade: BaseUpgrade
 
 @onready var _camera: BaseCharacterCamera = $Camera
 @onready var _texture: Sprite2D = $SpriteGroup/Texture
@@ -43,6 +44,8 @@ var is_invulnerable: bool = false
 var current_water_amount = 0
 var current_level = 1
 var water_amount_to_next_level = 20
+
+var projectile_scale = 1
 
 func _ready() -> void:
 	water_collected.connect(_on_water_collected)
@@ -104,6 +107,7 @@ func _attack() -> void:
 	new_projectile.direction = mouse_position
 	new_projectile.spawn_position = global_position + (mouse_position * 40)
 	new_projectile.spawn_rotation = mouse_position.angle()
+	new_projectile.scale = Vector2.ONE * projectile_scale
 
 	get_parent().add_child.call_deferred(new_projectile)
 	_camera.screen_shake(3, 0.3)
@@ -127,6 +131,8 @@ func _level_up() -> void:
 
 	if current_level < 20:
 		water_amount_to_next_level = int(10 + (current_level * 10))
+
+	_upgrade.apply_upgrade(self)
 
 	level_updated.emit()
 

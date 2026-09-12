@@ -5,11 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://d1xetkxta1t88" path="res://characters/bird/bird_character.tscn" id="2_df5pp"]
 [ext_resource type="PackedScene" uid="uid://8ymptcs7v4pt" path="res://enemies/mosquito/mosquito.tscn" id="2_v7qp1"]
 [ext_resource type="Script" uid="uid://n46mefqj3ivn" path="res://gui/healthbar.gd" id="3_ibsu8"]
+[ext_resource type="Script" uid="uid://d1ewblllxwhop" path="res://upgrades/increase_projectile_size/increase_projectile_size_upgrade.gd" id="4_5d4hl"]
 [ext_resource type="Texture2D" uid="uid://fxuxs8brjps1" path="res://collectables/water/texture.png" id="5_g7mx2"]
 [ext_resource type="Script" uid="uid://7ten3ukw4cnd" path="res://level_label.gd" id="5_wqyo1"]
 [ext_resource type="Script" uid="uid://c0otutvn8eyvh" path="res://water_label.gd" id="6_efyo6"]
 [ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
 [ext_resource type="PackedScene" uid="uid://8p1p1luyh4tu" path="res://enemies/tapuru/tapuru_enemy.tscn" id="10_jpbmx"]
+
+[sub_resource type="Resource" id="Resource_jpbmx"]
+script = ExtResource("4_5d4hl")
+metadata/_custom_type_script = "uid://d1ewblllxwhop"
 
 [sub_resource type="SystemFont" id="SystemFont_ibsu8"]
 font_names = PackedStringArray("DM Sans")
@@ -38,6 +43,7 @@ script = ExtResource("1_qsd0w")
 [node name="BirdCharacter" parent="." unique_id=1315815508 node_paths=PackedStringArray("_gameLevel") instance=ExtResource("2_df5pp")]
 position = Vector2(232, 160)
 _gameLevel = NodePath("..")
+_upgrade = SubResource("Resource_jpbmx")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=473141386]
 
