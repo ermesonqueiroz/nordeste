@@ -4,17 +4,56 @@
 [ext_resource type="Script" uid="uid://x3nh58tt2w1k" path="res://game_level.gd" id="1_qsd0w"]
 [ext_resource type="PackedScene" uid="uid://d1xetkxta1t88" path="res://characters/bird/bird_character.tscn" id="2_df5pp"]
 [ext_resource type="PackedScene" uid="uid://8ymptcs7v4pt" path="res://enemies/mosquito/mosquito.tscn" id="2_v7qp1"]
-[ext_resource type="Script" uid="uid://n46mefqj3ivn" path="res://gui/healthbar.gd" id="3_ibsu8"]
 [ext_resource type="Script" uid="uid://d1ewblllxwhop" path="res://upgrades/increase_projectile_size/increase_projectile_size_upgrade.gd" id="4_5d4hl"]
-[ext_resource type="Texture2D" uid="uid://fxuxs8brjps1" path="res://collectables/water/texture.png" id="5_g7mx2"]
-[ext_resource type="Script" uid="uid://7ten3ukw4cnd" path="res://level_label.gd" id="5_wqyo1"]
-[ext_resource type="Script" uid="uid://c0otutvn8eyvh" path="res://water_label.gd" id="6_efyo6"]
+[ext_resource type="Texture2D" uid="uid://xfkprhoxn0w4" path="res://gui/waterbar/under_texture.png" id="8_5d4hl"]
 [ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
+[ext_resource type="Script" uid="uid://cttxt0w3v2w8m" path="res://gui/waterbar/waterbar.gd" id="9_anq5l"]
 [ext_resource type="PackedScene" uid="uid://8p1p1luyh4tu" path="res://enemies/tapuru/tapuru_enemy.tscn" id="10_jpbmx"]
 
 [sub_resource type="Resource" id="Resource_jpbmx"]
 script = ExtResource("4_5d4hl")
 metadata/_custom_type_script = "uid://d1ewblllxwhop"
+
+[sub_resource type="Gradient" id="Gradient_5d4hl"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5d4hl"]
+frequency = 0.0042
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5d4hl"]
+noise = SubResource("FastNoiseLite_5d4hl")
+color_ramp = SubResource("Gradient_5d4hl")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="Gradient" id="Gradient_dv4fs"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5d4hl"]
+gradient = SubResource("Gradient_dv4fs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vugdd"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(256, 256, 1)
+spread = 20.0
+initial_velocity_min = 40.0
+initial_velocity_max = 100.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 49.99998
+gravity = Vector3(0, 8, 0)
+scale_min = 2.0
+scale_max = 3.1999998
+color = Color(0.9764706, 0.8039216, 0.5568628, 1)
+color_ramp = SubResource("GradientTexture1D_5d4hl")
+
+[sub_resource type="Gradient" id="Gradient_anq5l"]
+colors = PackedColorArray(0.14901961, 0.47843137, 0.9137255, 1, 0.14901961, 0.47843137, 0.9137255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3ktkq"]
+gradient = SubResource("Gradient_anq5l")
 
 [sub_resource type="SystemFont" id="SystemFont_ibsu8"]
 font_names = PackedStringArray("DM Sans")
@@ -24,39 +63,63 @@ subpixel_positioning = 0
 [sub_resource type="LabelSettings" id="LabelSettings_ibsu8"]
 font = SubResource("SystemFont_ibsu8")
 
-[sub_resource type="SystemFont" id="SystemFont_efyo6"]
-font_names = PackedStringArray("JetBrains Mono")
-font_weight = 700
-subpixel_positioning = 0
-
-[sub_resource type="LabelSettings" id="LabelSettings_g7mx2"]
-font = SubResource("SystemFont_efyo6")
-font_size = 14
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
-
 [node name="GameLevel" type="Node2D" unique_id=1376921944]
 script = ExtResource("1_qsd0w")
 
 [node name="Terrain" parent="." unique_id=1863512682 instance=ExtResource("1_df5pp")]
+position = Vector2(-2, 0)
 
 [node name="BirdCharacter" parent="." unique_id=1315815508 node_paths=PackedStringArray("_gameLevel") instance=ExtResource("2_df5pp")]
-position = Vector2(232, 160)
+position = Vector2(488, 279)
 _gameLevel = NodePath("..")
 _upgrade = SubResource("Resource_jpbmx")
 
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=2010455193 node_paths=PackedStringArray("_player")]
+script = ExtResource("8_v7qp1")
+_enemies_to_spawn = Array[PackedScene]([ExtResource("2_v7qp1"), ExtResource("10_jpbmx")])
+_player = NodePath("../BirdCharacter")
+metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
+
+[node name="FogParallax" type="Parallax2D" parent="." unique_id=727524041]
+z_index = 5
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(100, 0)
+repeat_times = 8
+
+[node name="FogSprite" type="Sprite2D" parent="FogParallax" unique_id=306652000]
+modulate = Color(1, 0.5764706, 0.08235294, 0.78431374)
+position = Vector2(660, 187)
+texture = SubResource("NoiseTexture2D_5d4hl")
+
+[node name="SandParallax" type="Parallax2D" parent="." unique_id=552432213]
+z_index = 6
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(40, 0)
+repeat_times = 8
+
+[node name="SandParticles" type="GPUParticles2D" parent="SandParallax" unique_id=1240751342]
+position = Vector2(483, 301)
+amount = 500
+visibility_rect = Rect2(-256, -256, 512, 512)
+process_material = SubResource("ParticleProcessMaterial_vugdd")
+
 [node name="GUI" type="CanvasLayer" parent="." unique_id=473141386]
 
-[node name="HealthBar" type="ProgressBar" parent="GUI" unique_id=1519982147 node_paths=PackedStringArray("character")]
-anchors_preset = 1
-anchor_left = 1.0
+[node name="WaterBar" type="TextureProgressBar" parent="GUI" unique_id=1355095233 node_paths=PackedStringArray("character")]
+custom_minimum_size = Vector2(0, 12)
+anchors_preset = 10
 anchor_right = 1.0
-offset_left = -136.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = 51.0
-grow_horizontal = 0
-script = ExtResource("3_ibsu8")
+offset_bottom = 12.0
+grow_horizontal = 2
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_right = 3
+texture_under = ExtResource("8_5d4hl")
+texture_progress = SubResource("GradientTexture2D_3ktkq")
+script = ExtResource("9_anq5l")
 character = NodePath("../../BirdCharacter")
 
 [node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358]
@@ -93,46 +156,3 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 text = "MORREU, NEWBA!"
 label_settings = SubResource("LabelSettings_ibsu8")
-
-[node name="LevelLabel" type="Label" parent="GUI" unique_id=1558409833 node_paths=PackedStringArray("character")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -9.0
-offset_bottom = 18.0
-grow_horizontal = 0
-offset_transform_enabled = true
-offset_transform_position = Vector2(-22, 95)
-text = "Lvl 0"
-label_settings = SubResource("LabelSettings_g7mx2")
-script = ExtResource("5_wqyo1")
-character = NodePath("../../BirdCharacter")
-
-[node name="Container" type="HBoxContainer" parent="GUI" unique_id=2070453398]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -70.0
-offset_top = 60.0
-offset_right = -22.0
-offset_bottom = 92.0
-grow_horizontal = 0
-theme_override_constants/separation = 7
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Container" unique_id=459006493]
-layout_mode = 2
-texture = ExtResource("5_g7mx2")
-stretch_mode = 3
-
-[node name="WaterLabel" type="Label" parent="GUI/Container" unique_id=584832468 node_paths=PackedStringArray("character")]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_g7mx2")
-script = ExtResource("6_efyo6")
-character = NodePath("../../../BirdCharacter")
-
-[node name="EnemySpawner" type="Node2D" parent="." unique_id=2010455193 node_paths=PackedStringArray("_player")]
-script = ExtResource("8_v7qp1")
-_enemies_to_spawn = Array[PackedScene]([ExtResource("2_v7qp1"), ExtResource("10_jpbmx")])
-_player = NodePath("../BirdCharacter")
-metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"

@@ -46,6 +46,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_ffxfj"]
 resource_name = "movement"
@@ -64,6 +76,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.13962634015954636, 0.0, -0.13962634015954636]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kjrhy"]
 _data = {
@@ -72,15 +96,16 @@ _data = {
 }
 
 [node name="Mosquito" unique_id=1834857299 instance=ExtResource("1_pqv3g")]
-collision_mask = 2
 script = ExtResource("2_dxpoy")
 collectable_to_drop_on_die = ExtResource("3_dxpoy")
 collectable_amount_to_drop = 4
+move_speed = 40.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
 material = SubResource("ShaderMaterial_dxpoy")
 texture = ExtResource("2_xu6hp")
 hframes = 4
+frame = 1
 
 [node name="Collision" parent="." index="1" unique_id=1981917045]
 shape = SubResource("CapsuleShape2D_goi2v")

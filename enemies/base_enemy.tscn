@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bp8c06jwp11jr" path="res://damage_label_spawner.gd" id="2_bfj6p"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_xens1"]
 [ext_resource type="AudioStream" uid="uid://d454y5desh05" path="res://enemies/Hit1.wav" id="3_b5ht1"]
+[ext_resource type="FontFile" uid="uid://caig40m8c3b0y" path="res://fonts/BoldPixels.ttf" id="4_35jd6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35jd6"]
 resource_local_to_scene = true
@@ -11,20 +12,15 @@ shader = ExtResource("2_xens1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="SystemFont" id="SystemFont_b5ht1"]
-font_names = PackedStringArray("JetBrains Mono")
-font_weight = 700
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_bfj6p"]
-font = SubResource("SystemFont_b5ht1")
-font_size = 12
+font = ExtResource("4_35jd6")
+font_size = 8
 outline_size = 1
 outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=1834857299]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 3
 script = ExtResource("1_j7qyq")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=256664707]
