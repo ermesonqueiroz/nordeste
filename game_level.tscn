@@ -8,7 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://xfkprhoxn0w4" path="res://gui/waterbar/under_texture.png" id="8_5d4hl"]
 [ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
 [ext_resource type="Script" uid="uid://cttxt0w3v2w8m" path="res://gui/waterbar/waterbar.gd" id="9_anq5l"]
+[ext_resource type="Script" uid="uid://cdyqfbq7f6j0o" path="res://gui/game_over/game_over.gd" id="10_anq5l"]
 [ext_resource type="PackedScene" uid="uid://8p1p1luyh4tu" path="res://enemies/tapuru/tapuru_enemy.tscn" id="10_jpbmx"]
+[ext_resource type="LabelSettings" uid="uid://xp6ddldq0p0s" path="res://gui/label_settings.tres" id="11_5d4hl"]
+[ext_resource type="Script" uid="uid://bo7aktf84u7l4" path="res://gui/level_up/level_up.gd" id="11_gm1p2"]
+[ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="12_dv4fs"]
+[ext_resource type="FontFile" uid="uid://caig40m8c3b0y" path="res://fonts/BoldPixels.ttf" id="12_gm1p2"]
+[ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
+[ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
 
 [sub_resource type="Resource" id="Resource_jpbmx"]
 script = ExtResource("4_5d4hl")
@@ -55,16 +62,32 @@ colors = PackedColorArray(0.14901961, 0.47843137, 0.9137255, 1, 0.14901961, 0.47
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ktkq"]
 gradient = SubResource("Gradient_anq5l")
 
-[sub_resource type="SystemFont" id="SystemFont_ibsu8"]
-font_names = PackedStringArray("DM Sans")
-font_weight = 700
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_ibsu8"]
-font = SubResource("SystemFont_ibsu8")
+font = ExtResource("12_gm1p2")
+font_size = 32
 
-[node name="GameLevel" type="Node2D" unique_id=1376921944]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm1p2"]
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+bg_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsxfn"]
+bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+corner_detail = 1
+
+[sub_resource type="Resource" id="Resource_ymo36"]
+script = ExtResource("4_5d4hl")
+metadata/_custom_type_script = "uid://d1ewblllxwhop"
+
+[sub_resource type="Resource" id="Resource_wv86q"]
+script = ExtResource("13_gm1p2")
+metadata/_custom_type_script = "uid://bkmnlcgb8dww0"
+
+[node name="GameLevel" type="Node2D" unique_id=1376921944 node_paths=PackedStringArray("_character")]
 script = ExtResource("1_qsd0w")
+_character = NodePath("BirdCharacter")
 
 [node name="Terrain" parent="." unique_id=1863512682 instance=ExtResource("1_df5pp")]
 position = Vector2(-2, 0)
@@ -123,36 +146,88 @@ script = ExtResource("9_anq5l")
 character = NodePath("../../BirdCharacter")
 
 [node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358]
-visible = false
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5882353)
+script = ExtResource("10_anq5l")
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/GameOver" unique_id=1746675783]
+[node name="Column" type="VBoxContainer" parent="GUI/GameOver" unique_id=1758013469]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
+offset_left = -56.0
 offset_top = -20.0
-offset_right = 20.0
+offset_right = 56.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 12
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/GameOver/PanelContainer" unique_id=2025975398]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Label" type="Label" parent="GUI/GameOver/PanelContainer/MarginContainer" unique_id=1380702913]
+[node name="Label" type="Label" parent="GUI/GameOver/Column" unique_id=1380702913]
 layout_mode = 2
 text = "MORREU, NEWBA!"
 label_settings = SubResource("LabelSettings_ibsu8")
+
+[node name="RestartButton" type="Button" parent="GUI/GameOver/Column" unique_id=450231592]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("12_dv4fs")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gm1p2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qsxfn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qsxfn")
+text = "Reiniciar"
+
+[node name="LevelUp" type="ColorRect" parent="GUI" unique_id=1269669155 node_paths=PackedStringArray("_character")]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+script = ExtResource("11_gm1p2")
+_character = NodePath("../../BirdCharacter")
+
+[node name="Column" type="VBoxContainer" parent="GUI/LevelUp" unique_id=90250396]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -20.0
+offset_right = 69.0
+offset_bottom = 66.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="GUI/LevelUp/Column" unique_id=1584447148]
+layout_mode = 2
+text = "Level Up"
+label_settings = ExtResource("11_5d4hl")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="UpgradesContainer" type="HBoxContainer" parent="GUI/LevelUp/Column" unique_id=612199658]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="Button" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=1089472949 instance=ExtResource("12_vugdd")]
+layout_mode = 2
+_upgrade = SubResource("Resource_ymo36")
+
+[node name="Button2" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=765574805 instance=ExtResource("12_vugdd")]
+layout_mode = 2
+_upgrade = SubResource("Resource_wv86q")
