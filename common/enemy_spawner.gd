@@ -14,6 +14,9 @@ func _start_enemies_spawn():
 	while true:
 		await get_tree().create_timer(_spawn_enemy_interval).timeout
 
+		if get_tree().paused:
+			continue
+
 		var spawn_count: int = 1 + int(_player.current_level / 2.0)
 
 		for i in range(spawn_count):

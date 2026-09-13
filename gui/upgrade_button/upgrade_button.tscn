@@ -1,51 +1,66 @@
 [gd_scene format=3 uid="uid://m0tk3kdiwynd"]
 
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="1_alk37"]
+[ext_resource type="Texture2D" uid="uid://wmh4hxkuvpx" path="res://gui/upgrade_button/card_common.png" id="1_wv86q"]
 [ext_resource type="Script" uid="uid://xkkjpxqa25by" path="res://gui/upgrade_button/upgrade_button.gd" id="1_ymo36"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dv4fs"]
-bg_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymo36"]
-bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
-corner_detail = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_5d4hl"]
 font = ExtResource("1_alk37")
 
-[node name="Button" type="Button" unique_id=1089472949]
-custom_minimum_size = Vector2(180, 70)
-theme_override_styles/normal = SubResource("StyleBoxFlat_dv4fs")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ymo36")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ymo36")
+[node name="Button" type="TextureButton" unique_id=518124117]
+custom_minimum_size = Vector2(128, 196)
+offset_right = 128.0
+offset_bottom = 196.0
+texture_normal = ExtResource("1_wv86q")
+texture_pressed = ExtResource("1_wv86q")
+texture_hover = ExtResource("1_wv86q")
+texture_disabled = ExtResource("1_wv86q")
+stretch_mode = 0
 script = ExtResource("1_ymo36")
 
-[node name="Container" type="VBoxContainer" parent="." unique_id=1260955674]
-custom_maximum_size = Vector2(150, -1)
+[node name="Title" type="Label" parent="." unique_id=178664790]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.265
+anchor_top = 0.058
+anchor_right = 0.265
+anchor_bottom = 0.061
+offset_right = 81.08
+offset_bottom = 12.666673
+size_flags_vertical = 0
+offset_transform_enabled = true
+text = "Title"
+label_settings = SubResource("LabelSettings_5d4hl")
+
+[node name="Description" type="Label" parent="." unique_id=1906251166]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.5
+offset_top = -60.72
+offset_right = 53.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Upgrade description"
+label_settings = SubResource("LabelSettings_5d4hl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Icon" type="TextureRect" parent="." unique_id=908667776]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -23.0
-offset_right = 75.0
-offset_bottom = 23.0
+offset_left = -32.0
+offset_top = -49.43
+offset_right = 32.0
+offset_bottom = 14.57003
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Title" type="Label" parent="Container" unique_id=178664790]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Title"
-label_settings = SubResource("LabelSettings_5d4hl")
-horizontal_alignment = 1
-
-[node name="Description" type="Label" parent="Container" unique_id=1906251166]
-layout_mode = 2
-text = "Upgrade description"
-label_settings = SubResource("LabelSettings_5d4hl")
-horizontal_alignment = 1
-autowrap_mode = 3

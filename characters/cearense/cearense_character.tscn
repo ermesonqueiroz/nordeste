@@ -10,9 +10,8 @@ shader = ExtResource("2_mfk0j")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k5olh"]
-radius = 11.5
-height = 53.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_goi2v"]
+size = Vector2(20, 29)
 
 [sub_resource type="Animation" id="Animation_mfk0j"]
 length = 0.001
@@ -243,8 +242,8 @@ vframes = 2
 position = Vector2(17, 7)
 
 [node name="Collision" parent="." index="1" unique_id=209974859]
-position = Vector2(0.5, -1.5)
-shape = SubResource("CapsuleShape2D_k5olh")
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_goi2v")
 
 [node name="Animation" parent="." index="2" unique_id=314084126]
 libraries/ = SubResource("AnimationLibrary_vpbxj")
