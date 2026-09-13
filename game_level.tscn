@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cfqbo8j4ong43" path="res://terrain/terrain.tscn" id="1_df5pp"]
 [ext_resource type="Script" uid="uid://x3nh58tt2w1k" path="res://game_level.gd" id="1_qsd0w"]
-[ext_resource type="PackedScene" uid="uid://d1xetkxta1t88" path="res://characters/bird/bird_character.tscn" id="2_df5pp"]
 [ext_resource type="PackedScene" uid="uid://8ymptcs7v4pt" path="res://enemies/mosquito/mosquito.tscn" id="2_v7qp1"]
+[ext_resource type="PackedScene" uid="uid://gx6wyt75v23d" path="res://characters/cearense/cearense_character.tscn" id="3_anq5l"]
 [ext_resource type="Script" uid="uid://d1ewblllxwhop" path="res://upgrades/increase_projectile_size/increase_projectile_size_upgrade.gd" id="4_5d4hl"]
 [ext_resource type="Texture2D" uid="uid://xfkprhoxn0w4" path="res://gui/waterbar/under_texture.png" id="8_5d4hl"]
 [ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
@@ -16,10 +16,6 @@
 [ext_resource type="FontFile" uid="uid://caig40m8c3b0y" path="res://fonts/BoldPixels.ttf" id="12_gm1p2"]
 [ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
 [ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
-
-[sub_resource type="Resource" id="Resource_jpbmx"]
-script = ExtResource("4_5d4hl")
-metadata/_custom_type_script = "uid://d1ewblllxwhop"
 
 [sub_resource type="Gradient" id="Gradient_5d4hl"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -87,20 +83,20 @@ metadata/_custom_type_script = "uid://bkmnlcgb8dww0"
 
 [node name="GameLevel" type="Node2D" unique_id=1376921944 node_paths=PackedStringArray("_character")]
 script = ExtResource("1_qsd0w")
-_character = NodePath("BirdCharacter")
+_character = NodePath("CearenseCharacter")
 
 [node name="Terrain" parent="." unique_id=1863512682 instance=ExtResource("1_df5pp")]
 position = Vector2(-2, 0)
 
-[node name="BirdCharacter" parent="." unique_id=1315815508 node_paths=PackedStringArray("_gameLevel") instance=ExtResource("2_df5pp")]
-position = Vector2(488, 279)
+[node name="CearenseCharacter" parent="." unique_id=1555303638 node_paths=PackedStringArray("_gameLevel") instance=ExtResource("3_anq5l")]
+_move_speed = null
 _gameLevel = NodePath("..")
-_upgrade = SubResource("Resource_jpbmx")
+_animations = null
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=2010455193 node_paths=PackedStringArray("_player")]
 script = ExtResource("8_v7qp1")
 _enemies_to_spawn = Array[PackedScene]([ExtResource("2_v7qp1"), ExtResource("10_jpbmx")])
-_player = NodePath("../BirdCharacter")
+_player = NodePath("../CearenseCharacter")
 metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
 
 [node name="FogParallax" type="Parallax2D" parent="." unique_id=727524041]
@@ -143,7 +139,7 @@ stretch_margin_right = 3
 texture_under = ExtResource("8_5d4hl")
 texture_progress = SubResource("GradientTexture2D_3ktkq")
 script = ExtResource("9_anq5l")
-character = NodePath("../../BirdCharacter")
+character = NodePath("../../CearenseCharacter")
 
 [node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358]
 process_mode = 3
@@ -194,7 +190,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 script = ExtResource("11_gm1p2")
-_character = NodePath("../../BirdCharacter")
+_character = NodePath("../../CearenseCharacter")
 
 [node name="Column" type="VBoxContainer" parent="GUI/LevelUp" unique_id=90250396]
 layout_mode = 1

@@ -244,9 +244,6 @@ _data = {
 &"run_top": SubResource("Animation_jlry2")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vb32k"]
-radius = 66.068146
-
 [node name="BirdCharacter" unique_id=1315815508 instance=ExtResource("1_gt7fa")]
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="0" unique_id=1474570970]
@@ -269,6 +266,3 @@ libraries/ = SubResource("AnimationLibrary_pxea2")
 [node name="Camera" parent="." index="3" unique_id=1821164045]
 limit_enabled = false
 position_smoothing_enabled = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea" parent_id_path=PackedInt32Array(1582915570) index="0" unique_id=690956549]
-shape = SubResource("CircleShape2D_vb32k")

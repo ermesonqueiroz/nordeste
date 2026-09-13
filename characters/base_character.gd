@@ -11,7 +11,6 @@ signal level_updated
 @export_category("Objects")
 @export var _gameLevel: GameLevel
 @export var _animation: AnimationPlayer
-@export var _spawnArea: Area2D
 @export var _animations: Dictionary = {
 	"idle": "idle",
 	"idle_right": "idle_right",
@@ -23,7 +22,6 @@ signal level_updated
 	"run_top": "run_top",
 	"run_bottom": "run_bottom",
 }
-@export var _upgrade: BaseUpgrade
 
 @onready var _camera: BaseCharacterCamera = $Camera
 @onready var _texture: Sprite2D = $SpriteGroup/Texture
@@ -49,6 +47,7 @@ var projectile_scale = 1
 var attack_interval = 1
 
 func _ready() -> void:
+	_texture.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
 	_start_attack_timer()
 
@@ -80,19 +79,23 @@ func _move():
 func _animate() -> void:
 	if velocity.length() > 0:
 		if velocity.x < 0:
-			_animation.play(_animations["run_left"])
+			if _animation.has_animation("run_left"):
+				_animation.play(_animations["run_left"])
 			return
 
 		if velocity.x > 0:
-			_animation.play(_animations["run_right"])
+			if _animation.has_animation("run_right"):
+				_animation.play(_animations["run_right"])
 			return
 
 		if velocity.y < 0:
-			_animation.play(_animations["run_top"])
+			if _animation.has_animation("run_top"):
+				_animation.play(_animations["run_top"])
 			return
 
 		if velocity.y > 0:
-			_animation.play(_animations["run_bottom"])
+			if _animation.has_animation("run_bottom"):
+				_animation.play(_animations["run_bottom"])
 			return
 
 	if last_direction.x < 0:
@@ -123,12 +126,6 @@ func _attack() -> void:
 	get_parent().add_child.call_deferred(new_projectile)
 	_camera.screen_shake(3, 0.3)
 
-func _get_spawn_area_collision() -> CollisionShape2D:
-	if _spawnArea.get_child(0) is not CollisionShape2D:
-		return null
-
-	return _spawnArea.get_child(0) as CollisionShape2D
-
 func _on_hit_timer_timeout() -> void:
 	_attack()
 
@@ -142,8 +139,6 @@ func _level_up() -> void:
 
 	if current_level < 20:
 		water_amount_to_next_level = int(10 + (current_level * 10))
-
-	_upgrade.apply_upgrade(self)
 
 	level_updated.emit()
 

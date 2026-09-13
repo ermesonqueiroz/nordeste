@@ -10,7 +10,7 @@
 [node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 node_paths=PackedStringArray("_animation", "_spawnArea")]
 script = ExtResource("1_r08u6")
 _animation = NodePath("Animation")
-_spawnArea = NodePath("SpawnArea")
+_spawnArea = NodePath("")
 
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=2022331021]
 
@@ -26,8 +26,6 @@ limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true
 script = ExtResource("2_xeerb")
-
-[node name="SpawnArea" type="Area2D" parent="." unique_id=1582915570]
 
 [node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1166806442]
 stream = ExtResource("3_lii0y")
