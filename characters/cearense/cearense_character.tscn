@@ -243,7 +243,6 @@ vframes = 2
 position = Vector2(17, 7)
 
 [node name="Collision" parent="." index="1" unique_id=209974859]
-visible = false
 position = Vector2(0.5, -1.5)
 shape = SubResource("CapsuleShape2D_k5olh")
 

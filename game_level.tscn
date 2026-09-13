@@ -58,6 +58,9 @@ colors = PackedColorArray(0.14901961, 0.47843137, 0.9137255, 1, 0.14901961, 0.47
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ktkq"]
 gradient = SubResource("Gradient_anq5l")
 
+[sub_resource type="LabelSettings" id="LabelSettings_anq5l"]
+font = ExtResource("12_dv4fs")
+
 [sub_resource type="LabelSettings" id="LabelSettings_ibsu8"]
 font = ExtResource("12_gm1p2")
 font_size = 32
@@ -89,9 +92,8 @@ _character = NodePath("CearenseCharacter")
 position = Vector2(-2, 0)
 
 [node name="CearenseCharacter" parent="." unique_id=1555303638 node_paths=PackedStringArray("_gameLevel") instance=ExtResource("3_anq5l")]
-_move_speed = null
+position = Vector2(458, 276)
 _gameLevel = NodePath("..")
-_animations = null
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=2010455193 node_paths=PackedStringArray("_player")]
 script = ExtResource("8_v7qp1")
@@ -99,26 +101,29 @@ _enemies_to_spawn = Array[PackedScene]([ExtResource("2_v7qp1"), ExtResource("10_
 _player = NodePath("../CearenseCharacter")
 metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
 
-[node name="FogParallax" type="Parallax2D" parent="." unique_id=727524041]
+[node name="Foreground" type="Node2D" parent="." unique_id=556226800]
+
+[node name="FogParallax" type="Parallax2D" parent="Foreground" unique_id=727524041]
 z_index = 5
 scroll_scale = Vector2(0.4, 0.4)
 repeat_size = Vector2(512, 512)
 autoscroll = Vector2(100, 0)
 repeat_times = 8
 
-[node name="FogSprite" type="Sprite2D" parent="FogParallax" unique_id=306652000]
+[node name="FogSprite" type="Sprite2D" parent="Foreground/FogParallax" unique_id=306652000]
 modulate = Color(1, 0.5764706, 0.08235294, 0.78431374)
 position = Vector2(660, 187)
 texture = SubResource("NoiseTexture2D_5d4hl")
 
-[node name="SandParallax" type="Parallax2D" parent="." unique_id=552432213]
+[node name="SandParallax" type="Parallax2D" parent="Foreground" unique_id=552432213]
 z_index = 6
 scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(-8, 13)
 repeat_size = Vector2(512, 512)
 autoscroll = Vector2(40, 0)
 repeat_times = 8
 
-[node name="SandParticles" type="GPUParticles2D" parent="SandParallax" unique_id=1240751342]
+[node name="SandParticles" type="GPUParticles2D" parent="Foreground/SandParallax" unique_id=1240751342]
 position = Vector2(483, 301)
 amount = 500
 visibility_rect = Rect2(-256, -256, 512, 512)
@@ -127,7 +132,7 @@ process_material = SubResource("ParticleProcessMaterial_vugdd")
 [node name="GUI" type="CanvasLayer" parent="." unique_id=473141386]
 
 [node name="WaterBar" type="TextureProgressBar" parent="GUI" unique_id=1355095233 node_paths=PackedStringArray("character")]
-custom_minimum_size = Vector2(0, 12)
+custom_minimum_size = Vector2(0, 16)
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 12.0
@@ -141,8 +146,27 @@ texture_progress = SubResource("GradientTexture2D_3ktkq")
 script = ExtResource("9_anq5l")
 character = NodePath("../../CearenseCharacter")
 
+[node name="Label" type="Label" parent="GUI/WaterBar" unique_id=327242225]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level 0"
+label_settings = SubResource("LabelSettings_anq5l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358]
 process_mode = 3
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

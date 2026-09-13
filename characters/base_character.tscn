@@ -7,10 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://c7cwsj4nbs78q" path="res://gui/healthbar/progress_texture.png" id="5_pomy3"]
 [ext_resource type="Script" uid="uid://n46mefqj3ivn" path="res://gui/healthbar/healthbar.gd" id="6_pomy3"]
 
-[node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 node_paths=PackedStringArray("_animation", "_spawnArea")]
+[node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 node_paths=PackedStringArray("_animation")]
 script = ExtResource("1_r08u6")
 _animation = NodePath("Animation")
-_spawnArea = NodePath("")
 
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=2022331021]
 
@@ -21,7 +20,6 @@ _spawnArea = NodePath("")
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=314084126]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1821164045]
-zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true
