@@ -46,9 +46,11 @@ var current_level = 1
 var water_amount_to_next_level = 20
 
 var projectile_scale = 1
+var attack_interval = 1
 
 func _ready() -> void:
 	water_collected.connect(_on_water_collected)
+	_start_attack_timer()
 
 func _physics_process(delta: float) -> void:
 	if knockback_timer > 0:
@@ -99,6 +101,11 @@ func _animate() -> void:
 
 	_animation.play(_animations["idle_right"])
 	return
+
+func _start_attack_timer() -> void:
+	while currentHealth > 0:
+		await get_tree().create_timer(attack_interval).timeout
+		_attack()
 
 func _attack() -> void:
 	var mouse_position := (get_global_mouse_position() - global_position).normalized()

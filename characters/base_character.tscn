@@ -29,9 +29,6 @@ script = ExtResource("2_xeerb")
 
 [node name="SpawnArea" type="Area2D" parent="." unique_id=1582915570]
 
-[node name="HitTimer" type="Timer" parent="." unique_id=976274122]
-autostart = true
-
 [node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1166806442]
 stream = ExtResource("3_lii0y")
 volume_db = -6.0
@@ -50,5 +47,3 @@ texture_under = ExtResource("4_rdqtl")
 texture_progress = ExtResource("5_pomy3")
 script = ExtResource("6_pomy3")
 character = NodePath("..")
-
-[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
