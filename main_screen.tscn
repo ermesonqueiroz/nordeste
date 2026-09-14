@@ -20,6 +20,8 @@ grow_vertical = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=942468649]
+handle_input_locally = false
 size = Vector2i(960, 540)
+render_target_update_mode = 4
 
 [node name="GameLevel" parent="SubViewportContainer/SubViewport" unique_id=1376921944 instance=ExtResource("1_tjn2e")]

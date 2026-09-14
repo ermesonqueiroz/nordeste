@@ -22,7 +22,7 @@ func _setup_buttons() -> void:
 
 func _on_upgrade_button_pressed(button: UpgradeButton):
 	if button._upgrade:
-		button._upgrade.apply_upgrade(_character)
+		_character.apply_upgrade(button._upgrade)
 
 	hide()
 	get_tree().paused = false

@@ -46,6 +46,8 @@ var water_amount_to_next_level = 20
 var projectile_scale = 1
 var attack_interval = 1
 
+var upgrades_applied: Dictionary = {}
+
 func _ready() -> void:
 	_texture.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
@@ -197,3 +199,20 @@ func apply_invulnerability(duration: float):
 func add_water(amount: int):
 	current_water_amount += amount
 	water_collected.emit()
+
+func can_apply_upgrade(upgrade: BaseUpgrade) -> bool:
+	if upgrade.max_uses == -1:
+		return true
+
+	var current_uses = upgrades_applied.get(upgrade.id, 0)
+	return current_uses < upgrade.max_uses
+
+func apply_upgrade(upgrade: BaseUpgrade) -> void:
+	if not can_apply_upgrade(upgrade):
+		return
+
+	if not upgrades_applied.has(upgrade.id):
+		upgrades_applied[upgrade.id] = 0
+
+	upgrades_applied[upgrade.id] += 1
+	upgrade.apply_upgrade(self)

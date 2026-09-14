@@ -207,7 +207,6 @@ text = "Reiniciar"
 
 [node name="LevelUp" type="ColorRect" parent="GUI" unique_id=1269669155 node_paths=PackedStringArray("_character")]
 process_mode = 3
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -241,7 +240,7 @@ uppercase = true
 
 [node name="UpgradesContainer" type="HBoxContainer" parent="GUI/LevelUp/Column" unique_id=693990615]
 layout_mode = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 24
 
 [node name="Button" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=518124117 instance=ExtResource("12_vugdd")]
 layout_mode = 2
