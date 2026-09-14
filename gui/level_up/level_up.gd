@@ -4,11 +4,13 @@ class_name LevelUp
 @export var _character: BaseCharacter
 
 @onready var _upgrades_container: BoxContainer = $Column/UpgradesContainer
+@onready var _level_up_sfx: AudioStream = preload("res://sfx/level_up.wav")
 
 func _ready() -> void:
 	visible = false
 
 func show_screen() -> void:
+	SoundManager.play(_level_up_sfx, 0, ProcessMode.PROCESS_MODE_ALWAYS)
 	show()
 	_setup_buttons()
 
