@@ -81,22 +81,22 @@ func _move():
 func _animate() -> void:
 	if velocity.length() > 0:
 		if velocity.x < 0:
-			if _animation.has_animation("run_left"):
+			if _animation.has_animation(_animations["run_left"]):
 				_animation.play(_animations["run_left"])
 			return
 
 		if velocity.x > 0:
-			if _animation.has_animation("run_right"):
+			if _animation.has_animation(_animations["run_right"]):
 				_animation.play(_animations["run_right"])
 			return
 
 		if velocity.y < 0:
-			if _animation.has_animation("run_top"):
+			if _animation.has_animation(_animations["run_top"]):
 				_animation.play(_animations["run_top"])
 			return
 
 		if velocity.y > 0:
-			if _animation.has_animation("run_bottom"):
+			if _animation.has_animation(_animations["run_bottom"]):
 				_animation.play(_animations["run_bottom"])
 			return
 
