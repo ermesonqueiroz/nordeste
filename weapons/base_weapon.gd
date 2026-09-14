@@ -1,14 +1,26 @@
 extends Node2D
 class_name BaseWeapon
 
+@export var orbit_distance: float = 24.0
+@export var _character: BaseCharacter
+
 func _process(_delta: float) -> void:
-    look_at(get_global_mouse_position())
+	if not _character:
+		return
 
-    var adjusted_deg = wrap(rotation_degrees - 90, 0, 360)
+	var mouse_pos = get_global_mouse_position()
+	var char_pos = _character.global_position
 
-    if adjusted_deg >= 0 and adjusted_deg <= 180:
-        scale.y = -1
-    else:
-        scale.y = 1
+	var direction = (mouse_pos - char_pos).normalized()
 
-    scale.x = 1
+	global_position = char_pos + direction * orbit_distance
+
+	look_at(mouse_pos)
+
+	var angle_deg = rad_to_deg(direction.angle())
+	if angle_deg > 90 or angle_deg < -90:
+		scale.y = -1
+	else:
+		scale.y = 1
+
+	scale.x = 1

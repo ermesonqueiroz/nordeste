@@ -9,4 +9,5 @@ script = ExtResource("2_i7ghb")
 
 [node name="Texture" parent="." index="0" unique_id=1083896037]
 position = Vector2(7, -2)
+scale = Vector2(1.4, 1.4)
 texture = ExtResource("3_hfse1")
