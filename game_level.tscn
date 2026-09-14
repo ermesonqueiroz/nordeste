@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
 [ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
 [ext_resource type="AudioStream" uid="uid://y28hs6srvdfm" path="res://sfx/battle_commences_loopable.wav" id="17_3ktkq"]
+[ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
 
 [sub_resource type="Gradient" id="Gradient_5d4hl"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -132,12 +133,18 @@ process_material = SubResource("ParticleProcessMaterial_vugdd")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=473141386]
 
-[node name="WaterBar" type="TextureProgressBar" parent="GUI" unique_id=1355095233 node_paths=PackedStringArray("character")]
-custom_minimum_size = Vector2(0, 16)
+[node name="MarginContainer" type="MarginContainer" parent="GUI" unique_id=1221636481]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 12.0
 grow_horizontal = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+
+[node name="WaterBar" type="TextureProgressBar" parent="GUI/MarginContainer" unique_id=1355095233 node_paths=PackedStringArray("character")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
 value = 100.0
 nine_patch_stretch = true
 stretch_margin_left = 3
@@ -145,9 +152,9 @@ stretch_margin_right = 3
 texture_under = ExtResource("8_5d4hl")
 texture_progress = SubResource("GradientTexture2D_3ktkq")
 script = ExtResource("9_anq5l")
-character = NodePath("../../CearenseCharacter")
+character = NodePath("../../../CearenseCharacter")
 
-[node name="Label" type="Label" parent="GUI/WaterBar" unique_id=327242225]
+[node name="Label" type="Label" parent="GUI/MarginContainer/WaterBar" unique_id=327242225]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -155,9 +162,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -11.5
+offset_top = -12.0
 offset_right = 20.0
-offset_bottom = 11.5
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Level 0"
@@ -207,6 +214,7 @@ text = "Reiniciar"
 
 [node name="LevelUp" type="ColorRect" parent="GUI" unique_id=1269669155 node_paths=PackedStringArray("_character")]
 process_mode = 3
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -249,6 +257,10 @@ _upgrade = SubResource("Resource_anq5l")
 [node name="Button2" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=1599368555 instance=ExtResource("12_vugdd")]
 layout_mode = 2
 _upgrade = SubResource("Resource_3ktkq")
+
+[node name="Crosshair" parent="GUI" unique_id=740910499 node_paths=PackedStringArray("_character") instance=ExtResource("17_gyjtv")]
+process_mode = 3
+_character = NodePath("../../CearenseCharacter")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1416192190]
 stream = ExtResource("17_3ktkq")

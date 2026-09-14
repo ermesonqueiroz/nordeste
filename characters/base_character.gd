@@ -4,6 +4,7 @@ class_name BaseCharacter
 signal healthUpdated
 signal water_collected
 signal level_updated
+signal character_attacked
 
 @export_category("Variables")
 @export var _move_speed: float = 128.0
@@ -43,7 +44,7 @@ var current_water_amount = 0
 var current_level = 1
 var water_amount_to_next_level = 20
 
-var projectile_scale = 1
+var projectile_scale = 1.2
 var attack_interval = 1
 
 var upgrades_applied: Dictionary = {}
@@ -127,6 +128,7 @@ func _attack() -> void:
 
 	get_parent().add_child.call_deferred(new_projectile)
 	_camera.screen_shake(3, 0.3)
+	character_attacked.emit()
 
 func _on_hit_timer_timeout() -> void:
 	_attack()

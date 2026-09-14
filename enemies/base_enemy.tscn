@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bp8c06jwp11jr" path="res://damage_label_spawner.gd" id="2_bfj6p"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_xens1"]
 [ext_resource type="AudioStream" uid="uid://d454y5desh05" path="res://enemies/Hit1.wav" id="3_b5ht1"]
-[ext_resource type="FontFile" uid="uid://caig40m8c3b0y" path="res://fonts/BoldPixels.ttf" id="4_35jd6"]
+[ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="4_35jd6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35jd6"]
 resource_local_to_scene = true
@@ -14,7 +14,6 @@ shader_parameter/flash_value = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_bfj6p"]
 font = ExtResource("4_35jd6")
-outline_size = 1
 outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=1834857299]

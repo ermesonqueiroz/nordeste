@@ -59,4 +59,10 @@ func _on_collected(_character: BaseCharacter) -> void:
 		tween.tween_property(_texture, "scale", _texture.scale * 1.4, 0.15)
 		tween.tween_property(_texture, "modulate:a", 0.0, 0.15)
 
-	tween.chain().tween_callback(queue_free)
+	tween.chain().tween_callback(func():
+		collect_item(_character)
+		queue_free()
+	)
+
+func collect_item(_character: BaseCharacter) -> void:
+	pass

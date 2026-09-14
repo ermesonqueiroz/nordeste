@@ -7,6 +7,8 @@ class_name GameLevel
 @onready var _level_up: ColorRect = $GUI/LevelUp
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 	_game_over.hide()
 	_character.level_updated.connect(_on_character_level_updated)
 

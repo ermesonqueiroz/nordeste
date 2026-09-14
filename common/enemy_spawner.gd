@@ -23,7 +23,7 @@ func _start_enemies_spawn():
 			var new_enemy: BaseEnemy = _enemies_to_spawn.pick_random().instantiate()
 			new_enemy.player = _player
 			var angle = randf() * TAU
-			var spawn_distance = 400
+			var spawn_distance = 600
 			new_enemy.spawnPosition = _player.global_position + Vector2(cos(angle), sin(angle)) * spawn_distance
 
 			get_parent().add_child(new_enemy)

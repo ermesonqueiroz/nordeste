@@ -53,7 +53,7 @@ func _on_button_down() -> void:
 	animation_tween.tween_property(self, "scale", Vector2.ONE * 0.95, 0.12)
 
 func _on_button_up() -> void:
-	SoundManager.play(_pop_sfx, -12.0)
+	SoundManager.play(_pop_sfx, -8.0)
 
 	if animation_tween and animation_tween.is_running():
 		animation_tween.kill()
