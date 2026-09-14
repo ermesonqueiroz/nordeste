@@ -3,21 +3,36 @@
 [ext_resource type="PackedScene" uid="uid://b0nbnxpanmbm2" path="res://collectables/base_collectable.tscn" id="1_wxeup"]
 [ext_resource type="Texture2D" uid="uid://fxuxs8brjps1" path="res://collectables/water/texture.png" id="2_nly7e"]
 [ext_resource type="Script" uid="uid://dxyp62vg0faf3" path="res://collectables/water/water_collectable.gd" id="2_oh2cy"]
+[ext_resource type="Texture2D" uid="uid://cdbp4a3k7trce" path="res://collectables/water/shadow.png" id="3_clnd8"]
 [ext_resource type="AudioStream" uid="uid://uwkp5tvyw0ju" path="res://collectables/water/collect_audio.wav" id="4_oh2cy"]
+[ext_resource type="Shader" uid="uid://couv7jj28af83" path="res://shaders/shimmer.gdshader" id="5_h322r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h322r"]
+shader = ExtResource("5_h322r")
+shader_parameter/shimmer_color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.2
+shader_parameter/speed = 2.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gm1p2"]
-radius = 7.0
-height = 22.0
+radius = 33.0
+height = 88.0
 
 [node name="WaterCollectable" unique_id=596021622 instance=ExtResource("1_wxeup")]
 script = ExtResource("2_oh2cy")
+_collect_sfx = ExtResource("4_oh2cy")
 
-[node name="Texture" parent="." index="0" unique_id=1043436902]
+[node name="Shadow" type="Sprite2D" parent="." index="0" unique_id=1031820222]
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(0, 2)
+texture = ExtResource("3_clnd8")
+
+[node name="Texture" parent="." index="1" unique_id=1043436902]
+material = SubResource("ShaderMaterial_h322r")
 texture = ExtResource("2_nly7e")
 
-[node name="Collision" parent="." index="1" unique_id=1014183451]
+[node name="Collision" parent="." index="2" unique_id=1014183451]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_gm1p2")
 
-[node name="CollectAudio" type="AudioStreamPlayer" parent="." index="2" unique_id=1875203653]
+[node name="CollectAudio" type="AudioStreamPlayer" parent="." index="3" unique_id=1875203653]
 stream = ExtResource("4_oh2cy")
