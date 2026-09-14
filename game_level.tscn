@@ -17,8 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
 [ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
 [ext_resource type="Script" uid="uid://dhua5b5fxbs1o" path="res://upgrades/base_updgrade.gd" id="13_ssom1"]
-[ext_resource type="Script" uid="uid://tme0fnq3e6ad" path="res://upgrades/increase_projectile_damage/increase_projectile_damage.gd" id="16_emgcl"]
+[ext_resource type="Script" uid="uid://c0y6efw78gueo" path="res://upgrades/increase_projectile_damage/increase_projectile_damage_upgrade.gd" id="16_tj1nq"]
 [ext_resource type="AudioStream" uid="uid://y28hs6srvdfm" path="res://sfx/battle_commences_loopable.wav" id="17_3ktkq"]
+[ext_resource type="Script" uid="uid://cc0bw8p46kcea" path="res://upgrades/increase_character_health/increase_character_health_upgrade.gd" id="17_f88ab"]
 [ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
 
 [sub_resource type="Gradient" id="Gradient_5d4hl"]
@@ -89,14 +90,18 @@ script = ExtResource("4_5d4hl")
 metadata/_custom_type_script = "uid://d1ewblllxwhop"
 
 [sub_resource type="Resource" id="Resource_ssom1"]
-script = ExtResource("16_emgcl")
-metadata/_custom_type_script = "uid://tme0fnq3e6ad"
+script = ExtResource("16_tj1nq")
+metadata/_custom_type_script = "uid://c0y6efw78gueo"
 
-[sub_resource type="Resource" id="Resource_tj1nq"]
+[sub_resource type="Resource" id="Resource_emgcl"]
+script = ExtResource("17_f88ab")
+metadata/_custom_type_script = "uid://cc0bw8p46kcea"
+
+[sub_resource type="Resource" id="Resource_f88ab"]
 script = ExtResource("13_ssom1")
 metadata/_custom_type_script = "uid://dhua5b5fxbs1o"
 
-[sub_resource type="Resource" id="Resource_emgcl"]
+[sub_resource type="Resource" id="Resource_2obac"]
 script = ExtResource("13_ssom1")
 metadata/_custom_type_script = "uid://dhua5b5fxbs1o"
 
@@ -237,7 +242,8 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 script = ExtResource("11_gm1p2")
 _character = NodePath("../../CearenseCharacter")
-_upgrade_to_draw = Array[ExtResource("13_ssom1")]([SubResource("Resource_k5olh"), SubResource("Resource_rlfms"), SubResource("Resource_ssom1")])
+_upgrade_count_to_draw = 3
+_upgrade_to_draw = Array[ExtResource("13_ssom1")]([SubResource("Resource_k5olh"), SubResource("Resource_rlfms"), SubResource("Resource_ssom1"), SubResource("Resource_emgcl")])
 
 [node name="Column" type="VBoxContainer" parent="GUI/LevelUp" unique_id=90250396]
 layout_mode = 1
@@ -267,11 +273,11 @@ theme_override_constants/separation = 24
 
 [node name="Button" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=518124117 instance=ExtResource("12_vugdd")]
 layout_mode = 2
-upgrade = SubResource("Resource_tj1nq")
+upgrade = SubResource("Resource_f88ab")
 
 [node name="Button2" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=1599368555 instance=ExtResource("12_vugdd")]
 layout_mode = 2
-upgrade = SubResource("Resource_emgcl")
+upgrade = SubResource("Resource_2obac")
 
 [node name="Crosshair" parent="GUI" unique_id=740910499 node_paths=PackedStringArray("_character") instance=ExtResource("17_gyjtv")]
 process_mode = 3
