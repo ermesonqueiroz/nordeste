@@ -3,9 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://enemies/base_enemy.tscn" id="1_gm6ui"]
 [ext_resource type="Texture2D" uid="uid://dr8fuf1fwr6fs" path="res://enemies/tapuru/tapuru.png" id="2_5xepv"]
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://collectables/water/water_collectable.tscn" id="2_7gtrk"]
+[ext_resource type="Script" uid="uid://b33caura4hltj" path="res://enemies/tapuru/tapuru_enemy.gd" id="2_x1ars"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_52wki"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_52wki"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vnvv"]
 resource_local_to_scene = true
 shader = ExtResource("3_52wki")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -83,12 +84,13 @@ _data = {
 }
 
 [node name="TapuruEnemy" unique_id=1834857299 instance=ExtResource("1_gm6ui")]
+script = ExtResource("2_x1ars")
 collectable_to_drop_on_die = ExtResource("2_7gtrk")
 move_speed = 20.0
 max_health = 10.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
-material = SubResource("ShaderMaterial_52wki")
+material = SubResource("ShaderMaterial_1vnvv")
 texture = ExtResource("2_5xepv")
 hframes = 3
 
