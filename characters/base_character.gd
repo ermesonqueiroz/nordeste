@@ -46,6 +46,7 @@ var water_amount_to_next_level = 20
 
 var projectile_scale = 1.2
 var attack_interval = 1
+var attack_damage = 20
 
 var upgrades_applied: Dictionary = {}
 
@@ -128,6 +129,7 @@ func _attack() -> void:
 	new_projectile.spawn_position = global_position + (mouse_position * 40)
 	new_projectile.spawn_rotation = mouse_position.angle()
 	new_projectile.scale = Vector2.ONE * projectile_scale
+	new_projectile.damage = attack_damage
 
 	get_parent().add_child.call_deferred(new_projectile)
 	_camera.screen_shake(3, 0.3)

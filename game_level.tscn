@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
 [ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
 [ext_resource type="Script" uid="uid://dhua5b5fxbs1o" path="res://upgrades/base_updgrade.gd" id="13_ssom1"]
+[ext_resource type="Script" uid="uid://tme0fnq3e6ad" path="res://upgrades/increase_projectile_damage/increase_projectile_damage.gd" id="16_emgcl"]
 [ext_resource type="AudioStream" uid="uid://y28hs6srvdfm" path="res://sfx/battle_commences_loopable.wav" id="17_3ktkq"]
 [ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
 
@@ -88,6 +89,10 @@ script = ExtResource("4_5d4hl")
 metadata/_custom_type_script = "uid://d1ewblllxwhop"
 
 [sub_resource type="Resource" id="Resource_ssom1"]
+script = ExtResource("16_emgcl")
+metadata/_custom_type_script = "uid://tme0fnq3e6ad"
+
+[sub_resource type="Resource" id="Resource_tj1nq"]
 script = ExtResource("13_ssom1")
 metadata/_custom_type_script = "uid://dhua5b5fxbs1o"
 
@@ -223,6 +228,7 @@ text = "Reiniciar"
 
 [node name="LevelUp" type="ColorRect" parent="GUI" unique_id=1269669155 node_paths=PackedStringArray("_character")]
 process_mode = 3
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -231,7 +237,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 script = ExtResource("11_gm1p2")
 _character = NodePath("../../CearenseCharacter")
-_upgrade_to_draw = Array[ExtResource("13_ssom1")]([SubResource("Resource_k5olh"), SubResource("Resource_rlfms")])
+_upgrade_to_draw = Array[ExtResource("13_ssom1")]([SubResource("Resource_k5olh"), SubResource("Resource_rlfms"), SubResource("Resource_ssom1")])
 
 [node name="Column" type="VBoxContainer" parent="GUI/LevelUp" unique_id=90250396]
 layout_mode = 1
@@ -261,7 +267,7 @@ theme_override_constants/separation = 24
 
 [node name="Button" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=518124117 instance=ExtResource("12_vugdd")]
 layout_mode = 2
-upgrade = SubResource("Resource_ssom1")
+upgrade = SubResource("Resource_tj1nq")
 
 [node name="Button2" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=1599368555 instance=ExtResource("12_vugdd")]
 layout_mode = 2

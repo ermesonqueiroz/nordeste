@@ -10,6 +10,7 @@ class_name BaseProjectile
 var direction: Vector2
 var spawn_position: Vector2
 var spawn_rotation: float
+var damage: int = 20
 
 func _ready():
 	global_position = spawn_position
@@ -27,5 +28,5 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is BaseEnemy:
 		var enemy = area.get_parent()
-		enemy.take_damage(20)
+		enemy.take_damage(damage)
 		enemy.apply_knockback((enemy.global_position - global_position).normalized(), 200, 0.15)
