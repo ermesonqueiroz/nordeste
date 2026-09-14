@@ -54,6 +54,9 @@ func _ready() -> void:
 	water_collected.connect(_on_water_collected)
 	_start_attack_timer()
 
+func _process(_delta: float) -> void:
+	RenderingServer.global_shader_parameter_set("player_position", global_position)
+
 func _physics_process(delta: float) -> void:
 	if knockback_timer > 0:
 		velocity = knockback

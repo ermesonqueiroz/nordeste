@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bbl06g1tfg727" path="res://terrain/terrain.png" id="1_0rasl"]
 [ext_resource type="Texture2D" uid="uid://bb54p5vbc7g2b" path="res://terrain/terrain_nordeste.png" id="2_l7s0s"]
+[ext_resource type="Shader" uid="uid://nouadp8t7hdm" path="res://shaders/foliage_shader.gdshader" id="3_2ilfp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0rasl"]
 texture = ExtResource("1_0rasl")
@@ -71,6 +72,14 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0rasl")
 sources/2 = SubResource("TileSetAtlasSource_l7s0s")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5olh"]
+shader = ExtResource("3_2ilfp")
+shader_parameter/wind_speed = 3.0
+shader_parameter/wind_strength = 4.0
+shader_parameter/right_bias = 0.6
+shader_parameter/push_radius = 45.0
+shader_parameter/max_rotation = 0.35
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ilfp"]
 texture = ExtResource("2_l7s0s")
 texture_region_size = Vector2i(40, 40)
@@ -93,6 +102,11 @@ tile_map_data = PackedByteArray("AAAAAAAAAgAAAAAAAAAcAAAAAgAAAAAAAAAbAAAAAgAAAAA
 tile_set = SubResource("TileSet_l7s0s")
 collision_visibility_mode = 1
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=740418096]
-tile_map_data = PackedByteArray("AAADAAIAAQABAAAAAAABAAcAAQABAAAAAAAIAAwAAQABAAAAAAAWAAoAAQABAAAAAAAXAAMAAQABAAAAAAASAAEAAQABAAAAAAALAAUAAQABAAAAAAATAAYAAQABAAAAAAAOAAoAAQABAAAAAAAHAAQAAQACAAAAAAAKAAEAAQACAAAAAAAPAAMAAQACAAAAAAASAAwAAQACAAAAAAACAAwAAQACAAAAAAAXAAcAAQACAAAAAAAEAAkAAQACAAAAAAAJAAoAAQACAAAAAAAVAAEAAQADAAAAAAAWAAwAAQADAAAAAAAQAAwAAQADAAAAAAATAAsAAQADAAAAAAAXAAgAAQADAAAAAAABAAEAAQADAAAAAAAAAAwAAQADAAAAAAAFAAYAAQADAAAAAAAGAAAAAQADAAAAAAAMAAEAAQADAAAAAAAQAAAAAQADAAAAAAALAAoAAQADAAAAAAAGAAsAAQADAAAAAAAMAAwAAQADAAAAAAA=")
+[node name="Foliage" type="TileMapLayer" parent="." unique_id=740418096]
+material = SubResource("ShaderMaterial_k5olh")
+tile_map_data = PackedByteArray("AAAVAAEAAQADAAAAAAAWAAwAAQADAAAAAAAQAAwAAQADAAAAAAATAAsAAQADAAAAAAAXAAgAAQADAAAAAAABAAEAAQADAAAAAAAAAAwAAQADAAAAAAAFAAYAAQADAAAAAAAGAAAAAQADAAAAAAAMAAEAAQADAAAAAAAQAAAAAQADAAAAAAALAAoAAQADAAAAAAAGAAsAAQADAAAAAAAMAAwAAQADAAAAAAA=")
+tile_set = SubResource("TileSet_vb32k")
+
+[node name="Obstacles" type="TileMapLayer" parent="." unique_id=910009421]
+tile_map_data = PackedByteArray("AAAEAAMAAQABAAAAAAARAAMAAQABAAAAAAAUAAYAAQABAAAAAAAQAAsAAQABAAAAAAAPAAYAAQABAAAAAAAIAAgAAQABAAAAAAABAAoAAQABAAAAAAAIAAwAAQABAAAAAAACAAcAAQACAAAAAAAIAAMAAQACAAAAAAALAAUAAQACAAAAAAANAAkAAQACAAAAAAA=")
 tile_set = SubResource("TileSet_vb32k")
