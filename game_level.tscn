@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://caig40m8c3b0y" path="res://fonts/BoldPixels.ttf" id="12_gm1p2"]
 [ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
 [ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
+[ext_resource type="Script" uid="uid://dhua5b5fxbs1o" path="res://upgrades/base_updgrade.gd" id="13_ssom1"]
 [ext_resource type="AudioStream" uid="uid://y28hs6srvdfm" path="res://sfx/battle_commences_loopable.wav" id="17_3ktkq"]
 [ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
 
@@ -78,13 +79,21 @@ corner_detail = 1
 bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
 corner_detail = 1
 
-[sub_resource type="Resource" id="Resource_anq5l"]
+[sub_resource type="Resource" id="Resource_k5olh"]
+script = ExtResource("13_gm1p2")
+metadata/_custom_type_script = "uid://bkmnlcgb8dww0"
+
+[sub_resource type="Resource" id="Resource_rlfms"]
 script = ExtResource("4_5d4hl")
 metadata/_custom_type_script = "uid://d1ewblllxwhop"
 
-[sub_resource type="Resource" id="Resource_3ktkq"]
-script = ExtResource("13_gm1p2")
-metadata/_custom_type_script = "uid://bkmnlcgb8dww0"
+[sub_resource type="Resource" id="Resource_ssom1"]
+script = ExtResource("13_ssom1")
+metadata/_custom_type_script = "uid://dhua5b5fxbs1o"
+
+[sub_resource type="Resource" id="Resource_emgcl"]
+script = ExtResource("13_ssom1")
+metadata/_custom_type_script = "uid://dhua5b5fxbs1o"
 
 [node name="GameLevel" type="Node2D" unique_id=1376921944 node_paths=PackedStringArray("_character")]
 script = ExtResource("1_qsd0w")
@@ -214,7 +223,6 @@ text = "Reiniciar"
 
 [node name="LevelUp" type="ColorRect" parent="GUI" unique_id=1269669155 node_paths=PackedStringArray("_character")]
 process_mode = 3
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -223,6 +231,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 script = ExtResource("11_gm1p2")
 _character = NodePath("../../CearenseCharacter")
+_upgrade_to_draw = Array[ExtResource("13_ssom1")]([SubResource("Resource_k5olh"), SubResource("Resource_rlfms")])
 
 [node name="Column" type="VBoxContainer" parent="GUI/LevelUp" unique_id=90250396]
 layout_mode = 1
@@ -252,11 +261,11 @@ theme_override_constants/separation = 24
 
 [node name="Button" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=518124117 instance=ExtResource("12_vugdd")]
 layout_mode = 2
-_upgrade = SubResource("Resource_anq5l")
+upgrade = SubResource("Resource_ssom1")
 
 [node name="Button2" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=1599368555 instance=ExtResource("12_vugdd")]
 layout_mode = 2
-_upgrade = SubResource("Resource_3ktkq")
+upgrade = SubResource("Resource_emgcl")
 
 [node name="Crosshair" parent="GUI" unique_id=740910499 node_paths=PackedStringArray("_character") instance=ExtResource("17_gyjtv")]
 process_mode = 3

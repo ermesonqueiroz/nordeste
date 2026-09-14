@@ -1,7 +1,7 @@
 extends TextureButton
 class_name UpgradeButton
 
-@export var _upgrade: BaseUpgrade
+@export var upgrade: BaseUpgrade
 
 @onready var _title: Label = $Title
 @onready var _description: Label = $Description
@@ -13,11 +13,11 @@ class_name UpgradeButton
 var animation_tween: Tween
 
 func _ready() -> void:
-	_title.text = _upgrade.name
-	_description.text = _upgrade.description
+	_title.text = upgrade.name
+	_description.text = upgrade.description
 
-	if _upgrade.icon:
-		_icon_node.texture = _upgrade.icon
+	if upgrade.icon:
+		_icon_node.texture = upgrade.icon
 
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)

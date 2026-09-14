@@ -77,8 +77,6 @@ shader = ExtResource("3_2ilfp")
 shader_parameter/wind_speed = 3.0
 shader_parameter/wind_strength = 4.0
 shader_parameter/right_bias = 0.6
-shader_parameter/push_radius = 45.0
-shader_parameter/max_rotation = 0.35
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ilfp"]
 texture = ExtResource("2_l7s0s")
