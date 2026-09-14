@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://8ymptcs7v4pt"]
 
 [ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://enemies/base_enemy.tscn" id="1_pqv3g"]
-[ext_resource type="Script" uid="uid://lm0smgyp0gv6" path="res://enemies/mosquito/mosquito.gd" id="2_dxpoy"]
 [ext_resource type="Texture2D" uid="uid://bxv8y585h1m6t" path="res://enemies/mosquito/texture.png" id="2_xu6hp"]
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://collectables/water/water_collectable.tscn" id="3_dxpoy"]
-[ext_resource type="AudioStream" uid="uid://b1vg4q7tdja3u" path="res://enemies/mosquito/sound.mp3" id="4_iurcn"]
 
 [sub_resource type="Shader" id="Shader_xu6hp"]
 code = "shader_type canvas_item;
@@ -18,7 +16,7 @@ void fragment() {
 	COLOR.a = texture_color.a;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxpoy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pqv3g"]
 resource_local_to_scene = true
 shader = SubResource("Shader_xu6hp")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -30,7 +28,7 @@ height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb32k"]
 radius = 7.0
-height = 20.0
+height = 22.0
 
 [sub_resource type="Animation" id="Animation_kjrhy"]
 length = 0.001
@@ -96,13 +94,12 @@ _data = {
 }
 
 [node name="Mosquito" unique_id=1834857299 instance=ExtResource("1_pqv3g")]
-script = ExtResource("2_dxpoy")
 collectable_to_drop_on_die = ExtResource("3_dxpoy")
 collectable_amount_to_drop = 4
 move_speed = 40.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
-material = SubResource("ShaderMaterial_dxpoy")
+material = SubResource("ShaderMaterial_pqv3g")
 texture = ExtResource("2_xu6hp")
 hframes = 4
 
@@ -110,14 +107,9 @@ hframes = 4
 shape = SubResource("CapsuleShape2D_goi2v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1390346860) index="0" unique_id=485539409]
-position = Vector2(0, 3)
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_vb32k")
 
 [node name="Animation" parent="." index="3" unique_id=890871356]
 libraries/ = SubResource("AnimationLibrary_kjrhy")
 autoplay = &"movement"
-
-[node name="Audio" type="AudioStreamPlayer" parent="." index="4" unique_id=163417239]
-stream = ExtResource("4_iurcn")
-volume_db = -15.0
-autoplay = true

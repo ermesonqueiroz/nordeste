@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://caig40m8c3b0y" path="res://fonts/BoldPixels.ttf" id="12_gm1p2"]
 [ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
 [ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
+[ext_resource type="AudioStream" uid="uid://y28hs6srvdfm" path="res://sfx/battle_commences_loopable.wav" id="17_3ktkq"]
 
 [sub_resource type="Gradient" id="Gradient_5d4hl"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -249,3 +250,8 @@ _upgrade = SubResource("Resource_anq5l")
 [node name="Button2" parent="GUI/LevelUp/Column/UpgradesContainer" unique_id=1599368555 instance=ExtResource("12_vugdd")]
 layout_mode = 2
 _upgrade = SubResource("Resource_3ktkq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1416192190]
+stream = ExtResource("17_3ktkq")
+volume_db = -18.0
+autoplay = true
