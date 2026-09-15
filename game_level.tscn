@@ -5,18 +5,25 @@
 [ext_resource type="PackedScene" uid="uid://8ymptcs7v4pt" path="res://enemies/mosquito/mosquito.tscn" id="2_v7qp1"]
 [ext_resource type="PackedScene" uid="uid://gx6wyt75v23d" path="res://characters/cearense/cearense_character.tscn" id="3_anq5l"]
 [ext_resource type="Script" uid="uid://d1ewblllxwhop" path="res://upgrades/increase_projectile_size/increase_projectile_size_upgrade.gd" id="4_5d4hl"]
-[ext_resource type="Texture2D" uid="uid://xfkprhoxn0w4" path="res://gui/waterbar/under_texture.png" id="8_5d4hl"]
+[ext_resource type="Texture2D" uid="uid://bepumsi5qo72" path="res://gui/hud_decoration.png" id="7_w051k"]
+[ext_resource type="Texture2D" uid="uid://dda1oa36sj2kf" path="res://gui/waterbar/progress_texture.png" id="8_2obac"]
+[ext_resource type="Texture2D" uid="uid://cv0w6ykclabor" path="res://gui/waterbar/under_texture.png" id="8_f88ab"]
 [ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
+[ext_resource type="Texture2D" uid="uid://dxrbtek3fejkt" path="res://gui/waterbar/over_texture.png" id="8_whhu8"]
 [ext_resource type="Script" uid="uid://cttxt0w3v2w8m" path="res://gui/waterbar/waterbar.gd" id="9_anq5l"]
 [ext_resource type="Script" uid="uid://cdyqfbq7f6j0o" path="res://gui/game_over/game_over.gd" id="10_anq5l"]
 [ext_resource type="PackedScene" uid="uid://8p1p1luyh4tu" path="res://enemies/tapuru/tapuru_enemy.tscn" id="10_jpbmx"]
 [ext_resource type="LabelSettings" uid="uid://xp6ddldq0p0s" path="res://gui/label_settings.tres" id="11_5d4hl"]
 [ext_resource type="Script" uid="uid://bo7aktf84u7l4" path="res://gui/level_up/level_up.gd" id="11_gm1p2"]
+[ext_resource type="Texture2D" uid="uid://hhnse5m5s8vi" path="res://gui/healthbar/under_texture.png" id="12_353a4"]
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="12_dv4fs"]
 [ext_resource type="FontFile" uid="uid://caig40m8c3b0y" path="res://fonts/BoldPixels.ttf" id="12_gm1p2"]
 [ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
+[ext_resource type="Texture2D" uid="uid://rp48n0swibkv" path="res://gui/healthbar/over_texture.png" id="13_f2ouj"]
 [ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
 [ext_resource type="Script" uid="uid://dhua5b5fxbs1o" path="res://upgrades/base_updgrade.gd" id="13_ssom1"]
+[ext_resource type="Texture2D" uid="uid://c7cwsj4nbs78q" path="res://gui/healthbar/progress_texture.png" id="14_w051k"]
+[ext_resource type="Script" uid="uid://n46mefqj3ivn" path="res://gui/healthbar/healthbar.gd" id="15_f2ouj"]
 [ext_resource type="Script" uid="uid://c0y6efw78gueo" path="res://upgrades/increase_projectile_damage/increase_projectile_damage_upgrade.gd" id="16_tj1nq"]
 [ext_resource type="AudioStream" uid="uid://y28hs6srvdfm" path="res://sfx/battle_commences_loopable.wav" id="17_3ktkq"]
 [ext_resource type="Script" uid="uid://cc0bw8p46kcea" path="res://upgrades/increase_character_health/increase_character_health_upgrade.gd" id="17_f88ab"]
@@ -56,12 +63,6 @@ scale_min = 2.0
 scale_max = 3.1999998
 color = Color(0.9764706, 0.8039216, 0.5568628, 1)
 color_ramp = SubResource("GradientTexture1D_5d4hl")
-
-[sub_resource type="Gradient" id="Gradient_anq5l"]
-colors = PackedColorArray(0.14901961, 0.47843137, 0.9137255, 1, 0.14901961, 0.47843137, 0.9137255, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3ktkq"]
-gradient = SubResource("Gradient_anq5l")
 
 [sub_resource type="LabelSettings" id="LabelSettings_anq5l"]
 font = ExtResource("12_dv4fs")
@@ -153,43 +154,71 @@ process_material = SubResource("ParticleProcessMaterial_vugdd")
 [node name="GUI" type="CanvasLayer" parent="." unique_id=473141386]
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI" unique_id=1221636481]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 12.0
-grow_horizontal = 2
+offset_right = 203.0
+offset_bottom = 24.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 
-[node name="WaterBar" type="TextureProgressBar" parent="GUI/MarginContainer" unique_id=1355095233 node_paths=PackedStringArray("character")]
-custom_minimum_size = Vector2(0, 14)
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer" unique_id=405535819]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer" unique_id=340301105]
+layout_mode = 2
+theme_override_constants/separation = -15
+
+[node name="TextureRect" type="TextureRect" parent="GUI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=897099182]
+z_index = 1
+layout_mode = 2
+texture = ExtResource("7_w051k")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=656950267]
+layout_mode = 2
+theme_override_constants/margin_top = 18
+
+[node name="WaterBar" type="TextureProgressBar" parent="GUI/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1355095233 node_paths=PackedStringArray("character")]
 layout_mode = 2
 value = 100.0
-nine_patch_stretch = true
-stretch_margin_left = 3
-stretch_margin_right = 3
-texture_under = ExtResource("8_5d4hl")
-texture_progress = SubResource("GradientTexture2D_3ktkq")
+stretch_margin_left = 4
+stretch_margin_right = 4
+texture_under = ExtResource("8_f88ab")
+texture_over = ExtResource("8_whhu8")
+texture_progress = ExtResource("8_2obac")
+texture_progress_offset = Vector2(3, 3)
 script = ExtResource("9_anq5l")
-character = NodePath("../../../CearenseCharacter")
+character = NodePath("../../../../../../CearenseCharacter")
 
-[node name="Label" type="Label" parent="GUI/MarginContainer/WaterBar" unique_id=327242225]
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/WaterBar" unique_id=327242225]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -12.0
-offset_right = 20.0
-offset_bottom = 11.0
+offset_left = -18.5
+offset_top = -1.0
+offset_right = 19.5
+offset_bottom = 12.0
 grow_horizontal = 2
-grow_vertical = 2
 text = "Level 0"
 label_settings = SubResource("LabelSettings_anq5l")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer" unique_id=974212543]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUI/MarginContainer/VBoxContainer/MarginContainer" unique_id=425038127 node_paths=PackedStringArray("character")]
+layout_mode = 2
+value = 100.0
+fill_mode = 2
+stretch_margin_left = 4
+stretch_margin_right = 4
+texture_under = ExtResource("12_353a4")
+texture_over = ExtResource("13_f2ouj")
+texture_progress = ExtResource("14_w051k")
+script = ExtResource("15_f2ouj")
+character = NodePath("../../../../../CearenseCharacter")
 
 [node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358]
 process_mode = 3

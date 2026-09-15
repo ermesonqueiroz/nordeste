@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv0w6ykclabor"
-path="res://.godot/imported/under_texture.png-eba399bf5c3e1e52cf1db44640b1b4c7.ctex"
+uid="uid://bepumsi5qo72"
+path="res://.godot/imported/hud_decoration.png-3adf25bbe9b8295cc04388cb5ac08d3f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/waterbar/under_texture.png"
-dest_files=["res://.godot/imported/under_texture.png-eba399bf5c3e1e52cf1db44640b1b4c7.ctex"]
+source_file="res://gui/hud_decoration.png"
+dest_files=["res://.godot/imported/hud_decoration.png-3adf25bbe9b8295cc04388cb5ac08d3f.ctex"]
 
 [params]
 

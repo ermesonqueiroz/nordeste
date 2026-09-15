@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv0w6ykclabor"
-path="res://.godot/imported/under_texture.png-eba399bf5c3e1e52cf1db44640b1b4c7.ctex"
+uid="uid://dxrbtek3fejkt"
+path="res://.godot/imported/over_texture.png-029fd65b8a8afc13505b900bef1cdf5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/waterbar/under_texture.png"
-dest_files=["res://.godot/imported/under_texture.png-eba399bf5c3e1e52cf1db44640b1b4c7.ctex"]
+source_file="res://gui/waterbar/over_texture.png"
+dest_files=["res://.godot/imported/over_texture.png-029fd65b8a8afc13505b900bef1cdf5d.ctex"]
 
 [params]
 

@@ -206,7 +206,3 @@ shape = SubResource("RectangleShape2D_goi2v")
 
 [node name="Animation" parent="." index="2" unique_id=314084126]
 libraries/ = SubResource("AnimationLibrary_vpbxj")
-
-[node name="HealthBar" parent="." index="5" unique_id=827512461]
-offset_top = 17.0
-offset_bottom = 44.0
