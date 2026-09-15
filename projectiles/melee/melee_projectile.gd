@@ -1,2 +1,0 @@
-extends BaseProjectile
-class_name MeleeProjectile

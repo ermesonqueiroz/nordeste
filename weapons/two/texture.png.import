@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch36gjwmy13j2"
-path="res://.godot/imported/meele-attack.png-75c1eacec1aa6235eea9fd86cbe360a2.ctex"
+uid="uid://bfmeg888hphdx"
+path="res://.godot/imported/texture.png-3fd9ca560284de0bb115ffb2844f098b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://projectiles/melee/meele-attack.png"
-dest_files=["res://.godot/imported/meele-attack.png-75c1eacec1aa6235eea9fd86cbe360a2.ctex"]
+source_file="res://weapons/two/texture.png"
+dest_files=["res://.godot/imported/texture.png-3fd9ca560284de0bb115ffb2844f098b.ctex"]
 
 [params]
 

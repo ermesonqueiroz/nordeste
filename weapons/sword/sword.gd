@@ -1,2 +1,0 @@
-extends BaseWeapon
-class_name SwordWeapon

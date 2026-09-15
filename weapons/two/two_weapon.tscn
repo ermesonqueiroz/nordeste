@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://w78j5blurhha"]
+
+[ext_resource type="PackedScene" uid="uid://0n77a6gehfw3" path="res://weapons/base_weapon.tscn" id="1_rmn6d"]
+[ext_resource type="Script" uid="uid://c4iwwg1c0d1ox" path="res://weapons/two/two_weapon.gd" id="2_b0vy4"]
+[ext_resource type="Texture2D" uid="uid://bfmeg888hphdx" path="res://weapons/two/texture.png" id="2_ko56g"]
+
+[sub_resource type="Animation" id="Animation_ko56g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b0vy4"]
+resource_name = "idle"
+length = 0.10001000149026514
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vrwvs"]
+resource_name = "shoot"
+length = 0.20001000298038127
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vrwvs"]
+_data = {
+&"RESET": SubResource("Animation_ko56g"),
+&"idle": SubResource("Animation_b0vy4"),
+&"shoot": SubResource("Animation_vrwvs")
+}
+
+[node name="TwoWeapon" unique_id=1820149675 instance=ExtResource("1_rmn6d")]
+script = ExtResource("2_b0vy4")
+
+[node name="Texture" parent="." index="0" unique_id=1083896037]
+position = Vector2(12, -8)
+texture = ExtResource("2_ko56g")
+flip_h = true
+hframes = 2
+
+[node name="Animation" parent="." index="1" unique_id=1487231947]
+libraries/ = SubResource("AnimationLibrary_vrwvs")

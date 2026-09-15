@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bie3kc6xt4jfw"
-path="res://.godot/imported/items.png-9b822ac0a698a911239fdaba858e081b.ctex"
+uid="uid://coyl4n7xdbfq2"
+path="res://.godot/imported/crosshair.png-4a00d14de0b7454d105940376b655b5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://weapons/sword/items.png"
-dest_files=["res://.godot/imported/items.png-9b822ac0a698a911239fdaba858e081b.ctex"]
+source_file="res://weapons/two/crosshair.png"
+dest_files=["res://.godot/imported/crosshair.png-4a00d14de0b7454d105940376b655b5e.ctex"]
 
 [params]
 

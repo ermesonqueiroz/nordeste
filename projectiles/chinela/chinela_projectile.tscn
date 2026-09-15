@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dr3se636ki71k"]
+
+[ext_resource type="PackedScene" uid="uid://cm4p3w1o35o0p" path="res://projectiles/base_projectile.tscn" id="1_xafon"]
+[ext_resource type="Texture2D" uid="uid://c2p862o3wrd6j" path="res://projectiles/chinela/texture.png" id="2_gvwno"]
+[ext_resource type="Script" uid="uid://cpo546lq3kc4" path="res://projectiles/chinela/chinela_projectile.gd" id="2_rcfbb"]
+[ext_resource type="AudioStream" uid="uid://b54xbh6ge13yn" path="res://projectiles/musket_ball/shoot.wav" id="3_vhkp6"]
+[ext_resource type="Script" uid="uid://sy301jr7j8s5" path="res://projectiles/chinela/sprite_trail.gd" id="5_ftsal"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvwno"]
+radius = 5.654063
+height = 16.962189
+
+[node name="ChinelaProjectile" unique_id=1412444270 instance=ExtResource("1_xafon")]
+script = ExtResource("2_rcfbb")
+
+[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1065004391) index="0" unique_id=542292043]
+texture = ExtResource("2_gvwno")
+flip_h = true
+
+[node name="Collision" parent="." index="1" unique_id=1801896036]
+rotation = 0.75398225
+shape = SubResource("CapsuleShape2D_gvwno")
+
+[node name="Audio" parent="." index="2" unique_id=1246407866]
+stream = ExtResource("3_vhkp6")
+
+[node name="SpriteTrail" type="Node2D" parent="." index="4" unique_id=1688976709]
+script = ExtResource("5_ftsal")

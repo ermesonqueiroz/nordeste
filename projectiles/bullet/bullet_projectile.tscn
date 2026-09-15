@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://dhl3eq8q2ursb"]
 
 [ext_resource type="PackedScene" uid="uid://cm4p3w1o35o0p" path="res://projectiles/base_projectile.tscn" id="1_aa150"]
-[ext_resource type="Script" uid="uid://qvwr8xrkvhin" path="res://projectiles/bullet/bullet_projectile.gd" id="2_m3xje"]
 [ext_resource type="AudioStream" uid="uid://befwuxlxxrfr8" path="res://projectiles/bullet/shoot.wav" id="3_a555w"]
 [ext_resource type="Texture2D" uid="uid://bc2jwgpg1d6wx" path="res://projectiles/bullet/texture.png" id="4_a555w"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_aa150"]
-radius = 3.1622777
 
 [sub_resource type="Curve" id="Curve_of6ip"]
 _limits = [0.0, 5.5, 0.0, 1.0]
@@ -18,6 +14,10 @@ offsets = PackedFloat32Array(0, 0.5, 1)
 colors = PackedColorArray(0.827451, 0.31764707, 0.13333334, 1, 0.827451, 0.5764706, 0.07058824, 1, 0.9019608, 0.72156864, 0.21568628, 1)
 metadata/_snap_enabled = true
 metadata/_snap_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufnha"]
+radius = 4.0
+height = 18.0
 
 [sub_resource type="Animation" id="Animation_ofe6g"]
 length = 0.001
@@ -59,15 +59,6 @@ _data = {
 }
 
 [node name="BulletProjectile" unique_id=1412444270 instance=ExtResource("1_aa150")]
-script = ExtResource("2_m3xje")
-
-[node name="Collision" parent="." index="0" unique_id=1801896036]
-position = Vector2(1, 0)
-shape = SubResource("CircleShape2D_aa150")
-
-[node name="Audio" parent="." index="1" unique_id=1246407866]
-stream = ExtResource("3_a555w")
-volume_db = -10.0
 
 [node name="Particles" type="CPUParticles2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1065004391) index="0" unique_id=2129209163]
 position = Vector2(-2, 0)
@@ -89,6 +80,15 @@ position = Vector2(-2, 0)
 texture = ExtResource("4_a555w")
 flip_h = true
 hframes = 3
+
+[node name="Collision" parent="." index="1" unique_id=1801896036]
+position = Vector2(1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ufnha")
+
+[node name="Audio" parent="." index="2" unique_id=1246407866]
+stream = ExtResource("3_a555w")
+volume_db = -10.0
 
 [node name="Animation" parent="." index="3" unique_id=2016169759]
 libraries/ = SubResource("AnimationLibrary_ofe6g")

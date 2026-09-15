@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cgx30jpvo8e1a"]
+
+[ext_resource type="PackedScene" uid="uid://cm4p3w1o35o0p" path="res://projectiles/base_projectile.tscn" id="1_1putm"]
+[ext_resource type="Texture2D" uid="uid://eiu8kv3sane7" path="res://projectiles/shotgun_shell/texture.png" id="2_jp6ai"]
+[ext_resource type="AudioStream" uid="uid://b54xbh6ge13yn" path="res://projectiles/musket_ball/shoot.wav" id="3_jp6ai"]
+
+[sub_resource type="Curve" id="Curve_jp6ai"]
+_limits = [0.0, 2.6, 0.0, 1.0]
+_data = [Vector2(0.007352948, 2.5955057), 0.0, -5.554454, 0, 0, Vector2(1, 0), -6.347949, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_yureh"]
+colors = PackedColorArray(0.827451, 0.31764707, 0.13333334, 1, 0.9019608, 0.72156864, 0.21568628, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tx32u"]
+radius = 1.9999999
+height = 20.0
+
+[sub_resource type="Animation" id="Animation_1putm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yureh"]
+resource_name = "movement"
+length = 0.3000100044704974
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pockm"]
+_data = {
+&"RESET": SubResource("Animation_1putm"),
+&"movement": SubResource("Animation_yureh")
+}
+
+[node name="ShotgunShellProjectile" unique_id=1412444270 instance=ExtResource("1_1putm")]
+
+[node name="Particles" type="CPUParticles2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1065004391) index="0" unique_id=902179368]
+position = Vector2(-7, 0)
+amount = 100
+preprocess = 0.1
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_curve = SubResource("Curve_jp6ai")
+color_ramp = SubResource("Gradient_yureh")
+
+[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1065004391) index="1" unique_id=542292043]
+texture = ExtResource("2_jp6ai")
+flip_h = true
+hframes = 3
+
+[node name="Collision" parent="." index="1" unique_id=1801896036]
+visible = false
+position = Vector2(-2, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tx32u")
+
+[node name="Audio" parent="." index="2" unique_id=1246407866]
+stream = ExtResource("3_jp6ai")
+
+[node name="Animation" parent="." index="3" unique_id=2016169759]
+libraries/ = SubResource("AnimationLibrary_pockm")
+autoplay = &"movement"

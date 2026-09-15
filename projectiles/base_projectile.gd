@@ -6,6 +6,7 @@ class_name BaseProjectile
 @export var lifespan: float = 1.0
 
 @onready var _audio: AudioStreamPlayer = $Audio
+@onready var _spriteGroup = $SpriteGroup
 
 var direction: Vector2
 var spawn_position: Vector2
@@ -19,8 +20,16 @@ func _ready():
 	if _audio and _audio.stream:
 		_audio.play()
 
-	await get_tree().create_timer(lifespan).timeout
-	queue_free()
+	await get_tree().create_timer(3 * lifespan / 4).timeout
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(
+		_spriteGroup,
+		"scale",
+		Vector2.ZERO,
+		lifespan / 4
+	)
+	tween.chain().tween_callback(queue_free)
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta

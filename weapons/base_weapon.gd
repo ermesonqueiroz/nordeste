@@ -42,7 +42,7 @@ func shoot(projectile_scale: float, attack_damage: int) -> void:
 
 	var new_projectile: BaseProjectile = _projectile.instantiate()
 	new_projectile.direction = mouse_position
-	new_projectile.spawn_position = global_position + (mouse_position * 40)
+	new_projectile.spawn_position = global_position + (mouse_position * 40) - Vector2(0, 8)
 	new_projectile.spawn_rotation = mouse_position.angle()
 	new_projectile.scale = Vector2.ONE * projectile_scale
 	new_projectile.damage = attack_damage
