@@ -11,6 +11,9 @@ func _ready() -> void:
 	if _character:
 		_character.character_attacked.connect(_on_character_attacked)
 
+		if _character.weapon.crosshair:
+			sprite.texture = _character.weapon.crosshair
+
 func _process(_delta: float) -> void:
 	sprite.global_position = get_viewport().get_mouse_position()
 

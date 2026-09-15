@@ -14,4 +14,6 @@ volume_db = -2.862
 
 [node name="Texture" type="Sprite2D" parent="SpriteGroup" unique_id=542292043]
 
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=2016169759]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

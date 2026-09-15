@@ -4,10 +4,70 @@
 [ext_resource type="Script" uid="uid://cwdy64sbqvike" path="res://weapons/revolver/revolver.gd" id="2_i7ghb"]
 [ext_resource type="Texture2D" uid="uid://3fyttaxhhi7i" path="res://weapons/revolver/texture.png" id="3_hfse1"]
 
+[sub_resource type="Animation" id="Animation_hfse1"]
+length = 0.03333666840530932
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b7g5s"]
+resource_name = "idle"
+length = 0.03333666840530932
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cffpg"]
+resource_name = "shoot"
+length = 0.20001000298038127
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b7g5s"]
+_data = {
+&"RESET": SubResource("Animation_hfse1"),
+&"idle": SubResource("Animation_b7g5s"),
+&"shoot": SubResource("Animation_cffpg")
+}
+
 [node name="Revolver" unique_id=1820149675 instance=ExtResource("1_rja2j")]
 script = ExtResource("2_i7ghb")
 
 [node name="Texture" parent="." index="0" unique_id=1083896037]
 position = Vector2(7, -2)
-scale = Vector2(1.4, 1.4)
 texture = ExtResource("3_hfse1")
+flip_h = true
+hframes = 2
+
+[node name="Animation" parent="." index="1" unique_id=1487231947]
+libraries/ = SubResource("AnimationLibrary_b7g5s")
+autoplay = &"idle"

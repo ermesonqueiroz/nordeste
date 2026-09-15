@@ -27,6 +27,7 @@ signal character_attacked
 @onready var _camera: BaseCharacterCamera = $Camera
 @onready var _texture: Sprite2D = $SpriteGroup/Texture
 @onready var _audio: AudioStreamPlayer = $Audio
+@onready var weapon: BaseWeapon = $SpriteGroup/Weapon
 
 var enemy: PackedScene = load("res://enemies/mosquito/mosquito.tscn")
 var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.tscn")
@@ -122,16 +123,10 @@ func _start_attack_timer() -> void:
 		_attack()
 
 func _attack() -> void:
-	var mouse_position := (get_global_mouse_position() - global_position).normalized()
+	if not weapon:
+		return
 
-	var new_projectile: BaseProjectile = projectile.instantiate()
-	new_projectile.direction = mouse_position
-	new_projectile.spawn_position = global_position + (mouse_position * 40)
-	new_projectile.spawn_rotation = mouse_position.angle()
-	new_projectile.scale = Vector2.ONE * projectile_scale
-	new_projectile.damage = attack_damage
-
-	get_parent().add_child.call_deferred(new_projectile)
+	weapon.shoot(projectile_scale, attack_damage)
 	_camera.screen_shake(3, 0.3)
 	character_attacked.emit()
 
