@@ -114,7 +114,7 @@ _character = NodePath("CearenseCharacter")
 position = Vector2(-2, 0)
 
 [node name="CearenseCharacter" parent="." unique_id=1555303638 node_paths=PackedStringArray("_gameLevel") instance=ExtResource("3_anq5l")]
-position = Vector2(458, 276)
+position = Vector2(605, 336)
 _gameLevel = NodePath("..")
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=2010455193 node_paths=PackedStringArray("_player")]
