@@ -7,6 +7,7 @@ class_name BaseEnemy
 @export var max_health: float = 20.0
 
 @onready var _texture: Sprite2D = $Texture
+@onready var animation: AnimationPlayer = $Animation
 
 var player: BaseCharacter
 var spawnPosition: Vector2
@@ -49,10 +50,6 @@ func take_damage(damage: float) -> void:
 	$DieAudio.play()
 
 	var tween = get_tree().create_tween()
-	tween.tween_method(
-		func(val): _texture.material.set_shader_parameter("flash_value", val),
-		0, 1, 0.15
-	)
 
 	if health <= 0:
 		tween.tween_property(
@@ -61,6 +58,16 @@ func take_damage(damage: float) -> void:
 			Vector2.ZERO,
 			0.15
 		).connect("finished", die)
+		return
+
+	tween.tween_method(
+		func(val): _texture.material.set_shader_parameter("flash_value", val),
+		0, 1, 0.15
+	)
+	tween.chain().tween_method(
+		func(val): _texture.material.set_shader_parameter("flash_value", val),
+		1, 0, 0.15
+	)
 
 func die():
 	_drop_collectable()

@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://dwufmv1ry0ila"]
+
+[ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://enemies/base_enemy.tscn" id="1_kvoyt"]
+[ext_resource type="Script" uid="uid://bm5628vy2akm7" path="res://enemies/frog/frog_enemy.gd" id="2_5kfhr"]
+[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_pk5b2"]
+[ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://collectables/water/water_collectable.tscn" id="3_aitgp"]
+[ext_resource type="Texture2D" uid="uid://ckugknqf02q6r" path="res://enemies/frog/texture.png" id="3_pk5b2"]
+[ext_resource type="Texture2D" uid="uid://b8ik3nx5mx73n" path="res://enemies/frog/shadow.png" id="5_qhe0n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kfhr"]
+resource_local_to_scene = true
+shader = ExtResource("2_pk5b2")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhe0n"]
+height = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vb32k"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_5kfhr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pk5b2"]
+resource_name = "idle"
+length = 0.3000100044704974
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_qhe0n"]
+resource_name = "movement"
+length = 0.4000100059606135
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5kfhr"]
+_data = {
+&"RESET": SubResource("Animation_5kfhr"),
+&"idle": SubResource("Animation_pk5b2"),
+&"movement": SubResource("Animation_qhe0n")
+}
+
+[node name="FrogEnemy" unique_id=1834857299 instance=ExtResource("1_kvoyt")]
+script = ExtResource("2_5kfhr")
+collectable_to_drop_on_die = ExtResource("3_aitgp")
+max_health = 50.0
+
+[node name="Shadow" type="Sprite2D" parent="." index="0" unique_id=2085432702]
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(3, -21)
+scale = Vector2(1.3828125, 1.3828125)
+texture = ExtResource("5_qhe0n")
+
+[node name="Texture" parent="." index="1" unique_id=256664707]
+material = SubResource("ShaderMaterial_5kfhr")
+texture = ExtResource("3_pk5b2")
+hframes = 4
+vframes = 3
+
+[node name="Collision" parent="." index="2" unique_id=1981917045]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_qhe0n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1390346860) index="0" unique_id=1205079265]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_vb32k")
+
+[node name="Animation" parent="." index="4" unique_id=890871356]
+libraries/ = SubResource("AnimationLibrary_5kfhr")
+autoplay = &"idle"

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://8ymptcs7v4pt" path="res://enemies/mosquito/mosquito.tscn" id="2_v7qp1"]
 [ext_resource type="PackedScene" uid="uid://gx6wyt75v23d" path="res://characters/cearense/cearense_character.tscn" id="3_anq5l"]
 [ext_resource type="Script" uid="uid://d1ewblllxwhop" path="res://upgrades/increase_projectile_size/increase_projectile_size_upgrade.gd" id="4_5d4hl"]
+[ext_resource type="PackedScene" uid="uid://dwufmv1ry0ila" path="res://enemies/frog/frog_enemy.tscn" id="5_f2ouj"]
 [ext_resource type="Texture2D" uid="uid://bepumsi5qo72" path="res://gui/hud_decoration.png" id="7_w051k"]
 [ext_resource type="Texture2D" uid="uid://dda1oa36sj2kf" path="res://gui/waterbar/progress_texture.png" id="8_2obac"]
 [ext_resource type="Texture2D" uid="uid://cv0w6ykclabor" path="res://gui/waterbar/under_texture.png" id="8_f88ab"]
@@ -113,13 +114,12 @@ _character = NodePath("CearenseCharacter")
 [node name="Terrain" parent="." unique_id=1863512682 instance=ExtResource("1_df5pp")]
 position = Vector2(-2, 0)
 
-[node name="CearenseCharacter" parent="." unique_id=1555303638 node_paths=PackedStringArray("_gameLevel") instance=ExtResource("3_anq5l")]
+[node name="CearenseCharacter" parent="." unique_id=1555303638 instance=ExtResource("3_anq5l")]
 position = Vector2(605, 336)
-_gameLevel = NodePath("..")
 
-[node name="EnemySpawner" type="Node2D" parent="." unique_id=2010455193 node_paths=PackedStringArray("_player")]
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=2121099262 node_paths=PackedStringArray("_player")]
 script = ExtResource("8_v7qp1")
-_enemies_to_spawn = Array[PackedScene]([ExtResource("2_v7qp1"), ExtResource("10_jpbmx")])
+_enemies_to_spawn = Array[PackedScene]([ExtResource("2_v7qp1"), ExtResource("10_jpbmx"), ExtResource("5_f2ouj")])
 _player = NodePath("../CearenseCharacter")
 metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
 

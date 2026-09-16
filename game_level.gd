@@ -14,7 +14,9 @@ func _ready() -> void:
 	_game_over.hide()
 	_level_up.hide()
 
+	_character.healthUpdated.connect(_on_character_health_updated)
 	_character.level_updated.connect(_on_character_level_updated)
+
 	if _level_up.has_signal("upgrade_selected"):
 		_level_up.upgrade_selected.connect(_on_upgrade_selected)
 
@@ -45,3 +47,8 @@ func _on_upgrade_selected():
 		trigger_next_level_up()
 	else:
 		get_tree().paused = false
+
+func _on_character_health_updated() -> void:
+	if _character.currentHealth <= 0:
+		_game_over.show()
+		get_tree().paused = true

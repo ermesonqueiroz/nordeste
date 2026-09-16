@@ -10,7 +10,6 @@ signal character_attacked
 @export var _move_speed: float = 128.0
 
 @export_category("Objects")
-@export var _gameLevel: GameLevel
 @export var _animation: AnimationPlayer
 @export var _animations: Dictionary = {
 	"idle": "idle",
@@ -34,7 +33,7 @@ var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.t
 
 var last_direction: Vector2 = Vector2.RIGHT
 
-var maxHealth = 200
+var maxHealth = 100
 var currentHealth = maxHealth
 
 var knockback: Vector2 = Vector2.ZERO
@@ -159,8 +158,7 @@ func take_damage(damage: float) -> void:
 		die()
 
 func die():
-	if _gameLevel:
-		_gameLevel.showGameOver()
+	pass
 
 func apply_knockback(direction: Vector2, intensity: float, knockback_duration: float):
 	knockback = direction * intensity
