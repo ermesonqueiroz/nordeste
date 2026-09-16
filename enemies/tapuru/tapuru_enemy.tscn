@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b33caura4hltj" path="res://enemies/tapuru/tapuru_enemy.gd" id="2_x1ars"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_52wki"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vnvv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1ars"]
 resource_local_to_scene = true
 shader = ExtResource("3_52wki")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -15,10 +15,6 @@ shader_parameter/flash_value = 0.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dv1qm"]
 radius = 2.0
 height = 22.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb32k"]
-radius = 4.0
-height = 24.0
 
 [sub_resource type="Animation" id="Animation_52wki"]
 length = 0.001
@@ -83,6 +79,10 @@ _data = {
 &"movement": SubResource("Animation_x1ars")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb32k"]
+radius = 5.0
+height = 26.0
+
 [node name="TapuruEnemy" unique_id=1834857299 instance=ExtResource("1_gm6ui")]
 script = ExtResource("2_x1ars")
 collectable_to_drop_on_die = ExtResource("2_7gtrk")
@@ -90,7 +90,7 @@ move_speed = 20.0
 max_health = 10.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
-material = SubResource("ShaderMaterial_1vnvv")
+material = SubResource("ShaderMaterial_x1ars")
 texture = ExtResource("2_5xepv")
 hframes = 3
 
@@ -98,10 +98,16 @@ hframes = 3
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_dv1qm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1390346860) index="0" unique_id=110507186]
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_vb32k")
-
-[node name="Animation" parent="." index="3" unique_id=890871356]
+[node name="Animation" parent="." index="2" unique_id=890871356]
 libraries/ = SubResource("AnimationLibrary_1vnvv")
 autoplay = &"movement"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(479947753) index="0" unique_id=110507186]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vb32k")
+debug_color = Color(0, 1, 0, 0.42000002)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1181660510) index="0" unique_id=1715428537]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vb32k")
+debug_color = Color(1, 0, 0, 0.42000002)

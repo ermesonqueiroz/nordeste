@@ -14,9 +14,6 @@ func _ready() -> void:
 	_game_over.hide()
 	_level_up.hide()
 
-	$FrogEnemy.global_position = _character.global_position + (Vector2.ONE * 200)
-	$FrogEnemy.player = _character
-
 	_character.healthUpdated.connect(_on_character_health_updated)
 	_character.level_updated.connect(_on_character_level_updated)
 

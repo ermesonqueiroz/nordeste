@@ -16,7 +16,7 @@ void fragment() {
 	COLOR.a = texture_color.a;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pqv3g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xu6hp"]
 resource_local_to_scene = true
 shader = SubResource("Shader_xu6hp")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -25,10 +25,6 @@ shader_parameter/flash_value = 0.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_goi2v"]
 radius = 5.0
 height = 16.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb32k"]
-radius = 7.0
-height = 22.0
 
 [sub_resource type="Animation" id="Animation_kjrhy"]
 length = 0.001
@@ -93,23 +89,33 @@ _data = {
 &"movement": SubResource("Animation_ffxfj")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb32k"]
+radius = 8.0
+height = 24.0
+
 [node name="Mosquito" unique_id=1834857299 instance=ExtResource("1_pqv3g")]
 collectable_to_drop_on_die = ExtResource("3_dxpoy")
 collectable_amount_to_drop = 4
 move_speed = 40.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
-material = SubResource("ShaderMaterial_pqv3g")
+material = SubResource("ShaderMaterial_xu6hp")
 texture = ExtResource("2_xu6hp")
 hframes = 4
 
 [node name="Collision" parent="." index="1" unique_id=1981917045]
 shape = SubResource("CapsuleShape2D_goi2v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1390346860) index="0" unique_id=485539409]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_vb32k")
-
-[node name="Animation" parent="." index="3" unique_id=890871356]
+[node name="Animation" parent="." index="2" unique_id=890871356]
 libraries/ = SubResource("AnimationLibrary_kjrhy")
 autoplay = &"movement"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(479947753) index="0" unique_id=485539409]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_vb32k")
+debug_color = Color(0, 1, 0, 0.42000002)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1181660510) index="0" unique_id=1919335009]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_vb32k")
+debug_color = Color(1, 0, 0, 0.42000002)

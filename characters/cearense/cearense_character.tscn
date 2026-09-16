@@ -200,17 +200,21 @@ texture = ExtResource("2_7nm3n")
 hframes = 6
 vframes = 2
 
-[node name="Weapon2" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="2" unique_id=1820149675 instance=ExtResource("5_k5olh")]
+[node name="Weapon" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="2" unique_id=1820149675 node_paths=PackedStringArray("_character") instance=ExtResource("5_k5olh")]
+orbit_distance = 20.0
+_character = NodePath("../..")
+
+[node name="Weapon3" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="3" unique_id=397105554 node_paths=PackedStringArray("_character") instance=ExtResource("6_rlfms")]
+visible = false
+_character = NodePath("../..")
+
+[node name="Weapon2" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="4" unique_id=2044954646 node_paths=PackedStringArray("_character") instance=ExtResource("7_vpbxj")]
 visible = false
 orbit_distance = 20.0
+_character = NodePath("../..")
 
-[node name="Weapon3" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="3" unique_id=397105554 instance=ExtResource("6_rlfms")]
+[node name="Weapon5" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="5" unique_id=2024691509 node_paths=PackedStringArray("_character") instance=ExtResource("8_jr7ke")]
 visible = false
-
-[node name="Weapon4" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="4" unique_id=2044954646 instance=ExtResource("7_vpbxj")]
-visible = false
-
-[node name="Weapon" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="5" unique_id=2024691509 node_paths=PackedStringArray("_character") instance=ExtResource("8_jr7ke")]
 _character = NodePath("../..")
 
 [node name="HurtBox" parent="." index="1" unique_id=1570772349]
