@@ -49,16 +49,22 @@ var projectile_scale = 1.2
 var attack_interval = 1
 var attack_damage = 20
 
+var _attack_cooldown_timer: float = 0.0
+
 var upgrades_applied: Dictionary = {}
 
 func _ready() -> void:
 	_texture.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
-	_start_attack_timer()
 	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
 
-func _process(_delta: float) -> void:
-	RenderingServer.global_shader_parameter_set("player_position", global_position)
+func _process(delta: float) -> void:
+	if _attack_cooldown_timer > 0:
+		_attack_cooldown_timer -= delta
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and _attack_cooldown_timer <= 0:
+		_attack()
+		_attack_cooldown_timer = attack_interval
 
 func _physics_process(delta: float) -> void:
 	if knockback_timer > 0:
@@ -113,15 +119,6 @@ func _animate() -> void:
 
 	_animation.play(_animations["idle_right"])
 	return
-
-func _start_attack_timer() -> void:
-	while currentHealth > 0:
-		await get_tree().create_timer(attack_interval).timeout
-
-		if get_tree().paused:
-			continue
-
-		_attack()
 
 func _attack() -> void:
 	if not weapon:
