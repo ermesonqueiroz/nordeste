@@ -17,9 +17,6 @@ shader_parameter/flash_value = 0.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhe0n"]
 height = 24.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vb32k"]
-radius = 16.0
-
 [sub_resource type="Animation" id="Animation_5kfhr"]
 length = 0.001
 tracks/0/type = "value"
@@ -95,6 +92,12 @@ _data = {
 &"movement": SubResource("Animation_qhe0n")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vb32k"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocko2"]
+radius = 18.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgy74"]
 radius = 161.0
 
@@ -119,18 +122,24 @@ vframes = 3
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_qhe0n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1390346860) index="0" unique_id=1205079265]
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_vb32k")
-
-[node name="Animation" parent="." index="4" unique_id=890871356]
+[node name="Animation" parent="." index="3" unique_id=890871356]
 libraries/ = SubResource("AnimationLibrary_5kfhr")
 autoplay = &"idle"
 
-[node name="AttackArea" type="Area2D" parent="." index="7" unique_id=961863295]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(479947753) index="0" unique_id=1205079265]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_vb32k")
+debug_color = Color(0, 1, 0, 0.30100003)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1181660510) index="0" unique_id=459541256]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ocko2")
+debug_color = Color(1, 0, 0, 0.42000002)
+
+[node name="AttackArea" type="Area2D" parent="." index="6" unique_id=961863295]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="0" unique_id=72534281]
 shape = SubResource("CircleShape2D_vgy74")
-debug_color = Color(1, 0, 0, 0.3)
+debug_color = Color(1, 1, 1, 0.3019608)
 
-[node name="FrogTongue" parent="." index="8" unique_id=2072801992 instance=ExtResource("7_s11j4")]
+[node name="FrogTongue" parent="." index="7" unique_id=2072801992 instance=ExtResource("7_s11j4")]

@@ -20,6 +20,7 @@ flip_h = true
 [node name="Collision" parent="." index="1" unique_id=1801896036]
 rotation = 0.75398225
 shape = SubResource("CapsuleShape2D_gvwno")
+debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="Audio" parent="." index="2" unique_id=1246407866]
 stream = ExtResource("3_vhkp6")

@@ -8,6 +8,7 @@ class_name BaseEnemy
 
 @onready var _texture: Sprite2D = $Texture
 @onready var animation: AnimationPlayer = $Animation
+@onready var _hurtbox: HurtBox = $HurtBox
 
 var player: BaseCharacter
 var spawnPosition: Vector2
@@ -21,6 +22,8 @@ var knockback_timer: float = 0.0
 func _ready() -> void:
 	position = spawnPosition
 	health = max_health
+
+	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
 
 func _physics_process(delta: float) -> void:
 	if knockback_timer > 0:
@@ -41,10 +44,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * move_speed
 	move_and_slide()
 
-func take_damage(damage: float) -> void:
-	if health <= 0:
-		return
-
+func _take_damage(damage: float) -> void:
 	health -= damage
 	$DamageLabelSpawner.spawn_label(damage)
 	$DieAudio.play()
@@ -73,7 +73,7 @@ func die():
 	_drop_collectable()
 	queue_free()
 
-func apply_knockback(direction: Vector2, intensity: float, knockback_duration: float):
+func _apply_knockback(direction: Vector2, intensity: float, knockback_duration: float):
 	knockback = direction * intensity
 	knockback_timer = knockback_duration
 
@@ -82,10 +82,18 @@ func _drop_collectable():
 	new_collectable.global_position = global_position
 	get_tree().current_scene.add_child(new_collectable)
 
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body is BaseCharacter:
-		if body.is_invulnerable:
-			return
+func _on_hitbox_entered(hitbox: HitBox) -> void:
+	if health <= 0:
+		return
 
-		player.take_damage(damage_amount)
-		player.apply_knockback((body.global_position - global_position).normalized(), 200, 0.15)
+	_take_damage(hitbox.damage)
+
+	var attacker_position = hitbox.get_parent().global_position
+	var knockback_dir: Vector2
+
+	if hitbox.pulls_target:
+		knockback_dir = (attacker_position - global_position).normalized()
+		_apply_knockback(knockback_dir, 300, 0.1)
+	else:
+		knockback_dir = (global_position - attacker_position).normalized()
+		_apply_knockback(knockback_dir, 200, 0.15)

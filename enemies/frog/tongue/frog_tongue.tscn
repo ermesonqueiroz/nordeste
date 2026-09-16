@@ -3,9 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://caoidgi258nyo" path="res://enemies/frog/tongue/links.png" id="1_k7ysg"]
 [ext_resource type="Script" uid="uid://dsqg64jsqwcw4" path="res://enemies/frog/tongue/frog_tongue.gd" id="1_rpq0p"]
 [ext_resource type="Texture2D" uid="uid://cnqiqldv1d5ik" path="res://enemies/frog/tongue/tip.png" id="2_4fqpk"]
+[ext_resource type="Script" uid="uid://dvn6fs6a1v72h" path="res://common/hitbox.gd" id="3_4cml8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb32k"]
-radius = 4.0
+radius = 5.0
 height = 24.0
 
 [node name="FrogTongue" type="Node2D" unique_id=2072801992]
@@ -20,7 +21,11 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 10, 100)
 
-[node name="Tip" type="Area2D" parent="." unique_id=881845494]
+[node name="Tip" type="Area2D" parent="." unique_id=762535841]
+collision_layer = 2
+script = ExtResource("3_4cml8")
+pulls_target = true
+metadata/_custom_type_script = "uid://dvn6fs6a1v72h"
 
 [node name="TipTexture" type="Sprite2D" parent="Tip" unique_id=467356264]
 texture = ExtResource("2_4fqpk")
@@ -30,3 +35,4 @@ flip_v = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tip" unique_id=1020864427]
 position = Vector2(0, 16)
 shape = SubResource("CapsuleShape2D_vb32k")
+debug_color = Color(1, 0.39875868, 0, 0.314)

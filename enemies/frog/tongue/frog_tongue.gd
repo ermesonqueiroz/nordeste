@@ -17,7 +17,6 @@ func _ready() -> void:
 	visible = false
 
 	_tip.area_entered.connect(_on_tip_area_entered)
-	_tip.body_entered.connect(_on_tip_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if not is_shooting:
@@ -61,11 +60,13 @@ func shoot(shoot_direction: Vector2, duration: float) -> void:
 	is_shooting = true
 	is_returning = false
 
-func _on_tip_area_entered(_area: Area2D) -> void:
-	if is_shooting and not is_returning:
-		_trigger_return()
+func _on_tip_area_entered(area: Area2D) -> void:
+	if not area is HurtBox:
+		return
 
-func _on_tip_body_entered(_body: Node2D) -> void:
+	if area.get_parent() == get_parent():
+		return
+
 	if is_shooting and not is_returning:
 		_trigger_return()
 

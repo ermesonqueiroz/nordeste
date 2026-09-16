@@ -14,8 +14,11 @@ shader = ExtResource("2_mfk0j")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vb32k"]
+size = Vector2(23, 50)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_goi2v"]
-size = Vector2(20, 29)
+size = Vector2(23, 29)
 
 [sub_resource type="Animation" id="Animation_mfk0j"]
 length = 0.001
@@ -210,9 +213,17 @@ visible = false
 [node name="Weapon" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="5" unique_id=2024691509 node_paths=PackedStringArray("_character") instance=ExtResource("8_jr7ke")]
 _character = NodePath("../..")
 
-[node name="Collision" parent="." index="1" unique_id=209974859]
-position = Vector2(2, 9.5)
+[node name="HurtBox" parent="." index="1" unique_id=1570772349]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0" unique_id=1568370168]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_vb32k")
+debug_color = Color(0, 1, 0, 0.277)
+
+[node name="Collision" parent="." index="2" unique_id=209974859]
+position = Vector2(0.5, 9.5)
 shape = SubResource("RectangleShape2D_goi2v")
 
-[node name="Animation" parent="." index="2" unique_id=314084126]
+[node name="Animation" parent="." index="3" unique_id=314084126]
 libraries/ = SubResource("AnimationLibrary_vpbxj")

@@ -4,7 +4,9 @@
 [ext_resource type="Script" uid="uid://bp8c06jwp11jr" path="res://damage_label_spawner.gd" id="2_bfj6p"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_xens1"]
 [ext_resource type="AudioStream" uid="uid://d454y5desh05" path="res://enemies/Hit1.wav" id="3_b5ht1"]
+[ext_resource type="Script" uid="uid://cxo64sjp7i3x4" path="res://common/hurtbox.gd" id="3_jtyv1"]
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="4_35jd6"]
+[ext_resource type="Script" uid="uid://dvn6fs6a1v72h" path="res://common/hitbox.gd" id="4_a33f8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35jd6"]
 resource_local_to_scene = true
@@ -26,9 +28,17 @@ material = SubResource("ShaderMaterial_35jd6")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1981917045]
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=1390346860]
-
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=890871356]
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=479947753]
+collision_layer = 2
+script = ExtResource("3_jtyv1")
+metadata/_custom_type_script = "uid://cxo64sjp7i3x4"
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1181660510]
+collision_layer = 2
+script = ExtResource("4_a33f8")
+metadata/_custom_type_script = "uid://dvn6fs6a1v72h"
 
 [node name="DamageLabelSpawner" type="Node2D" parent="." unique_id=192868769]
 script = ExtResource("2_bfj6p")
@@ -38,5 +48,3 @@ metadata/_custom_type_script = "uid://bp8c06jwp11jr"
 [node name="DieAudio" type="AudioStreamPlayer" parent="." unique_id=203196940]
 stream = ExtResource("3_b5ht1")
 volume_db = -9.0
-
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

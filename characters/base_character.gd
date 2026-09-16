@@ -27,13 +27,14 @@ signal character_attacked
 @onready var _texture: Sprite2D = $SpriteGroup/Texture
 @onready var _audio: AudioStreamPlayer = $Audio
 @onready var weapon: BaseWeapon = $SpriteGroup/Weapon
+@onready var _hurtbox: HurtBox = $HurtBox
 
 var enemy: PackedScene = load("res://enemies/mosquito/mosquito.tscn")
 var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.tscn")
 
 var last_direction: Vector2 = Vector2.RIGHT
 
-var maxHealth = 100
+var maxHealth = 1000
 var currentHealth = maxHealth
 
 var knockback: Vector2 = Vector2.ZERO
@@ -54,6 +55,7 @@ func _ready() -> void:
 	_texture.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
 	_start_attack_timer()
+	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
 
 func _process(_delta: float) -> void:
 	RenderingServer.global_shader_parameter_set("player_position", global_position)
@@ -145,7 +147,7 @@ func _level_up() -> void:
 
 	level_updated.emit()
 
-func take_damage(damage: float) -> void:
+func _take_damage(damage: float) -> void:
 	currentHealth -= damage
 	healthUpdated.emit()
 
@@ -160,7 +162,7 @@ func take_damage(damage: float) -> void:
 func die():
 	pass
 
-func apply_knockback(direction: Vector2, intensity: float, knockback_duration: float):
+func _apply_knockback(direction: Vector2, intensity: float, knockback_duration: float):
 	knockback = direction * intensity
 	knockback_timer = knockback_duration
 
@@ -216,3 +218,19 @@ func apply_upgrade(upgrade: BaseUpgrade) -> void:
 
 	upgrades_applied[upgrade.id] += 1
 	upgrade.apply_upgrade(self)
+
+func _on_hitbox_entered(hitbox: HitBox):
+	if is_invulnerable:
+		return
+
+	_take_damage(hitbox.damage)
+
+	var attacker_position = hitbox.get_parent().global_position
+	var knockback_dir: Vector2
+
+	if hitbox.pulls_target:
+		knockback_dir = (attacker_position - global_position).normalized()
+		_apply_knockback(knockback_dir, 500, 0.1)
+	else:
+		knockback_dir = (global_position - attacker_position).normalized()
+		_apply_knockback(knockback_dir, 200, 0.15)

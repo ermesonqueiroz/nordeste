@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://n3lf3sril88p" path="res://projectiles/base_projectile.gd" id="1_ufnha"]
 
-[node name="BaseProjectile" type="Area2D" unique_id=1412444270]
+[node name="BaseProjectile" type="Area2D" unique_id=1912904560]
+collision_mask = 2
 script = ExtResource("1_ufnha")
+metadata/_custom_type_script = "uid://dvn6fs6a1v72h"
 
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=1065004391]
 
@@ -15,5 +17,3 @@ script = ExtResource("1_ufnha")
 volume_db = -2.862
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=2016169759]
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
