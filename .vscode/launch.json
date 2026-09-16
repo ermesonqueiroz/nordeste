@@ -9,10 +9,10 @@
             "type": "godot",
             "request": "launch",
             "project": "${workspaceFolder}",
-            "debug_collisions": false,
+            "debug_collisions": true,
             "debug_paths": false,
             "debug_navigation": false,
-            "additional_options": ""
+            "additional_options": "",
         }
     ]
 }

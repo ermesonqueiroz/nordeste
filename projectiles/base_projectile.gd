@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.get_parent() is BaseEnemy:
+	if area.get_parent() is BaseEnemy and area.name == "Hitbox": # Improve system of hitbox using hurtboxes
 		var enemy = area.get_parent()
 		enemy.take_damage(damage)
 		enemy.apply_knockback((enemy.global_position - global_position).normalized(), 200, 0.15)

@@ -2,18 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://cfqbo8j4ong43" path="res://terrain/terrain.tscn" id="1_df5pp"]
 [ext_resource type="Script" uid="uid://x3nh58tt2w1k" path="res://game_level.gd" id="1_qsd0w"]
-[ext_resource type="PackedScene" uid="uid://8ymptcs7v4pt" path="res://enemies/mosquito/mosquito.tscn" id="2_v7qp1"]
 [ext_resource type="PackedScene" uid="uid://gx6wyt75v23d" path="res://characters/cearense/cearense_character.tscn" id="3_anq5l"]
 [ext_resource type="Script" uid="uid://d1ewblllxwhop" path="res://upgrades/increase_projectile_size/increase_projectile_size_upgrade.gd" id="4_5d4hl"]
 [ext_resource type="PackedScene" uid="uid://dwufmv1ry0ila" path="res://enemies/frog/frog_enemy.tscn" id="5_f2ouj"]
 [ext_resource type="Texture2D" uid="uid://bepumsi5qo72" path="res://gui/hud_decoration.png" id="7_w051k"]
 [ext_resource type="Texture2D" uid="uid://dda1oa36sj2kf" path="res://gui/waterbar/progress_texture.png" id="8_2obac"]
 [ext_resource type="Texture2D" uid="uid://cv0w6ykclabor" path="res://gui/waterbar/under_texture.png" id="8_f88ab"]
-[ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
 [ext_resource type="Texture2D" uid="uid://dxrbtek3fejkt" path="res://gui/waterbar/over_texture.png" id="8_whhu8"]
 [ext_resource type="Script" uid="uid://cttxt0w3v2w8m" path="res://gui/waterbar/waterbar.gd" id="9_anq5l"]
 [ext_resource type="Script" uid="uid://cdyqfbq7f6j0o" path="res://gui/game_over/game_over.gd" id="10_anq5l"]
-[ext_resource type="PackedScene" uid="uid://8p1p1luyh4tu" path="res://enemies/tapuru/tapuru_enemy.tscn" id="10_jpbmx"]
 [ext_resource type="LabelSettings" uid="uid://xp6ddldq0p0s" path="res://gui/label_settings.tres" id="11_5d4hl"]
 [ext_resource type="Script" uid="uid://bo7aktf84u7l4" path="res://gui/level_up/level_up.gd" id="11_gm1p2"]
 [ext_resource type="Texture2D" uid="uid://hhnse5m5s8vi" path="res://gui/healthbar/under_texture.png" id="12_353a4"]
@@ -116,12 +113,6 @@ position = Vector2(-2, 0)
 
 [node name="CearenseCharacter" parent="." unique_id=1555303638 instance=ExtResource("3_anq5l")]
 position = Vector2(605, 336)
-
-[node name="EnemySpawner" type="Node2D" parent="." unique_id=2121099262 node_paths=PackedStringArray("_player")]
-script = ExtResource("8_v7qp1")
-_enemies_to_spawn = Array[PackedScene]([ExtResource("2_v7qp1"), ExtResource("10_jpbmx"), ExtResource("5_f2ouj")])
-_player = NodePath("../CearenseCharacter")
-metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
 
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]
 
@@ -316,3 +307,6 @@ _character = NodePath("../../CearenseCharacter")
 stream = ExtResource("17_3ktkq")
 volume_db = -18.0
 autoplay = true
+
+[node name="FrogEnemy" parent="." unique_id=1834857299 instance=ExtResource("5_f2ouj")]
+position = Vector2(681, 453)
