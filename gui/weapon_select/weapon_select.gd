@@ -6,6 +6,8 @@ extends Control
 @export var weapon_name_label: Label
 @export var weapon_damage_label: Label
 @export var weapon_ammo_label: Label
+@export var attack_interval_label: Label
+@export var reload_time_label: Label
 
 @onready var shelf_slots: Array[Node] = [
 	$Weapons/Slot1,
@@ -48,3 +50,5 @@ func update_weapon_stats() -> void:
 	weapon_name_label.text = selected_weapon.weapon_name
 	weapon_damage_label.text = str(selected_weapon.damage)
 	weapon_ammo_label.text = str(selected_weapon.max_ammo)
+	attack_interval_label.text = "%.2fs" % selected_weapon.attack_interval
+	reload_time_label.text = "%.2fs" % selected_weapon.reload_time

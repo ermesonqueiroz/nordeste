@@ -117,10 +117,10 @@ position = Vector2(-2, 0)
 [node name="CearenseCharacter" parent="." unique_id=1555303638 instance=ExtResource("3_anq5l")]
 position = Vector2(605, 336)
 
-[node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_player")]
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_character")]
 script = ExtResource("8_v7qp1")
 _enemy_pool = Array[Dictionary]([{
-"cost": 1,
+"cost": 2,
 "min_level": 1,
 "scene": ExtResource("2_v7qp1")
 }, {
@@ -132,7 +132,7 @@ _enemy_pool = Array[Dictionary]([{
 "min_level": 5,
 "scene": ExtResource("5_f2ouj")
 }])
-_player = NodePath("../CearenseCharacter")
+_character = NodePath("../CearenseCharacter")
 metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
 
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]

@@ -44,7 +44,7 @@ var is_invulnerable: bool = false
 
 var current_water_amount = 0
 var current_level = 1
-var water_amount_to_next_level = 20
+var water_amount_to_next_level = 10
 
 var upgrades_applied: Dictionary = {}
 
@@ -65,6 +65,7 @@ func _setup_selected_weapon() -> void:
 
 			weapon = weapon_data.weapon_scene.instantiate() as BaseWeapon
 			weapon._character = self
+			weapon.setup(weapon_data)
 			$SpriteGroup.add_child(weapon)
 			$ReloadBar.setup(self)
 
@@ -164,7 +165,9 @@ func _level_up() -> void:
 	current_level += 1
 
 	if current_level < 20:
-		water_amount_to_next_level = int(10 + (current_level * 10))
+		water_amount_to_next_level = int(10 + (current_level * 4))
+	else:
+		water_amount_to_next_level = int(10 + (current_level * 6))
 
 	level_updated.emit()
 
@@ -243,15 +246,18 @@ func _on_hitbox_entered(hitbox: HitBox):
 	Engine.time_scale = 1.0
 	_texture.material.set_shader_parameter("flash_value", 0)
 
-	var attacker_position = hitbox.get_parent().global_position
-	var knockback_dir: Vector2
+	if is_instance_valid(hitbox) and hitbox.get_parent():
+		var attacker_position = hitbox.get_parent().global_position
+		var knockback_dir: Vector2
 
-	if hitbox.pulls_target:
-		knockback_dir = (attacker_position - global_position).normalized()
-		_apply_knockback(knockback_dir, 500, 0.1)
+		if hitbox.pulls_target:
+			knockback_dir = (attacker_position - global_position).normalized()
+			_apply_knockback(knockback_dir, 500, 0.1)
+		else:
+			knockback_dir = (global_position - attacker_position).normalized()
+			_apply_knockback(knockback_dir, 200, 0.15)
 	else:
-		knockback_dir = (global_position - attacker_position).normalized()
-		_apply_knockback(knockback_dir, 200, 0.15)
+		_apply_knockback(Vector2.ZERO, 0, 0.15)
 
 func _on_weapon_fired() -> void:
 	_camera.screen_shake(3, 0.3)

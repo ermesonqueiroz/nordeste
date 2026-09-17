@@ -6,11 +6,7 @@ signal ammo_updated
 signal start_reload
 
 @export var orbit_distance: float = 24.0
-@export var initial_max_ammo: int = 6
-@export var initial_attack_interval: int = 1
 @export var initial_projectile_scale = 1.2
-@export var initial_attack_damage = 20
-@export var initial_reload_time = 1.0
 
 @onready var _animation: AnimationPlayer = $Animation
 
@@ -18,19 +14,29 @@ var _character: BaseCharacter
 var _projectile: PackedScene
 var crosshair: Texture2D
 
-var _current_attack_interval = initial_attack_interval
+var _current_attack_interval: float = 0
 var _attack_cooldown_timer: float = 0.0
 
 var _current_projectile_scale = initial_projectile_scale
-var _current_attack_damage = initial_attack_damage
+var _current_attack_damage: int = 0
 
-var max_ammo: int = initial_max_ammo
-var ammo: int = max_ammo
+var max_ammo: int = 0
+var ammo: int = 0
 var is_reloading: bool = false
-var reload_time: float = initial_reload_time
+var reload_time: float = 0.0
 
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
+
+func setup(weapon_data: WeaponData) -> void:
+	if not weapon_data:
+		return
+
+	_current_attack_interval = weapon_data.attack_interval
+	_current_attack_damage = weapon_data.damage
+	max_ammo = weapon_data.max_ammo
+	ammo = max_ammo
+	reload_time = weapon_data.reload_time
 
 func _process(delta: float) -> void:
 	if not _character:

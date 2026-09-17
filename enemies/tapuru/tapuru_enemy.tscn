@@ -86,8 +86,8 @@ height = 26.0
 [node name="TapuruEnemy" unique_id=1834857299 instance=ExtResource("1_gm6ui")]
 script = ExtResource("2_x1ars")
 collectable_to_drop_on_die = ExtResource("2_7gtrk")
-move_speed = 20.0
-max_health = 10.0
+move_speed = 25.0
+max_health = 8.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
 material = SubResource("ShaderMaterial_x1ars")

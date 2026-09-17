@@ -4,12 +4,12 @@ class_name EnemySpawner
 @export var _enemy_pool: Array[Dictionary] = [
 	# {"scene": PackedScene, "cost": 1, "min_level": 1}
 ]
-@export var _player: BaseCharacter
+@export var _character: BaseCharacter
 
-var _spawn_enemy_interval: float = 1.5
+var _spawn_enemy_interval: float = 2
 
 func _ready() -> void:
-	_player.level_updated.connect(_on_player_level_updated)
+	_character.level_updated.connect(_on_player_level_updated)
 	_start_enemies_spawn()
 
 func _start_enemies_spawn():
@@ -19,11 +19,11 @@ func _start_enemies_spawn():
 		if get_tree().paused:
 			continue
 
-		var difficulty_budget: int = 1 + int(_player.current_level * 1.5)
+		var difficulty_budget: int = 1 + int(_character.current_level / 2.0)
 
 		var available_enemies = []
 		for entry in _enemy_pool:
-			if _player.current_level >= entry.get("min_level", 1):
+			if _character.current_level >= entry.get("min_level", 1):
 				available_enemies.append(entry)
 
 		if available_enemies.is_empty():
@@ -38,15 +38,15 @@ func _start_enemies_spawn():
 			var chosen_enemy_data = affordable_enemies.pick_random()
 
 			var new_enemy: BaseEnemy = chosen_enemy_data["scene"].instantiate()
-			new_enemy.player = _player
+			new_enemy.player = _character
 
 			var angle = randf() * TAU
 			var spawn_distance = 600
-			new_enemy.spawnPosition = _player.global_position + Vector2(cos(angle), sin(angle)) * spawn_distance
+			new_enemy.spawnPosition = _character.global_position + Vector2(cos(angle), sin(angle)) * spawn_distance
 
 			get_parent().add_child(new_enemy)
 
 			difficulty_budget -= chosen_enemy_data["cost"]
 
 func _on_player_level_updated():
-	_spawn_enemy_interval = max(0.2, 1.5 - (0.06 * _player.current_level))
+	_spawn_enemy_interval = 2

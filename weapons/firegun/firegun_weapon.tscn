@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://0n77a6gehfw3" path="res://weapons/base_weapon.tscn" id="1_rmn6d"]
 [ext_resource type="Script" uid="uid://b2utgryrnwwv0" path="res://weapons/firegun/firegun_weapon.gd" id="2_b0vy4"]
 [ext_resource type="Texture2D" uid="uid://bfmeg888hphdx" path="res://weapons/firegun/texture.png" id="2_ko56g"]
+[ext_resource type="Resource" uid="uid://dx5y6vq38rpfx" path="res://weapons/firegun/firegun_weapon_data.tres" id="3_rscbr"]
 
 [sub_resource type="Animation" id="Animation_ko56g"]
 length = 0.001
@@ -62,6 +63,7 @@ _data = {
 
 [node name="FiregunWeapon" unique_id=1820149675 instance=ExtResource("1_rmn6d")]
 script = ExtResource("2_b0vy4")
+weapon_data = ExtResource("3_rscbr")
 
 [node name="Texture" parent="." index="0" unique_id=1083896037]
 position = Vector2(12, -8)

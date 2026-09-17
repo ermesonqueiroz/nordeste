@@ -95,8 +95,7 @@ height = 24.0
 
 [node name="Mosquito" unique_id=1834857299 instance=ExtResource("1_pqv3g")]
 collectable_to_drop_on_die = ExtResource("3_dxpoy")
-collectable_amount_to_drop = 4
-move_speed = 40.0
+move_speed = 30.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
 material = SubResource("ShaderMaterial_xu6hp")

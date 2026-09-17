@@ -78,9 +78,10 @@ func _apply_knockback(direction: Vector2, intensity: float, knockback_duration: 
 	knockback_timer = knockback_duration
 
 func _drop_collectable():
-	var new_collectable: BaseCollectable = collectable_to_drop_on_die.instantiate()
-	new_collectable.global_position = global_position
-	get_tree().current_scene.add_child(new_collectable)
+	for i in collectable_amount_to_drop:
+		var new_collectable: BaseCollectable = collectable_to_drop_on_die.instantiate()
+		new_collectable.global_position = global_position
+		get_tree().current_scene.add_child(new_collectable)
 
 func _on_hitbox_entered(hitbox: HitBox) -> void:
 	if health <= 0:

@@ -156,6 +156,7 @@ style_name = "Medium"
 font_weight = 500
 subpixel_positioning = 0
 msdf_pixel_range = 8
+msdf_size = 128
 hinting = 0
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
@@ -460,7 +461,7 @@ cache/0/30/0/glyphs/19/texture_idx = 0
 font = SubResource("FontFile_ma4fa")
 font_size = 30
 
-[node name="WeaponSelect" type="Control" unique_id=1957642064 node_paths=PackedStringArray("weapon_stats_panel", "weapon_name_label", "weapon_damage_label", "weapon_ammo_label")]
+[node name="WeaponSelect" type="Control" unique_id=1957642064 node_paths=PackedStringArray("weapon_stats_panel", "weapon_name_label", "weapon_damage_label", "weapon_ammo_label", "attack_interval_label", "reload_time_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -474,6 +475,8 @@ weapon_stats_panel = NodePath("WeaponStats")
 weapon_name_label = NodePath("WeaponStats/Margin/VBoxContainer/Label")
 weapon_damage_label = NodePath("WeaponStats/Margin/VBoxContainer/GridContainer/DamageContainer/Value")
 weapon_ammo_label = NodePath("WeaponStats/Margin/VBoxContainer/GridContainer/AmmoContainer/Value")
+attack_interval_label = NodePath("WeaponStats/Margin/VBoxContainer/GridContainer/FireIntervalContainer/Value")
+reload_time_label = NodePath("WeaponStats/Margin/VBoxContainer/GridContainer/ReloadTimeContainer/Value")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=387252884]
 texture_filter = 1
@@ -579,7 +582,7 @@ text = "Espalha brasa"
 label_settings = SubResource("LabelSettings_vb32k")
 
 [node name="GridContainer" type="GridContainer" parent="WeaponStats/Margin/VBoxContainer" unique_id=996475759]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(540, 0)
 layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 8

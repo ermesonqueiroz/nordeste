@@ -73,11 +73,11 @@ func _physics_process(delta: float) -> void:
 
 		if idle_timer <= 0:
 			if _player_are_in_attack_area:
-				if not _player_direction:
-					_player_direction = position.direction_to(player.global_position).normalized()
-
 				animation.play("attack")
 				await animation.animation_finished
+
+				_player_direction = position.direction_to(player.global_position).normalized()
+
 				_attack()
 				return
 
@@ -103,7 +103,7 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 		_player_are_in_attack_area = false
 
 func _attack() -> void:
-	var attack_duration = 0.5
+	var attack_duration = 1
 	_tongue.shoot(_player_direction, attack_duration)
 	_player_direction = null
 	_attack_timer = attack_duration

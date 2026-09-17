@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://0n77a6gehfw3" path="res://weapons/base_weapon.tscn" id="1_hvu10"]
 [ext_resource type="Texture2D" uid="uid://2552akkxks8h" path="res://weapons/chinela/texture.png" id="2_7cmae"]
 [ext_resource type="Script" uid="uid://dvslgbroyp5ti" path="res://weapons/chinela/chinela_weapon.gd" id="2_sq7ox"]
+[ext_resource type="Resource" uid="uid://d4jmfp7qpmcjd" path="res://weapons/chinela/chinela_weapon_data.tres" id="3_sq7ox"]
 
 [sub_resource type="Animation" id="Animation_sq7ox"]
 length = 0.001
@@ -62,6 +63,7 @@ _data = {
 
 [node name="ChinelaWeapon" unique_id=1820149675 instance=ExtResource("1_hvu10")]
 script = ExtResource("2_sq7ox")
+weapon_data = ExtResource("3_sq7ox")
 
 [node name="Texture" parent="." index="0" unique_id=1083896037]
 position = Vector2(6, -4)

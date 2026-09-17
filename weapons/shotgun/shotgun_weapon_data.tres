@@ -9,4 +9,5 @@ script = ExtResource("1_8ix7k")
 weapon_name = "Estraga-velorio"
 weapon_icon = ExtResource("2_pj6fd")
 weapon_scene = ExtResource("3_2rgjj")
+damage = 24
 metadata/_custom_type_script = "uid://bx7rjtsfb8w2y"
