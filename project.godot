@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SoundManager="*uid://d1dh1vln5a58"
+GameManager="*uid://dxw20ec8scuef"
 
 [display]
 

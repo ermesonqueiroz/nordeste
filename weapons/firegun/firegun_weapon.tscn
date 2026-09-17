@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://w78j5blurhha"]
 
 [ext_resource type="PackedScene" uid="uid://0n77a6gehfw3" path="res://weapons/base_weapon.tscn" id="1_rmn6d"]
-[ext_resource type="Script" uid="uid://c4iwwg1c0d1ox" path="res://weapons/two/two_weapon.gd" id="2_b0vy4"]
-[ext_resource type="Texture2D" uid="uid://bfmeg888hphdx" path="res://weapons/two/texture.png" id="2_ko56g"]
+[ext_resource type="Script" uid="uid://b2utgryrnwwv0" path="res://weapons/firegun/firegun_weapon.gd" id="2_b0vy4"]
+[ext_resource type="Texture2D" uid="uid://bfmeg888hphdx" path="res://weapons/firegun/texture.png" id="2_ko56g"]
 
 [sub_resource type="Animation" id="Animation_ko56g"]
 length = 0.001
@@ -60,9 +60,8 @@ _data = {
 &"shoot": SubResource("Animation_vrwvs")
 }
 
-[node name="TwoWeapon" unique_id=1820149675 instance=ExtResource("1_rmn6d")]
+[node name="FiregunWeapon" unique_id=1820149675 instance=ExtResource("1_rmn6d")]
 script = ExtResource("2_b0vy4")
-max_bullets = 12
 
 [node name="Texture" parent="." index="0" unique_id=1083896037]
 position = Vector2(12, -8)

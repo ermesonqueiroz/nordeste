@@ -1,6 +1,6 @@
 extends BaseWeapon
-class_name TwoWeapon
+class_name FiregunWeapon
 
 func _init() -> void:
 	_projectile = preload("res://projectiles/bullet/bullet_projectile.tscn")
-	crosshair = preload("res://weapons/two/crosshair.png")
+	crosshair = preload("res://weapons/firegun/crosshair.png")

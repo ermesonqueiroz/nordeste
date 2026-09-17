@@ -6,7 +6,6 @@ signal ammo_updated
 signal start_reload
 
 @export var orbit_distance: float = 24.0
-@export var _character: BaseCharacter
 @export var initial_max_ammo: int = 6
 @export var initial_attack_interval: int = 1
 @export var initial_projectile_scale = 1.2
@@ -15,6 +14,7 @@ signal start_reload
 
 @onready var _animation: AnimationPlayer = $Animation
 
+var _character: BaseCharacter
 var _projectile: PackedScene
 var crosshair: Texture2D
 

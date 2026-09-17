@@ -29,7 +29,7 @@ func _setup_button_pivot(button: Button) -> void:
 
 func _on_start_button_pressed() -> void:
 	SoundManager.play(_pop_sfx, -8.0)
-	get_tree().change_scene_to_file("res://game_level.tscn")
+	get_tree().change_scene_to_file("res://gui/weapon_select/weapon_select.tscn")
 
 func _on_quit_button_pressed() -> void:
 	SoundManager.play(_pop_sfx, -8.0)

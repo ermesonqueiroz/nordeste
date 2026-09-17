@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bxxtk85ywecpp"]
+
+[ext_resource type="ButtonGroup" uid="uid://cjml5wnnw3nqf" path="res://gui/weapon_select/button_group.tres" id="1_64j10"]
+[ext_resource type="Texture2D" uid="uid://r8ey8vqbbn15" path="res://gui/weapon_select/button.png" id="1_fp7ao"]
+[ext_resource type="Texture2D" uid="uid://bijxwtng4anun" path="res://gui/weapon_select/button_active.png" id="2_2ce1k"]
+[ext_resource type="Script" uid="uid://cec2c4g8url85" path="res://gui/weapon_select/weapon_button.gd" id="3_2ce1k"]
+
+[node name="WeaponButton" type="TextureButton" unique_id=968722349 node_paths=PackedStringArray("texture")]
+custom_minimum_size = Vector2(80, 80)
+offset_right = 80.0
+offset_bottom = 80.0
+toggle_mode = true
+button_group = ExtResource("1_64j10")
+texture_normal = ExtResource("1_fp7ao")
+texture_pressed = ExtResource("2_2ce1k")
+texture_hover = ExtResource("2_2ce1k")
+stretch_mode = 5
+script = ExtResource("3_2ce1k")
+texture = NodePath("Margin/Texture")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1307420337]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Texture" type="TextureRect" parent="Margin" unique_id=269397055]
+layout_mode = 2
+stretch_mode = 5

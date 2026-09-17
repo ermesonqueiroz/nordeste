@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bv50375q1vqbk" path="res://characters/cearense/texture.png" id="2_7nm3n"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_mfk0j"]
 [ext_resource type="Texture2D" uid="uid://olu0ni5bgyyq" path="res://characters/cearense/shadow.png" id="3_k5olh"]
-[ext_resource type="PackedScene" uid="uid://w78j5blurhha" path="res://weapons/two/two_weapon.tscn" id="5_k5olh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k5olh"]
 shader = ExtResource("2_mfk0j")
@@ -197,10 +196,6 @@ texture = ExtResource("2_7nm3n")
 hframes = 6
 vframes = 2
 
-[node name="Weapon" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="2" unique_id=1820149675 node_paths=PackedStringArray("_character") instance=ExtResource("5_k5olh")]
-orbit_distance = 20.0
-_character = NodePath("../..")
-
 [node name="HurtBox" parent="." index="2" unique_id=1570772349]
 collision_mask = 2
 
@@ -217,4 +212,4 @@ shape = SubResource("RectangleShape2D_goi2v")
 libraries/ = SubResource("AnimationLibrary_vpbxj")
 
 [node name="ReloadBar" parent="." index="7" unique_id=1910036739 node_paths=PackedStringArray("weapon")]
-weapon = NodePath("../SpriteGroup/Weapon")
+weapon = NodePath("")

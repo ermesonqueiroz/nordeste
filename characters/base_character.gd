@@ -25,9 +25,10 @@ signal level_updated
 @onready var _camera: BaseCharacterCamera = $Camera
 @onready var _texture: Sprite2D = $SpriteGroup/Texture
 @onready var _audio: AudioStreamPlayer = $Audio
-@onready var weapon: BaseWeapon = $SpriteGroup/Weapon
 @onready var _hurtbox: HurtBox = $HurtBox
 @onready var _dust_particles: GPUParticles2D = $DustParticles
+
+var weapon: BaseWeapon
 
 var enemy: PackedScene = load("res://enemies/mosquito/mosquito.tscn")
 var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.tscn")
@@ -51,7 +52,23 @@ func _ready() -> void:
 	_texture.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
 	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
-	weapon.weapon_fired.connect(_on_weapon_fired)
+
+	_setup_selected_weapon()
+
+func _setup_selected_weapon() -> void:
+	if GameManager and GameManager.selected_weapon:
+		var weapon_data = GameManager.selected_weapon
+
+		if weapon_data.weapon_scene:
+			if weapon:
+				weapon.queue_free()
+
+			weapon = weapon_data.weapon_scene.instantiate() as BaseWeapon
+			weapon._character = self
+			$SpriteGroup.add_child(weapon)
+			$ReloadBar.setup(self)
+
+			weapon.weapon_fired.connect(_on_weapon_fired)
 
 func _physics_process(delta: float) -> void:
 	if knockback_timer > 0:
