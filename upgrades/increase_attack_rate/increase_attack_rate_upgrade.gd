@@ -9,4 +9,4 @@ func _init() -> void:
 	max_uses = 4
 
 func apply_upgrade(_character: BaseCharacter) -> void:
-	_character.attack_interval *= 0.8
+	_character.weapon._attack_cooldown_timer *= 0.8

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://olu0ni5bgyyq" path="res://characters/cearense/shadow.png" id="3_k5olh"]
 [ext_resource type="PackedScene" uid="uid://w78j5blurhha" path="res://weapons/two/two_weapon.tscn" id="5_k5olh"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_goi2v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5olh"]
 shader = ExtResource("2_mfk0j")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
@@ -192,7 +192,7 @@ position = Vector2(2, 0)
 texture = ExtResource("3_k5olh")
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="1" unique_id=1474570970]
-material = SubResource("ShaderMaterial_goi2v")
+material = SubResource("ShaderMaterial_k5olh")
 texture = ExtResource("2_7nm3n")
 hframes = 6
 vframes = 2
@@ -201,7 +201,7 @@ vframes = 2
 orbit_distance = 20.0
 _character = NodePath("../..")
 
-[node name="HurtBox" parent="." index="1" unique_id=1570772349]
+[node name="HurtBox" parent="." index="2" unique_id=1570772349]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0" unique_id=1568370168]
@@ -209,12 +209,12 @@ position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_vb32k")
 debug_color = Color(0, 1, 0, 0.277)
 
-[node name="Collision" parent="." index="2" unique_id=209974859]
+[node name="Collision" parent="." index="3" unique_id=209974859]
 position = Vector2(0.5, 9.5)
 shape = SubResource("RectangleShape2D_goi2v")
 
-[node name="Animation" parent="." index="3" unique_id=314084126]
+[node name="Animation" parent="." index="4" unique_id=314084126]
 libraries/ = SubResource("AnimationLibrary_vpbxj")
 
-[node name="ReloadBar" parent="." index="6" unique_id=1910036739 node_paths=PackedStringArray("weapon")]
+[node name="ReloadBar" parent="." index="7" unique_id=1910036739 node_paths=PackedStringArray("weapon")]
 weapon = NodePath("../SpriteGroup/Weapon")

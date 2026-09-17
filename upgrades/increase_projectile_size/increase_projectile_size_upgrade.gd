@@ -9,4 +9,4 @@ func _init() -> void:
 	max_uses = 4
 
 func apply_upgrade(_character: BaseCharacter) -> void:
-	_character.projectile_scale *= 1.2
+	_character.weapon._current_projectile_scale *= 1.2

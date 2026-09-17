@@ -183,24 +183,15 @@ func apply_invulnerability(duration: float):
 	is_invulnerable = true
 
 	if _texture.material is ShaderMaterial:
-		var flash_cycles = max(1, int(duration / 0.3))
-		var tween = get_tree().create_tween()
+		var flash_cycles = max(1, int(duration / 0.5))
+		var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT)
 		tween.set_loops(flash_cycles)
-
-		tween.tween_method(
-			func(val): _texture.material.set_shader_parameter("flash_value", val),
-			0, 1, 0.15
-		)
-		tween.tween_method(
-			func(val): _texture.material.set_shader_parameter("flash_value", val),
-			1, 0, 0.15
-		)
+		tween.tween_property(_texture, "modulate:a", 0.6, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).set_delay(0.2)
+		tween.chain().tween_property(_texture, "modulate:a", 1, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	await get_tree().create_timer(duration).timeout
+	_texture.modulate.a = 1
 	is_invulnerable = false
-
-	if _texture.material is ShaderMaterial:
-		_texture.material.set_shader_parameter("flash_value", 0.0)
 
 func add_water(amount: int):
 	current_water_amount += amount
@@ -228,6 +219,12 @@ func _on_hitbox_entered(hitbox: HitBox):
 		return
 
 	_take_damage(hitbox.damage)
+
+	_texture.material.set_shader_parameter("flash_value", 1)
+	Engine.time_scale = 0.2
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	Engine.time_scale = 1.0
+	_texture.material.set_shader_parameter("flash_value", 0)
 
 	var attacker_position = hitbox.get_parent().global_position
 	var knockback_dir: Vector2

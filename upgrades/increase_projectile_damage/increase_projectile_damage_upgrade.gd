@@ -9,4 +9,4 @@ func _init() -> void:
 	max_uses = 4
 
 func apply_upgrade(_character: BaseCharacter) -> void:
-	_character.attack_damage += 8
+	_character.weapon._current_attack_damage += 8
