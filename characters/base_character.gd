@@ -75,10 +75,26 @@ func _move():
 	if _direction != Vector2.ZERO:
 		last_direction = _direction
 
-	velocity = _direction * _move_speed
+	var speed = _move_speed / 2 if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) else _move_speed
+
+	velocity = _direction * speed
 	move_and_slide()
 
 func _animate() -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		_dust_particles.emitting = false
+		var shooting_direction = (get_global_mouse_position() - global_position).normalized()
+
+		if shooting_direction.x < 0:
+			if _animation.has_animation(_animations["run_left"]):
+				_animation.play(_animations["run_left"])
+
+		if shooting_direction.x > 0:
+			if _animation.has_animation(_animations["run_right"]):
+				_animation.play(_animations["run_right"])
+
+		return
+
 	if velocity.length() > 0:
 		_dust_particles.emitting = true
 		_dust_particles.position.x = 0
