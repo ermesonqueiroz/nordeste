@@ -27,6 +27,7 @@ signal level_updated
 @onready var _audio: AudioStreamPlayer = $Audio
 @onready var weapon: BaseWeapon = $SpriteGroup/Weapon
 @onready var _hurtbox: HurtBox = $HurtBox
+@onready var _dust_particles: GPUParticles2D = $DustParticles
 
 var enemy: PackedScene = load("res://enemies/mosquito/mosquito.tscn")
 var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.tscn")
@@ -79,14 +80,27 @@ func _move():
 
 func _animate() -> void:
 	if velocity.length() > 0:
+		_dust_particles.emitting = true
+		_dust_particles.position.x = 0
+
 		if velocity.x < 0:
 			if _animation.has_animation(_animations["run_left"]):
 				_animation.play(_animations["run_left"])
+
+			if _dust_particles:
+				_dust_particles.scale.x = -1
+				_dust_particles.position.x = -8
+
 			return
 
 		if velocity.x > 0:
 			if _animation.has_animation(_animations["run_right"]):
 				_animation.play(_animations["run_right"])
+
+			if _dust_particles:
+				_dust_particles.scale.x = 1
+				_dust_particles.position.x = 8
+
 			return
 
 		if velocity.y < 0:
@@ -98,6 +112,8 @@ func _animate() -> void:
 			if _animation.has_animation(_animations["run_bottom"]):
 				_animation.play(_animations["run_bottom"])
 			return
+
+	_dust_particles.emitting = false
 
 	if last_direction.x < 0:
 		_animation.play(_animations["idle_left"])

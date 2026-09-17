@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cjg4bjnrfrb3d"]
 
 [ext_resource type="Script" uid="uid://bh8773j8r1mjo" path="res://characters/base_character.gd" id="1_r08u6"]
+[ext_resource type="Texture2D" uid="uid://dv51kmpf20chc" path="res://characters/dust.png" id="2_cag4a"]
 [ext_resource type="Script" uid="uid://c0w4su8sea4bw" path="res://characters/camera.gd" id="2_xeerb"]
 [ext_resource type="AudioStream" uid="uid://jvfi372ge3q8" path="res://characters/hurt.wav" id="3_lii0y"]
 [ext_resource type="Script" uid="uid://cxo64sjp7i3x4" path="res://common/hurtbox.gd" id="4_l7dgf"]
@@ -8,9 +9,38 @@
 [ext_resource type="Texture2D" uid="uid://oknh1y177klk" path="res://characters/reloadbar_progress.png" id="6_xt3k7"]
 [ext_resource type="Script" uid="uid://c0h08bfwtw3n1" path="res://characters/reload_bar.gd" id="7_xt3k7"]
 
+[sub_resource type="Curve" id="Curve_dtm77"]
+_data = [Vector2(0.02155172, 0.033707857), 0.0, -0.1533377, 0, 0, Vector2(0.45689657, 0.5617978), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6ps22"]
+curve = SubResource("Curve_dtm77")
+
+[sub_resource type="Curve" id="Curve_cag4a"]
+_data = [Vector2(0, 0), 0.0, 0.44687068, 0, 0, Vector2(0.50431037, 0.61797756), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cag4a"]
+curve = SubResource("Curve_cag4a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cag4a"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, -15, 0)
+scale_curve = SubResource("CurveTexture_cag4a")
+alpha_curve = SubResource("CurveTexture_6ps22")
+
 [node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 node_paths=PackedStringArray("_animation")]
 script = ExtResource("1_r08u6")
 _animation = NodePath("Animation")
+
+[node name="DustParticles" type="GPUParticles2D" parent="." unique_id=59756565]
+position = Vector2(0, 24)
+texture = ExtResource("2_cag4a")
+lifetime = 0.8
+process_material = SubResource("ParticleProcessMaterial_cag4a")
 
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=2022331021]
 
