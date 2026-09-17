@@ -34,7 +34,7 @@ var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.t
 
 var last_direction: Vector2 = Vector2.RIGHT
 
-var maxHealth = 1000
+var maxHealth = 100
 var currentHealth = maxHealth
 
 var knockback: Vector2 = Vector2.ZERO

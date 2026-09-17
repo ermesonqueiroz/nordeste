@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://4f7h2jpxhgnq"]
+
+[ext_resource type="Script" uid="uid://bs2fwyeegwabo" path="res://gui/main_menu/main_menu.gd" id="1_6wy0j"]
+[ext_resource type="FontFile" uid="uid://caig40m8c3b0y" path="res://fonts/BoldPixels.ttf" id="1_ahke7"]
+[ext_resource type="Texture2D" uid="uid://c3hwxoj2m4h52" path="res://gui/main_menu/back_2.png" id="2_6wy0j"]
+[ext_resource type="Texture2D" uid="uid://fik0vnhcchgw" path="res://gui/main_menu/back_1.png" id="3_oave4"]
+[ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="3_qy2xc"]
+[ext_resource type="Texture2D" uid="uid://rwk5g8uwhpww" path="res://gui/main_menu/front.png" id="4_vnwa6"]
+[ext_resource type="Texture2D" uid="uid://qluy7c21e1fc" path="res://gui/main_menu/details_front.png" id="5_bhc4r"]
+[ext_resource type="Texture2D" uid="uid://b1f3hv1y6i26q" path="res://gui/main_menu/person.png" id="6_vnwa6"]
+[ext_resource type="Script" uid="uid://c4e41brdyxx2d" path="res://gui/main_menu/camera.gd" id="9_bhc4r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_85nol"]
+font = ExtResource("1_ahke7")
+font_size = 48
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahke7"]
+bg_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
+border_width_bottom = 3
+border_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3lsy7"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_detail = 1
+
+[node name="MainMenu" type="Control" unique_id=478627985 node_paths=PackedStringArray("_start_button", "_quit_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wy0j")
+_start_button = NodePath("CanvasLayer/VBoxContainer/StartButton")
+_quit_button = NodePath("CanvasLayer/VBoxContainer/QuitButton")
+
+[node name="ParallaxBackground" type="Node2D" parent="." unique_id=1954976119]
+
+[node name="Bg2Parallax" type="Parallax2D" parent="ParallaxBackground" unique_id=1117320850]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1056, 0)
+autoscroll = Vector2(-4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Bg2Parallax" unique_id=973355193]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_6wy0j")
+centered = false
+
+[node name="BgParallax" type="Parallax2D" parent="ParallaxBackground" unique_id=97407063]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(1056, 0)
+autoscroll = Vector2(-8, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BgParallax" unique_id=1751429158]
+position = Vector2(0, -30)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("3_oave4")
+centered = false
+
+[node name="FrontParallax" type="Parallax2D" parent="ParallaxBackground" unique_id=928261158]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(1056, 0)
+autoscroll = Vector2(-8, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/FrontParallax" unique_id=678357695]
+position = Vector2(0, -30)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_vnwa6")
+centered = false
+
+[node name="DetailsParallax" type="Parallax2D" parent="ParallaxBackground" unique_id=1548400178]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1056, 0)
+autoscroll = Vector2(-4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/DetailsParallax" unique_id=240391641]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("5_bhc4r")
+centered = false
+
+[node name="PersonParallax" type="Parallax2D" parent="ParallaxBackground" unique_id=716067566]
+repeat_size = Vector2(960, 0)
+autoscroll = Vector2(-8, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/PersonParallax" unique_id=92506097]
+texture = ExtResource("6_vnwa6")
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=87654000]
+anchor_mode = 0
+script = ExtResource("9_bhc4r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1189516630]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1351389480]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.5
+offset_top = -73.0
+offset_right = 130.5
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1729061977]
+layout_mode = 2
+text = "NORDESTE 4"
+label_settings = SubResource("LabelSettings_85nol")
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=2106965046]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 1)
+theme_override_fonts/font = ExtResource("3_qy2xc")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ahke7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3lsy7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3lsy7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3lsy7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3lsy7")
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=91995168]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qy2xc")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ahke7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3lsy7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3lsy7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3lsy7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3lsy7")
+text = "Sair"
