@@ -5,9 +5,6 @@
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_mfk0j"]
 [ext_resource type="Texture2D" uid="uid://olu0ni5bgyyq" path="res://characters/cearense/shadow.png" id="3_k5olh"]
 [ext_resource type="PackedScene" uid="uid://w78j5blurhha" path="res://weapons/two/two_weapon.tscn" id="5_k5olh"]
-[ext_resource type="PackedScene" uid="uid://caj7txmcy151e" path="res://weapons/revolver/revolver.tscn" id="6_rlfms"]
-[ext_resource type="PackedScene" uid="uid://dtu71oiemwqbq" path="res://weapons/shotgun/shotgun_weapon.tscn" id="7_vpbxj"]
-[ext_resource type="PackedScene" uid="uid://682a6t1ehwmn" path="res://weapons/chinela/chinela_weapon.tscn" id="8_jr7ke"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_goi2v"]
 shader = ExtResource("2_mfk0j")
@@ -204,19 +201,6 @@ vframes = 2
 orbit_distance = 20.0
 _character = NodePath("../..")
 
-[node name="Weapon3" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="3" unique_id=397105554 node_paths=PackedStringArray("_character") instance=ExtResource("6_rlfms")]
-visible = false
-_character = NodePath("../..")
-
-[node name="Weapon2" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="4" unique_id=2044954646 node_paths=PackedStringArray("_character") instance=ExtResource("7_vpbxj")]
-visible = false
-orbit_distance = 20.0
-_character = NodePath("../..")
-
-[node name="Weapon5" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="5" unique_id=2024691509 node_paths=PackedStringArray("_character") instance=ExtResource("8_jr7ke")]
-visible = false
-_character = NodePath("../..")
-
 [node name="HurtBox" parent="." index="1" unique_id=1570772349]
 collision_mask = 2
 
@@ -231,3 +215,6 @@ shape = SubResource("RectangleShape2D_goi2v")
 
 [node name="Animation" parent="." index="3" unique_id=314084126]
 libraries/ = SubResource("AnimationLibrary_vpbxj")
+
+[node name="ReloadBar" parent="." index="6" unique_id=1910036739 node_paths=PackedStringArray("weapon")]
+weapon = NodePath("../SpriteGroup/Weapon")

@@ -1,20 +1,62 @@
 extends Node2D
 class_name BaseWeapon
 
+signal weapon_fired
+signal ammo_updated
+signal start_reload
+
 @export var orbit_distance: float = 24.0
 @export var _character: BaseCharacter
+@export var initial_max_ammo: int = 6
+@export var initial_attack_interval: int = 1
+@export var initial_projectile_scale = 1.2
+@export var initial_attack_damage = 20
+@export var initial_reload_time = 1.0
+
 @onready var _animation: AnimationPlayer = $Animation
 
 var _projectile: PackedScene
 var crosshair: Texture2D
 
+var _current_attack_interval = initial_attack_interval
+var _attack_cooldown_timer: float = 0.0
+
+var _current_projectile_scale = initial_projectile_scale
+var _current_attack_damage = initial_attack_damage
+
+var max_ammo: int = initial_max_ammo
+var ammo: int = max_ammo
+var is_reloading: bool = false
+var reload_time: float = initial_reload_time
+
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if not _character:
 		return
 
+	_look_to_player()
+
+	if _attack_cooldown_timer > 0:
+		_attack_cooldown_timer -= delta
+
+	if is_reloading:
+		return
+
+	if Input.is_action_just_pressed("reload") and ammo < max_ammo:
+		reload()
+		return
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and _attack_cooldown_timer <= 0:
+		if ammo <= 0:
+			reload()
+			return
+
+		shoot(_current_projectile_scale, _current_attack_damage)
+		_attack_cooldown_timer = _current_attack_interval
+
+func _look_to_player() -> void:
 	var mouse_pos = get_global_mouse_position()
 	var char_pos = _character.global_position
 
@@ -33,6 +75,8 @@ func _process(_delta: float) -> void:
 	scale.x = 1
 
 func shoot(projectile_scale: float, attack_damage: int) -> void:
+	ammo -= 1
+
 	if _animation.has_animation("shoot"):
 		_animation.play("shoot")
 
@@ -48,6 +92,8 @@ func shoot(projectile_scale: float, attack_damage: int) -> void:
 	new_projectile.damage = attack_damage
 
 	get_tree().current_scene.add_child.call_deferred(new_projectile)
+	weapon_fired.emit()
+	ammo_updated.emit()
 
 func _on_animation_finished(animation_name: String) -> void:
 	if animation_name == "shoot":
@@ -55,3 +101,11 @@ func _on_animation_finished(animation_name: String) -> void:
 			return
 
 		_animation.play("idle")
+
+func reload() -> void:
+	start_reload.emit()
+	is_reloading = true
+	await get_tree().create_timer(reload_time).timeout
+	ammo = max_ammo
+	ammo_updated.emit()
+	is_reloading = false

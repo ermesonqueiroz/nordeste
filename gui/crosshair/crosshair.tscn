@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cfct66f7btv0b" path="res://gui/crosshair/crosshair.gd" id="1_pgxu7"]
 [ext_resource type="Texture2D" uid="uid://bww5p1w4icck" path="res://gui/crosshair/texture.png" id="2_pgxu7"]
+[ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="3_8o6cg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pgxu7"]
+font = ExtResource("3_8o6cg")
 
 [node name="Crosshair" type="CanvasLayer" unique_id=740910499]
 layer = 2
@@ -9,3 +13,11 @@ script = ExtResource("1_pgxu7")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=144696227]
 texture = ExtResource("2_pgxu7")
+
+[node name="Label" type="Label" parent="." unique_id=1441420019]
+offset_right = 40.0
+offset_bottom = 23.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(4, 2)
+text = "0"
+label_settings = SubResource("LabelSettings_pgxu7")

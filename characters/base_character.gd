@@ -4,7 +4,6 @@ class_name BaseCharacter
 signal healthUpdated
 signal water_collected
 signal level_updated
-signal character_attacked
 
 @export_category("Variables")
 @export var _move_speed: float = 128.0
@@ -45,26 +44,13 @@ var current_water_amount = 0
 var current_level = 1
 var water_amount_to_next_level = 20
 
-var projectile_scale = 1.2
-var attack_interval = 1
-var attack_damage = 20
-
-var _attack_cooldown_timer: float = 0.0
-
 var upgrades_applied: Dictionary = {}
 
 func _ready() -> void:
 	_texture.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
 	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
-
-func _process(delta: float) -> void:
-	if _attack_cooldown_timer > 0:
-		_attack_cooldown_timer -= delta
-
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and _attack_cooldown_timer <= 0:
-		_attack()
-		_attack_cooldown_timer = attack_interval
+	weapon.weapon_fired.connect(_on_weapon_fired)
 
 func _physics_process(delta: float) -> void:
 	if knockback_timer > 0:
@@ -119,17 +105,6 @@ func _animate() -> void:
 
 	_animation.play(_animations["idle_right"])
 	return
-
-func _attack() -> void:
-	if not weapon:
-		return
-
-	weapon.shoot(projectile_scale, attack_damage)
-	_camera.screen_shake(3, 0.3)
-	character_attacked.emit()
-
-func _on_hit_timer_timeout() -> void:
-	_attack()
 
 func _on_water_collected() -> void:
 	while current_water_amount >= water_amount_to_next_level:
@@ -231,3 +206,6 @@ func _on_hitbox_entered(hitbox: HitBox):
 	else:
 		knockback_dir = (global_position - attacker_position).normalized()
 		_apply_knockback(knockback_dir, 200, 0.15)
+
+func _on_weapon_fired() -> void:
+	_camera.screen_shake(3, 0.3)

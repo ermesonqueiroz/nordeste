@@ -62,6 +62,7 @@ _data = {
 
 [node name="TwoWeapon" unique_id=1820149675 instance=ExtResource("1_rmn6d")]
 script = ExtResource("2_b0vy4")
+max_bullets = 12
 
 [node name="Texture" parent="." index="0" unique_id=1083896037]
 position = Vector2(12, -8)
