@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b54xbh6ge13yn"
-path="res://.godot/imported/shoot.wav-b119ecb8bebbda4bc43442c35f9599a2.sample"
+uid="uid://dfjm1p4xld6h4"
+path="res://.godot/imported/shoot.wav-b280d0cd8488ec3282e3daa20e9276c8.sample"
 
 [deps]
 
-source_file="res://projectiles/musket_ball/shoot.wav"
-dest_files=["res://.godot/imported/shoot.wav-b119ecb8bebbda4bc43442c35f9599a2.sample"]
+source_file="res://sfx/shoot.wav"
+dest_files=["res://.godot/imported/shoot.wav-b280d0cd8488ec3282e3daa20e9276c8.sample"]
 
 [params]
 

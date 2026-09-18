@@ -6,6 +6,9 @@ extends Control
 @onready var _pop_sfx = preload("res://gui/sfx/pop.wav")
 
 func _ready() -> void:
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 	_setup_button_pivot(_start_button)
 	_setup_button_pivot(_quit_button)
 
@@ -56,12 +59,13 @@ func _on_button_up(button: Button) -> void:
 	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(button, "scale", Vector2.ONE, 0.12)
 
-func _animate_scale(button: Button, target_scale: Vector2, duration: float, trans: Tween.TransitionType, ease: Tween.EaseType) -> void:
-	var existing_tween = button.get_meta("active_tween", null)
-	if existing_tween and existing_tween.is_running():
-		existing_tween.kill()
+func _animate_scale(button: Button, target_scale: Vector2, duration: float, trans: Tween.TransitionType, ease_tpe: Tween.EaseType) -> void:
+	if button.has_meta("active_tween"):
+		var existing_tween = button.get_meta("active_tween")
+		if existing_tween and is_instance_valid(existing_tween) and existing_tween.is_running():
+			existing_tween.kill()
 
-	var tween = button.create_tween().set_trans(trans).set_ease(ease)
+	var tween = button.create_tween().set_trans(trans).set_ease(ease_tpe)
 	tween.tween_property(button, "scale", target_scale, duration)
 
 	button.set_meta("active_tween", tween)

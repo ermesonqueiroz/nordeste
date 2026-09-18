@@ -26,6 +26,9 @@ func _ready() -> void:
 	_attack_area.body_exited.connect(_on_attack_area_body_exited)
 
 func _physics_process(delta: float) -> void:
+	if damage_cooldown > 0:
+		damage_cooldown -= delta
+
 	if _attack_timer > 0:
 		_attack_timer -= delta
 

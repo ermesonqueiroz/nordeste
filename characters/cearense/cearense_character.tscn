@@ -210,6 +210,3 @@ shape = SubResource("RectangleShape2D_goi2v")
 
 [node name="Animation" parent="." index="4" unique_id=314084126]
 libraries/ = SubResource("AnimationLibrary_vpbxj")
-
-[node name="ReloadBar" parent="." index="7" unique_id=1910036739 node_paths=PackedStringArray("weapon")]
-weapon = NodePath("")

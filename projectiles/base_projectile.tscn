@@ -13,7 +13,4 @@ metadata/_custom_type_script = "uid://dvn6fs6a1v72h"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1801896036]
 
-[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1246407866]
-volume_db = -2.862
-
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=2016169759]

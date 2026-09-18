@@ -15,6 +15,7 @@ extends Control
 	$Weapons/Slot3,
 	$Weapons/Slot4
 ]
+@onready var _enter_weapon_selection_sfx: AudioStream = preload("res://sfx/enter_weapon_selection.wav")
 
 const SHARED_GROUP = preload("res://gui/weapon_select/button_group.tres")
 
@@ -24,6 +25,9 @@ var selected_button: Control = null
 func _ready() -> void:
 	weapon_stats_panel.visible = false
 	_populate_shelf()
+
+	await get_tree().create_timer(0.4).timeout
+	SoundManager.play(_enter_weapon_selection_sfx, -2)
 
 func _populate_shelf() -> void:
 	for i in range(min(available_weapons.size(), shelf_slots.size())):

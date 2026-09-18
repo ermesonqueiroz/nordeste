@@ -11,6 +11,7 @@ var pending_level_ups: int = 0
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
+	GameManager.reset_stats()
 	_game_over.hide()
 	_level_up.hide()
 
@@ -50,5 +51,5 @@ func _on_upgrade_selected():
 
 func _on_character_health_updated() -> void:
 	if _character.currentHealth <= 0:
-		_game_over.show()
+		_game_over.show_screen()
 		get_tree().paused = true

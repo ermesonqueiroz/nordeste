@@ -10,4 +10,6 @@ weapon_name = "Estraga-velorio"
 weapon_icon = ExtResource("2_pj6fd")
 weapon_scene = ExtResource("3_2rgjj")
 damage = 24
+projectiles = 3
+spread_projectiles_angle_degrees = 5.0
 metadata/_custom_type_script = "uid://bx7rjtsfb8w2y"

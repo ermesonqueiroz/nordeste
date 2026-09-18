@@ -5,7 +5,6 @@ class_name BaseProjectile
 @export var speed = 180.0
 @export var lifespan: float = 1.0
 
-@onready var _audio: AudioStreamPlayer = $Audio
 @onready var _spriteGroup = $SpriteGroup
 
 var direction: Vector2
@@ -15,9 +14,7 @@ var spawn_rotation: float
 func _ready():
 	global_position = spawn_position
 	global_rotation = spawn_rotation
-
-	if _audio and _audio.stream:
-		_audio.play()
+	knockback_direction = direction
 
 	await get_tree().create_timer(3 * lifespan / 4).timeout
 

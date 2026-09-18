@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cm4p3w1o35o0p" path="res://projectiles/base_projectile.tscn" id="1_r20ck"]
 [ext_resource type="Texture2D" uid="uid://bfup6drvnpbii" path="res://projectiles/musket_ball/texture.png" id="2_y756q"]
-[ext_resource type="AudioStream" uid="uid://b54xbh6ge13yn" path="res://projectiles/musket_ball/shoot.wav" id="3_c4p8o"]
 
 [sub_resource type="Curve" id="Curve_c4p8o"]
 _limits = [0.0, 5.5, 0.0, 1.0]
@@ -85,9 +84,6 @@ position = Vector2(-4, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_a555w")
 
-[node name="Audio" parent="." index="2" unique_id=1246407866]
-stream = ExtResource("3_c4p8o")
-
-[node name="Animation" parent="." index="3" unique_id=2016169759]
+[node name="Animation" parent="." index="2" unique_id=2016169759]
 libraries/ = SubResource("AnimationLibrary_grlle")
 autoplay = &"movement"

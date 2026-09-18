@@ -18,7 +18,6 @@
 [ext_resource type="Script" uid="uid://bo7aktf84u7l4" path="res://gui/level_up/level_up.gd" id="11_gm1p2"]
 [ext_resource type="Texture2D" uid="uid://hhnse5m5s8vi" path="res://gui/healthbar/under_texture.png" id="12_353a4"]
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="12_dv4fs"]
-[ext_resource type="FontFile" uid="uid://caig40m8c3b0y" path="res://fonts/BoldPixels.ttf" id="12_gm1p2"]
 [ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
 [ext_resource type="Texture2D" uid="uid://rp48n0swibkv" path="res://gui/healthbar/over_texture.png" id="13_f2ouj"]
 [ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
@@ -29,6 +28,9 @@
 [ext_resource type="AudioStream" uid="uid://y28hs6srvdfm" path="res://sfx/battle_commences_loopable.wav" id="17_3ktkq"]
 [ext_resource type="Script" uid="uid://cc0bw8p46kcea" path="res://upgrades/increase_character_health/increase_character_health_upgrade.gd" id="17_f88ab"]
 [ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
+[ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="19_sk2he"]
+[ext_resource type="Script" uid="uid://cybntdswjjg3r" path="res://survival_time.gd" id="29_sk2he"]
+[ext_resource type="PackedScene" uid="uid://7v52lt3xs4hw" path="res://pause_menu.tscn" id="30_ovhxr"]
 
 [sub_resource type="Gradient" id="Gradient_5d4hl"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -69,13 +71,23 @@ color_ramp = SubResource("GradientTexture1D_5d4hl")
 font = ExtResource("12_dv4fs")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ibsu8"]
-font = ExtResource("12_gm1p2")
+font = ExtResource("19_sk2he")
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_sk2he"]
+font = ExtResource("12_dv4fs")
+font_size = 20
+font_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ovhxr"]
+font = ExtResource("12_dv4fs")
+font_size = 20
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm1p2"]
+content_margin_left = 0.0
 content_margin_top = 4.0
 content_margin_right = 0.0
-content_margin_bottom = 4.0
+content_margin_bottom = 6.0
 bg_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
 corner_detail = 1
 
@@ -106,6 +118,14 @@ metadata/_custom_type_script = "uid://dhua5b5fxbs1o"
 [sub_resource type="Resource" id="Resource_2obac"]
 script = ExtResource("13_ssom1")
 metadata/_custom_type_script = "uid://dhua5b5fxbs1o"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vb32k"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_g55cv"]
+font = ExtResource("12_dv4fs")
+font_size = 32
 
 [node name="GameLevel" type="Node2D" unique_id=1376921944 node_paths=PackedStringArray("_character")]
 script = ExtResource("1_qsd0w")
@@ -232,7 +252,7 @@ texture_progress = ExtResource("14_w051k")
 script = ExtResource("15_f2ouj")
 character = NodePath("../../../../../CearenseCharacter")
 
-[node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358]
+[node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358 node_paths=PackedStringArray("_restart_button", "_main_menu_button", "_survival_time_label", "_enemies_killed_label")]
 process_mode = 3
 visible = false
 anchors_preset = 15
@@ -242,9 +262,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5882353)
 script = ExtResource("10_anq5l")
+_restart_button = NodePath("Column/VBoxContainer2/RestartButton")
+_main_menu_button = NodePath("Column/VBoxContainer2/MainMenuButton")
+_survival_time_label = NodePath("Column/VBoxContainer/HBoxContainer/Value")
+_enemies_killed_label = NodePath("Column/VBoxContainer/HBoxContainer2/Value")
 
 [node name="Column" type="VBoxContainer" parent="GUI/GameOver" unique_id=1758013469]
 process_mode = 3
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -257,20 +282,64 @@ offset_right = 56.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 18
 
 [node name="Label" type="Label" parent="GUI/GameOver/Column" unique_id=1380702913]
 layout_mode = 2
-text = "MORREU, NEWBA!"
+text = "Game Over"
 label_settings = SubResource("LabelSettings_ibsu8")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RestartButton" type="Button" parent="GUI/GameOver/Column" unique_id=450231592]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/GameOver/Column" unique_id=2043833441]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/GameOver/Column/VBoxContainer" unique_id=1530806313]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/GameOver/Column/VBoxContainer/HBoxContainer" unique_id=1997781322]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tempo Sobrevivido"
+label_settings = SubResource("LabelSettings_sk2he")
+
+[node name="Value" type="Label" parent="GUI/GameOver/Column/VBoxContainer/HBoxContainer" unique_id=600339137]
+layout_mode = 2
+text = "20:00"
+label_settings = SubResource("LabelSettings_ovhxr")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/GameOver/Column/VBoxContainer" unique_id=811719484]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/GameOver/Column/VBoxContainer/HBoxContainer2" unique_id=1448872435]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Inimigos Abatidos"
+label_settings = SubResource("LabelSettings_sk2he")
+
+[node name="Value" type="Label" parent="GUI/GameOver/Column/VBoxContainer/HBoxContainer2" unique_id=1361027250]
+layout_mode = 2
+text = "999"
+label_settings = SubResource("LabelSettings_ovhxr")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUI/GameOver/Column" unique_id=385705230]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="GUI/GameOver/Column/VBoxContainer2" unique_id=1049069370]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("12_dv4fs")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gm1p2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qsxfn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxfn")
-text = "Reiniciar"
+text = "Tentar novamente"
+
+[node name="MainMenuButton" type="Button" parent="GUI/GameOver/Column/VBoxContainer2" unique_id=444447311]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("12_dv4fs")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gm1p2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qsxfn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qsxfn")
+text = "Sair para o Menu	"
 
 [node name="LevelUp" type="ColorRect" parent="GUI" unique_id=1269669155 node_paths=PackedStringArray("_character")]
 process_mode = 3
@@ -323,6 +392,35 @@ upgrade = SubResource("Resource_2obac")
 [node name="Crosshair" parent="GUI" unique_id=740910499 node_paths=PackedStringArray("_character") instance=ExtResource("17_gyjtv")]
 process_mode = 3
 _character = NodePath("../../CearenseCharacter")
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI" unique_id=1918909216]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vb32k")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/PanelContainer" unique_id=1411090492]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="SurvivalTime" type="Label" parent="GUI/PanelContainer/MarginContainer" unique_id=191347993]
+layout_mode = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_g55cv")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("29_sk2he")
+
+[node name="PauseMenu" parent="GUI" unique_id=586909308 instance=ExtResource("30_ovhxr")]
+visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1416192190]
 stream = ExtResource("17_3ktkq")

@@ -9,6 +9,8 @@ signal start_reload
 @export var initial_projectile_scale = 1.2
 
 @onready var _animation: AnimationPlayer = $Animation
+@onready var _reload_sfx: AudioStream = preload("res://sfx/reload.mp3")
+@onready var _shoot_sfx: AudioStream = preload("res://sfx/shoot.wav")
 
 var _character: BaseCharacter
 var _projectile: PackedScene
@@ -24,6 +26,8 @@ var max_ammo: int = 0
 var ammo: int = 0
 var is_reloading: bool = false
 var reload_time: float = 0.0
+var projectiles: int = 0
+var spread_projectiles_angle_degrees: float = 0
 
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
@@ -37,6 +41,8 @@ func setup(weapon_data: WeaponData) -> void:
 	max_ammo = weapon_data.max_ammo
 	ammo = max_ammo
 	reload_time = weapon_data.reload_time
+	projectiles = weapon_data.projectiles
+	spread_projectiles_angle_degrees = weapon_data.spread_projectiles_angle_degrees
 
 func _process(delta: float) -> void:
 	if not _character:
@@ -86,20 +92,35 @@ func shoot(projectile_scale: float, attack_damage: int) -> void:
 	if _animation.has_animation("shoot"):
 		_animation.play("shoot")
 
+	SoundManager.play(_shoot_sfx, 0)
+
 	await _animation.animation_finished
 
-	var mouse_position := (get_global_mouse_position() - global_position).normalized()
+	var base_direction := (get_global_mouse_position() - global_position).normalized()
+	var spread_rad = deg_to_rad(spread_projectiles_angle_degrees)
 
-	var new_projectile: BaseProjectile = _projectile.instantiate()
-	new_projectile.direction = mouse_position
-	new_projectile.spawn_position = global_position + (mouse_position * 40) - Vector2(0, 8)
-	new_projectile.spawn_rotation = mouse_position.angle()
-	new_projectile.scale = Vector2.ONE * projectile_scale
-	new_projectile.damage = attack_damage
+	for i in range(projectiles):
+		var projectile_direction = base_direction
 
-	get_tree().current_scene.add_child.call_deferred(new_projectile)
+		if projectiles > 1:
+			var step = spread_rad / (projectiles - 1)
+			var current_angle = -spread_rad / 2 + (step * i)
+			projectile_direction = base_direction.rotated(current_angle)
+
+		var new_projectile: BaseProjectile = _projectile.instantiate()
+		new_projectile.direction = projectile_direction
+		new_projectile.spawn_position = global_position + (projectile_direction * 40) - Vector2(0, 8)
+		new_projectile.spawn_rotation = projectile_direction.angle()
+		new_projectile.scale = Vector2.ONE * projectile_scale
+		new_projectile.damage = attack_damage
+
+		get_tree().current_scene.add_child.call_deferred(new_projectile)
+
 	weapon_fired.emit()
 	ammo_updated.emit()
+
+	if ammo == 0:
+		reload()
 
 func _on_animation_finished(animation_name: String) -> void:
 	if animation_name == "shoot":
@@ -109,6 +130,7 @@ func _on_animation_finished(animation_name: String) -> void:
 		_animation.play("idle")
 
 func reload() -> void:
+	SoundManager.play(_reload_sfx, -4)
 	start_reload.emit()
 	is_reloading = true
 	await get_tree().create_timer(reload_time).timeout

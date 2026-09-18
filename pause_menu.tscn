@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://7v52lt3xs4hw"]
+
+[ext_resource type="Script" uid="uid://boxeaybcbq6aj" path="res://pause_menu.gd" id="1_05uyy"]
+[ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="2_p81d2"]
+[ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="3_2nc7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgy74"]
+bg_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d3xb4"]
+font = ExtResource("2_p81d2")
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxa3g"]
+content_margin_left = 0.0
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 6.0
+bg_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8sti"]
+bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+corner_detail = 1
+
+[node name="PauseMenu" type="Control" unique_id=586909308 node_paths=PackedStringArray("_resume_button", "_main_menu_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_05uyy")
+_resume_button = NodePath("PanelContainer/Column/VBoxContainer2/ResumeButton")
+_main_menu_button = NodePath("PanelContainer/Column/VBoxContainer2/MainMenuButton")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=916991884]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vgy74")
+
+[node name="Column" type="VBoxContainer" parent="PanelContainer" unique_id=2098659078]
+process_mode = 3
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 18
+
+[node name="Label" type="Label" parent="PanelContainer/Column" unique_id=1958216047]
+layout_mode = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_d3xb4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/Column" unique_id=1783989937]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/Column/VBoxContainer2" unique_id=1893110420]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2nc7s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mxa3g")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e8sti")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e8sti")
+text = "Continuar"
+
+[node name="MainMenuButton" type="Button" parent="PanelContainer/Column/VBoxContainer2" unique_id=1221332266]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2nc7s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mxa3g")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e8sti")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e8sti")
+text = "Sair para o Menu	"

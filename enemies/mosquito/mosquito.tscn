@@ -22,9 +22,8 @@ shader = SubResource("Shader_xu6hp")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_goi2v"]
-radius = 5.0
-height = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu6hp"]
+size = Vector2(11, 20)
 
 [sub_resource type="Animation" id="Animation_kjrhy"]
 length = 0.001
@@ -96,6 +95,7 @@ height = 24.0
 [node name="Mosquito" unique_id=1834857299 instance=ExtResource("1_pqv3g")]
 collectable_to_drop_on_die = ExtResource("3_dxpoy")
 move_speed = 30.0
+max_health = 28.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
 material = SubResource("ShaderMaterial_xu6hp")
@@ -103,7 +103,8 @@ texture = ExtResource("2_xu6hp")
 hframes = 4
 
 [node name="Collision" parent="." index="1" unique_id=1981917045]
-shape = SubResource("CapsuleShape2D_goi2v")
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_xu6hp")
 
 [node name="Animation" parent="." index="2" unique_id=890871356]
 libraries/ = SubResource("AnimationLibrary_kjrhy")
