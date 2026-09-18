@@ -11,6 +11,6 @@ weapon_icon = ExtResource("2_u58hw")
 weapon_scene = ExtResource("3_opusx")
 damage = 8
 max_ammo = 10
-reload_time = 0.8
+reload_time = 0.6
 attack_interval = 0.4
 metadata/_custom_type_script = "uid://bx7rjtsfb8w2y"

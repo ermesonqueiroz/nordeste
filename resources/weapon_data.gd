@@ -12,3 +12,6 @@ class_name WeaponData
 @export var attack_interval: float = 1.0
 @export var projectiles: int = 1
 @export var spread_projectiles_angle_degrees: float = 15.0
+
+@export_group("Other")
+@export var orbit_distance: float = 18

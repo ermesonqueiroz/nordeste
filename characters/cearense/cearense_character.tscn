@@ -210,3 +210,9 @@ shape = SubResource("RectangleShape2D_goi2v")
 
 [node name="Animation" parent="." index="4" unique_id=314084126]
 libraries/ = SubResource("AnimationLibrary_vpbxj")
+
+[node name="Camera" parent="." index="5" unique_id=1821164045]
+limit_left = -2500
+limit_top = -2500
+limit_right = 2500
+limit_bottom = 2500

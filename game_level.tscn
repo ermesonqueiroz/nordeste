@@ -25,12 +25,12 @@
 [ext_resource type="Texture2D" uid="uid://c7cwsj4nbs78q" path="res://gui/healthbar/progress_texture.png" id="14_w051k"]
 [ext_resource type="Script" uid="uid://n46mefqj3ivn" path="res://gui/healthbar/healthbar.gd" id="15_f2ouj"]
 [ext_resource type="Script" uid="uid://c0y6efw78gueo" path="res://upgrades/increase_projectile_damage/increase_projectile_damage_upgrade.gd" id="16_tj1nq"]
-[ext_resource type="AudioStream" uid="uid://y28hs6srvdfm" path="res://sfx/battle_commences_loopable.wav" id="17_3ktkq"]
 [ext_resource type="Script" uid="uid://cc0bw8p46kcea" path="res://upgrades/increase_character_health/increase_character_health_upgrade.gd" id="17_f88ab"]
 [ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
 [ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="19_sk2he"]
 [ext_resource type="Script" uid="uid://cybntdswjjg3r" path="res://survival_time.gd" id="29_sk2he"]
 [ext_resource type="PackedScene" uid="uid://7v52lt3xs4hw" path="res://pause_menu.tscn" id="30_ovhxr"]
+[ext_resource type="AudioStream" uid="uid://bmdlqm5k8ngyf" path="res://sfx/the_wall_loopable.wav" id="31_ovhxr"]
 
 [sub_resource type="Gradient" id="Gradient_5d4hl"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -135,7 +135,8 @@ _character = NodePath("CearenseCharacter")
 position = Vector2(-2, 0)
 
 [node name="CearenseCharacter" parent="." unique_id=1555303638 instance=ExtResource("3_anq5l")]
-position = Vector2(605, 336)
+position = Vector2(287, 335)
+collision_mask = 1
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_character")]
 script = ExtResource("8_v7qp1")
@@ -423,6 +424,6 @@ script = ExtResource("29_sk2he")
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1416192190]
-stream = ExtResource("17_3ktkq")
-volume_db = -18.0
+stream = ExtResource("31_ovhxr")
+volume_db = -15.742
 autoplay = true

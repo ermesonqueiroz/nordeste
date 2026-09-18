@@ -5,7 +5,6 @@ signal weapon_fired
 signal ammo_updated
 signal start_reload
 
-@export var orbit_distance: float = 24.0
 @export var initial_projectile_scale = 1.2
 
 @onready var _animation: AnimationPlayer = $Animation
@@ -28,6 +27,7 @@ var is_reloading: bool = false
 var reload_time: float = 0.0
 var projectiles: int = 0
 var spread_projectiles_angle_degrees: float = 0
+var orbit_distance: float = 0.0
 
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
@@ -43,6 +43,7 @@ func setup(weapon_data: WeaponData) -> void:
 	reload_time = weapon_data.reload_time
 	projectiles = weapon_data.projectiles
 	spread_projectiles_angle_degrees = weapon_data.spread_projectiles_angle_degrees
+	orbit_distance = weapon_data.orbit_distance
 
 func _process(delta: float) -> void:
 	if not _character:

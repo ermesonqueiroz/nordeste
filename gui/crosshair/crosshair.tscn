@@ -12,6 +12,7 @@ layer = 2
 script = ExtResource("1_pgxu7")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=144696227]
+texture_filter = 1
 texture = ExtResource("2_pgxu7")
 
 [node name="Label" type="Label" parent="." unique_id=1441420019]

@@ -27,6 +27,7 @@ var _update_timer: float = 0.0
 var cached_character_direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	z_index = 1
 	position = spawnPosition
 	health = max_health
 

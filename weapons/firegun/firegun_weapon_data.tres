@@ -9,4 +9,6 @@ script = ExtResource("1_0vl1k")
 weapon_name = "Espalha brasa"
 weapon_icon = ExtResource("2_yoa8i")
 weapon_scene = ExtResource("3_bkq8x")
+reload_time = 0.8
+attack_interval = 0.9
 metadata/_custom_type_script = "uid://bx7rjtsfb8w2y"
