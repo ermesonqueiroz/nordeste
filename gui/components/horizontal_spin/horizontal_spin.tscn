@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://d1i13mmyk2b82"]
+
+[ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="1_1sksu"]
+[ext_resource type="Script" uid="uid://bbsepbveamrbq" path="res://gui/components/horizontal_spin/horizontal_spin.gd" id="1_dyjid"]
+[ext_resource type="Texture2D" uid="uid://bag40iygxvtrh" path="res://gui/components/horizontal_spin/textures/arrow_texture.png" id="2_dyjid"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vb32k"]
+font = ExtResource("1_1sksu")
+
+[node name="HorizontalSpin" type="HBoxContainer" unique_id=1085995919]
+offset_right = 109.0
+offset_bottom = 13.0
+size_flags_vertical = 0
+script = ExtResource("1_dyjid")
+
+[node name="OptionLabel" type="Label" parent="." unique_id=987406176]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+label_settings = SubResource("LabelSettings_vb32k")
+
+[node name="Container" type="HBoxContainer" parent="." unique_id=1887286926]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="LeftArrow" type="TextureButton" parent="Container" unique_id=636614051]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("2_dyjid")
+flip_h = true
+
+[node name="ValueLabel" type="Label" parent="Container" unique_id=2091404528]
+layout_mode = 2
+size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -1)
+label_settings = SubResource("LabelSettings_vb32k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightArrow" type="TextureButton" parent="Container" unique_id=528109341]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("2_dyjid")

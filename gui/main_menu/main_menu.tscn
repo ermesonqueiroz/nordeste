@@ -28,7 +28,7 @@ corner_detail = 1
 bg_color = Color(0.2, 0.2, 0.2, 1)
 corner_detail = 1
 
-[node name="MainMenu" type="Control" unique_id=478627985 node_paths=PackedStringArray("_start_button", "_quit_button")]
+[node name="MainMenu" type="Control" unique_id=478627985 node_paths=PackedStringArray("_start_button", "_settings_button", "_quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,6 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6wy0j")
 _start_button = NodePath("CanvasLayer/VBoxContainer/StartButton")
+_settings_button = NodePath("CanvasLayer/VBoxContainer/SettingsButton")
 _quit_button = NodePath("CanvasLayer/VBoxContainer/QuitButton")
 
 [node name="ParallaxBackground" type="Node2D" parent="." unique_id=1954976119]
@@ -131,6 +132,22 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3lsy7")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_3lsy7")
 theme_override_styles/focus = SubResource("StyleBoxFlat_3lsy7")
 text = "Start"
+script = ExtResource("10_tiy0a")
+metadata/_custom_type_script = "uid://bk65kkp1t0t3y"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1554014250]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 1)
+theme_override_fonts/font = ExtResource("3_qy2xc")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ahke7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3lsy7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3lsy7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3lsy7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3lsy7")
+text = "Settings"
 script = ExtResource("10_tiy0a")
 metadata/_custom_type_script = "uid://bk65kkp1t0t3y"
 

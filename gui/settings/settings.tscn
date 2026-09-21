@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://dlfx2lwces5iy"]
+
+[ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="1_cphfk"]
+[ext_resource type="Script" uid="uid://0ja2cfywj2th" path="res://gui/settings/settings.gd" id="1_po07c"]
+[ext_resource type="PackedScene" uid="uid://d1i13mmyk2b82" path="res://gui/components/horizontal_spin/horizontal_spin.tscn" id="2_mq5kv"]
+[ext_resource type="Script" uid="uid://bk65kkp1t0t3y" path="res://gui/components/animated_button.gd" id="4_0ihgu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a5yti"]
+font = ExtResource("1_cphfk")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibapa"]
+bg_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
+border_width_bottom = 3
+border_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vw8rg"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_detail = 1
+
+[node name="Settings" type="Control" unique_id=759441928 node_paths=PackedStringArray("_window_mode_option", "_apply_button", "_back_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_po07c")
+_window_mode_option = NodePath("VBoxContainer/VBoxContainer/WindowMode")
+_apply_button = NodePath("VBoxContainer/HBoxContainer/ApplyButton")
+_back_button = NodePath("VBoxContainer/HBoxContainer/BackButton")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1412574929]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1765660810]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -20.0
+offset_right = 43.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=581412220]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_a5yti")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1653370386]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="WindowMode" parent="VBoxContainer/VBoxContainer" unique_id=69113254 instance=ExtResource("2_mq5kv")]
+layout_mode = 2
+option_name = "Window Mode"
+choices = Array[String](["Window", "Full Screen"])
+values = [0, 3]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1650130119]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1775373021]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 1)
+theme_override_fonts/font = ExtResource("1_cphfk")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_ibapa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vw8rg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vw8rg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vw8rg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vw8rg")
+text = "Back"
+script = ExtResource("4_0ihgu")
+metadata/_custom_type_script = "uid://bk65kkp1t0t3y"
+
+[node name="ApplyButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1879660464]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 1)
+theme_override_fonts/font = ExtResource("1_cphfk")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_ibapa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vw8rg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vw8rg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vw8rg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vw8rg")
+text = "Apply"
+script = ExtResource("4_0ihgu")
+metadata/_custom_type_script = "uid://bk65kkp1t0t3y"
