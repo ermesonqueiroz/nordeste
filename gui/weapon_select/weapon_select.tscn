@@ -9,9 +9,8 @@
 [ext_resource type="Resource" uid="uid://vwtxc784poq5" path="res://weapons/shotgun/shotgun_weapon_data.tres" id="5_621i1"]
 [ext_resource type="Resource" uid="uid://d4jmfp7qpmcjd" path="res://weapons/chinela/chinela_weapon_data.tres" id="6_vowvq"]
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="9_reyhv"]
-[ext_resource type="Script" path="res://gui/weapon_select/start_button.gd" id="10_621i1"]
+[ext_resource type="Script" uid="uid://bk65kkp1t0t3y" path="res://gui/components/animated_button.gd" id="10_621i1"]
 [ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="10_elhaf"]
-[ext_resource type="Script" path="res://gui/weapon_select/back_button.gd" id="10_vowvq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a4kgb"]
 atlas = ExtResource("1_a4kgb")
@@ -543,7 +542,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_621i1")
 theme_override_styles/focus = SubResource("StyleBoxFlat_621i1")
 text = "Voltar
 "
-script = ExtResource("10_vowvq")
+script = ExtResource("10_621i1")
 metadata/_custom_type_script = "uid://bk65kkp1t0t3y"
 
 [node name="StartButton" type="Button" parent="Actions/HBoxContainer" unique_id=1999771266]
@@ -560,7 +559,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_621i1")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_621i1")
 theme_override_styles/focus = SubResource("StyleBoxFlat_621i1")
 text = "Start"
-script = ExtResource("10_621i1")
 
 [node name="WeaponStats" type="PanelContainer" parent="." unique_id=25606978]
 layout_mode = 1

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name BaseCharacter
 
-signal healthUpdated
+signal health_updated
 signal water_collected
 signal level_updated
 
@@ -35,8 +35,8 @@ var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.t
 
 var last_direction: Vector2 = Vector2.RIGHT
 
-var maxHealth = 100
-var currentHealth = maxHealth
+var max_health = 4
+var current_health = max_health
 
 var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
@@ -174,15 +174,15 @@ func _level_up() -> void:
 	level_updated.emit()
 
 func _take_damage(damage: float) -> void:
-	currentHealth -= damage
-	healthUpdated.emit()
+	current_health -= damage
+	health_updated.emit()
 
 	_camera.screen_shake(8, 0.3)
 	_audio.play()
 
 	await _audio.finished
 
-	if currentHealth <= 0:
+	if current_health <= 0:
 		die()
 
 func die():
@@ -263,3 +263,8 @@ func _on_hitbox_entered(hitbox: HitBox):
 
 func _on_weapon_fired() -> void:
 	_camera.screen_shake(3, 0.3)
+
+func increase_max_health(amount: int) -> void:
+	max_health += amount
+	current_health += amount
+	health_updated.emit()

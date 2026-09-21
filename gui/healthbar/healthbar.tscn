@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ygmk0trld1sp"]
+
+[ext_resource type="Script" uid="uid://n46mefqj3ivn" path="res://gui/healthbar/healthbar.gd" id="1_he4x4"]
+[ext_resource type="Texture2D" uid="uid://dw5pflkri8kuh" path="res://gui/healthbar/texture/frame.png" id="1_ydeym"]
+[ext_resource type="Texture2D" uid="uid://xyww6rrv6ax5" path="res://gui/healthbar/texture/progress_1.png" id="2_srqyi"]
+[ext_resource type="Script" uid="uid://x4ru26payna1" path="res://gui/healthbar/progress.gd" id="3_srqyi"]
+[ext_resource type="Texture2D" uid="uid://cjup55yndwwgl" path="res://gui/healthbar/texture/progress_2.png" id="4_jshoj"]
+[ext_resource type="Texture2D" uid="uid://bls11b6alh4er" path="res://gui/healthbar/texture/progress_3.png" id="5_he4x4"]
+[ext_resource type="Texture2D" uid="uid://b0231dvlte2lh" path="res://gui/healthbar/texture/progress_4.png" id="6_7vckc"]
+
+[node name="Healthbar" type="Control" unique_id=232162404]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 13.0
+size_flags_vertical = 3
+script = ExtResource("1_he4x4")
+
+[node name="Background" type="NinePatchRect" parent="." unique_id=1136644545]
+custom_minimum_size = Vector2(13, 157)
+layout_mode = 1
+offset_right = 13.0
+offset_bottom = 91.93
+size_flags_horizontal = 0
+texture = ExtResource("1_ydeym")
+region_rect = Rect2(0, 0, 13, 80)
+patch_margin_top = 26
+patch_margin_bottom = 29
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
+
+[node name="FillMask" type="Control" parent="." unique_id=1814248810]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 16.0
+offset_bottom = 154.0
+size_flags_vertical = 0
+
+[node name="Damage" type="ColorRect" parent="FillMask" unique_id=561528016]
+layout_mode = 0
+offset_right = 7.0
+offset_bottom = 130.685
+
+[node name="Fill" type="NinePatchRect" parent="FillMask" unique_id=1568226448]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 1
+offset_right = 7.0
+offset_bottom = 117.0
+size_flags_vertical = 0
+offset_transform_enabled = true
+texture = ExtResource("2_srqyi")
+region_rect = Rect2(0, 0, 7, 151)
+patch_margin_top = 3
+patch_margin_bottom = 7
+axis_stretch_vertical = 1
+script = ExtResource("3_srqyi")
+animation_frames = Array[Texture2D]([ExtResource("2_srqyi"), ExtResource("4_jshoj"), ExtResource("5_he4x4"), ExtResource("6_7vckc")])
+fps = 6.0

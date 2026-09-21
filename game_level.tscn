@@ -16,14 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://8p1p1luyh4tu" path="res://enemies/tapuru/tapuru_enemy.tscn" id="10_jpbmx"]
 [ext_resource type="LabelSettings" uid="uid://xp6ddldq0p0s" path="res://gui/label_settings.tres" id="11_5d4hl"]
 [ext_resource type="Script" uid="uid://bo7aktf84u7l4" path="res://gui/level_up/level_up.gd" id="11_gm1p2"]
-[ext_resource type="Texture2D" uid="uid://hhnse5m5s8vi" path="res://gui/healthbar/under_texture.png" id="12_353a4"]
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="12_dv4fs"]
 [ext_resource type="PackedScene" uid="uid://m0tk3kdiwynd" path="res://gui/upgrade_button/upgrade_button.tscn" id="12_vugdd"]
-[ext_resource type="Texture2D" uid="uid://rp48n0swibkv" path="res://gui/healthbar/over_texture.png" id="13_f2ouj"]
 [ext_resource type="Script" uid="uid://bkmnlcgb8dww0" path="res://upgrades/increase_attack_rate/increase_attack_rate_upgrade.gd" id="13_gm1p2"]
 [ext_resource type="Script" uid="uid://dhua5b5fxbs1o" path="res://upgrades/base_updgrade.gd" id="13_ssom1"]
-[ext_resource type="Texture2D" uid="uid://c7cwsj4nbs78q" path="res://gui/healthbar/progress_texture.png" id="14_w051k"]
-[ext_resource type="Script" uid="uid://n46mefqj3ivn" path="res://gui/healthbar/healthbar.gd" id="15_f2ouj"]
+[ext_resource type="PackedScene" uid="uid://ygmk0trld1sp" path="res://gui/healthbar/healthbar.tscn" id="14_w051k"]
 [ext_resource type="Script" uid="uid://c0y6efw78gueo" path="res://upgrades/increase_projectile_damage/increase_projectile_damage_upgrade.gd" id="16_tj1nq"]
 [ext_resource type="Script" uid="uid://cc0bw8p46kcea" path="res://upgrades/increase_character_health/increase_character_health_upgrade.gd" id="17_f88ab"]
 [ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
@@ -237,20 +234,12 @@ label_settings = SubResource("LabelSettings_anq5l")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer" unique_id=974212543]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer" unique_id=1781645295]
 layout_mode = 2
-theme_override_constants/margin_left = 18
+theme_override_constants/margin_left = 17
 
-[node name="HealthBar" type="TextureProgressBar" parent="GUI/MarginContainer/VBoxContainer/MarginContainer" unique_id=425038127 node_paths=PackedStringArray("character")]
+[node name="Healthbar" parent="GUI/MarginContainer/VBoxContainer/MarginContainer" unique_id=796678883 node_paths=PackedStringArray("character") instance=ExtResource("14_w051k")]
 layout_mode = 2
-value = 100.0
-fill_mode = 2
-stretch_margin_left = 4
-stretch_margin_right = 4
-texture_under = ExtResource("12_353a4")
-texture_over = ExtResource("13_f2ouj")
-texture_progress = ExtResource("14_w051k")
-script = ExtResource("15_f2ouj")
 character = NodePath("../../../../../CearenseCharacter")
 
 [node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358 node_paths=PackedStringArray("_restart_button", "_main_menu_button", "_survival_time_label", "_enemies_killed_label")]
