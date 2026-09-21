@@ -8,6 +8,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_a5yti"]
 font = ExtResource("1_cphfk")
 
+[sub_resource type="LabelSettings" id="LabelSettings_0ihgu"]
+font = ExtResource("1_cphfk")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibapa"]
 bg_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
 border_width_bottom = 3
@@ -18,7 +21,7 @@ corner_detail = 1
 bg_color = Color(0.2, 0.2, 0.2, 1)
 corner_detail = 1
 
-[node name="Settings" type="Control" unique_id=759441928 node_paths=PackedStringArray("_window_mode_option", "_apply_button", "_back_button")]
+[node name="Settings" type="Control" unique_id=759441928 node_paths=PackedStringArray("_window_mode_option", "_apply_button", "_back_button", "_master_volume_slider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,6 +32,7 @@ script = ExtResource("1_po07c")
 _window_mode_option = NodePath("VBoxContainer/VBoxContainer/WindowMode")
 _apply_button = NodePath("VBoxContainer/HBoxContainer/ApplyButton")
 _back_button = NodePath("VBoxContainer/HBoxContainer/BackButton")
+_master_volume_slider = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/MasterVolumeSlider")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1412574929]
 layout_mode = 1
@@ -70,6 +74,20 @@ layout_mode = 2
 option_name = "Window Mode"
 choices = Array[String](["Window", "Full Screen"])
 values = [0, 3]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=780258637]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=620323670]
+layout_mode = 2
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_0ihgu")
+
+[node name="MasterVolumeSlider" type="HSlider" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=608468303]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 17.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1650130119]
 layout_mode = 2
