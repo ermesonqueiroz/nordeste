@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://qluy7c21e1fc" path="res://gui/main_menu/details_front.png" id="5_bhc4r"]
 [ext_resource type="Texture2D" uid="uid://b1f3hv1y6i26q" path="res://gui/main_menu/person.png" id="6_vnwa6"]
 [ext_resource type="Script" uid="uid://c4e41brdyxx2d" path="res://gui/main_menu/camera.gd" id="9_bhc4r"]
+[ext_resource type="Script" uid="uid://bk65kkp1t0t3y" path="res://gui/components/animated_button.gd" id="10_tiy0a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_85nol"]
 font = ExtResource("1_ahke7")
@@ -117,7 +118,7 @@ text = "NORDESTE 4"
 label_settings = SubResource("LabelSettings_85nol")
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=2106965046]
+[node name="StartButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1473231725]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 offset_transform_enabled = true
@@ -130,8 +131,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3lsy7")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_3lsy7")
 theme_override_styles/focus = SubResource("StyleBoxFlat_3lsy7")
 text = "Start"
+script = ExtResource("10_tiy0a")
+metadata/_custom_type_script = "uid://bk65kkp1t0t3y"
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=91995168]
+[node name="QuitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=507031780]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_qy2xc")
@@ -142,3 +145,5 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3lsy7")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_3lsy7")
 theme_override_styles/focus = SubResource("StyleBoxFlat_3lsy7")
 text = "Sair"
+script = ExtResource("10_tiy0a")
+metadata/_custom_type_script = "uid://bk65kkp1t0t3y"

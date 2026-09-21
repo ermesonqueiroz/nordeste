@@ -9,9 +9,9 @@
 [ext_resource type="Resource" uid="uid://vwtxc784poq5" path="res://weapons/shotgun/shotgun_weapon_data.tres" id="5_621i1"]
 [ext_resource type="Resource" uid="uid://d4jmfp7qpmcjd" path="res://weapons/chinela/chinela_weapon_data.tres" id="6_vowvq"]
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="9_reyhv"]
-[ext_resource type="Script" uid="uid://b6hrewmrvxdjw" path="res://gui/weapon_select/start_button.gd" id="10_621i1"]
+[ext_resource type="Script" path="res://gui/weapon_select/start_button.gd" id="10_621i1"]
 [ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="10_elhaf"]
-[ext_resource type="Script" uid="uid://be52n0olk7e1" path="res://gui/weapon_select/back_button.gd" id="10_vowvq"]
+[ext_resource type="Script" path="res://gui/weapon_select/back_button.gd" id="10_vowvq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a4kgb"]
 atlas = ExtResource("1_a4kgb")
@@ -461,7 +461,7 @@ cache/0/30/0/glyphs/19/texture_idx = 0
 font = SubResource("FontFile_ma4fa")
 font_size = 30
 
-[node name="WeaponSelect" type="Control" unique_id=1957642064 node_paths=PackedStringArray("weapon_stats_panel", "weapon_name_label", "weapon_damage_label", "weapon_ammo_label", "attack_interval_label", "reload_time_label")]
+[node name="WeaponSelect" type="Control" unique_id=1957642064 node_paths=PackedStringArray("weapon_stats_panel", "weapon_name_label", "weapon_damage_label", "weapon_ammo_label", "attack_interval_label", "reload_time_label", "start_button", "back_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -477,6 +477,8 @@ weapon_damage_label = NodePath("WeaponStats/Margin/VBoxContainer/GridContainer/D
 weapon_ammo_label = NodePath("WeaponStats/Margin/VBoxContainer/GridContainer/AmmoContainer/Value")
 attack_interval_label = NodePath("WeaponStats/Margin/VBoxContainer/GridContainer/FireIntervalContainer/Value")
 reload_time_label = NodePath("WeaponStats/Margin/VBoxContainer/GridContainer/ReloadTimeContainer/Value")
+start_button = NodePath("Actions/HBoxContainer/StartButton")
+back_button = NodePath("Actions/HBoxContainer/BackButton")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=387252884]
 texture_filter = 1
@@ -526,7 +528,7 @@ theme_override_constants/margin_bottom = 32
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="BackButton" type="Button" parent="Actions/HBoxContainer" unique_id=1690659740]
+[node name="BackButton" type="Button" parent="Actions/HBoxContainer" unique_id=401817244]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -542,6 +544,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_621i1")
 text = "Voltar
 "
 script = ExtResource("10_vowvq")
+metadata/_custom_type_script = "uid://bk65kkp1t0t3y"
 
 [node name="StartButton" type="Button" parent="Actions/HBoxContainer" unique_id=1999771266]
 custom_minimum_size = Vector2(0, 40)

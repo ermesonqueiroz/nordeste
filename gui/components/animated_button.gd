@@ -1,4 +1,5 @@
 extends Button
+class_name AnimatedButton
 
 @onready var _hover_sfx = preload("res://gui/upgrade_button/hover_sfx.mp3")
 @onready var _pop_sfx = preload("res://gui/sfx/pop.wav")
@@ -6,13 +7,12 @@ extends Button
 var animation_tween: Tween
 
 func _ready() -> void:
+	pivot_offset = size / 2.0
+
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)
 	self.button_down.connect(_on_button_down)
 	self.button_up.connect(_on_button_up)
-	self.pressed.connect(_on_pressed)
-
-	pivot_offset = size / 2.0
 
 func _on_mouse_entered() -> void:
 	SoundManager.play(_hover_sfx, -12.0)
@@ -51,6 +51,3 @@ func _on_button_up() -> void:
 	animation_tween.chain()
 	animation_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	animation_tween.tween_property(self, "scale", Vector2.ONE, 0.12)
-
-func _on_pressed() -> void:
-	get_tree().change_scene_to_file("res://game_level.tscn")

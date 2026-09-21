@@ -8,6 +8,8 @@ extends Control
 @export var weapon_ammo_label: Label
 @export var attack_interval_label: Label
 @export var reload_time_label: Label
+@export var start_button: Button
+@export var back_button: Button
 
 @onready var shelf_slots: Array[Node] = [
 	$Weapons/Slot1,
@@ -25,6 +27,10 @@ var selected_button: Control = null
 func _ready() -> void:
 	weapon_stats_panel.visible = false
 	_populate_shelf()
+	start_button.disabled = true
+
+	start_button.pressed.connect(_on_start_button_pressed)
+	back_button.pressed.connect(_on_back_button_pressed)
 
 	await get_tree().create_timer(0.4).timeout
 	SoundManager.play(_enter_weapon_selection_sfx, -2)
@@ -45,6 +51,7 @@ func _populate_shelf() -> void:
 			card.global_position = target_slot.global_position - (card.size / 2)
 
 func _on_weapon_selected(weapon_data: WeaponData) -> void:
+	start_button.disabled = false
 	selected_weapon = weapon_data
 	GameManager.selected_weapon = weapon_data
 	update_weapon_stats()
@@ -56,3 +63,9 @@ func update_weapon_stats() -> void:
 	weapon_ammo_label.text = str(selected_weapon.max_ammo)
 	attack_interval_label.text = "%.2fs" % selected_weapon.attack_interval
 	reload_time_label.text = "%.2fs" % selected_weapon.reload_time
+
+func _on_start_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://game_level.tscn")
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://gui/main_menu/main_menu.tscn")
