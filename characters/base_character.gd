@@ -102,14 +102,16 @@ func _animate() -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		_dust_particles.emitting = false
 		var shooting_direction = (get_global_mouse_position() - global_position).normalized()
+		var shooting_animation: String
 
 		if shooting_direction.x < 0:
-			if _animation.has_animation(_animations["run_left"]):
-				_animation.play(_animations["run_left"])
+			shooting_animation = _animations["run_left"] if velocity != Vector2.ZERO else _animations["idle_left"]
 
 		if shooting_direction.x > 0:
-			if _animation.has_animation(_animations["run_right"]):
-				_animation.play(_animations["run_right"])
+			shooting_animation = _animations["run_right"] if velocity != Vector2.ZERO else _animations["idle_right"]
+
+		if _animation.has_animation(shooting_animation):
+			_animation.play(shooting_animation)
 
 		return
 
