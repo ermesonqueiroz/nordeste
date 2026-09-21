@@ -18,7 +18,7 @@ config/name="Nordeste 4"
 run/main_scene="uid://4f7h2jpxhgnq"
 config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/image="uid://g875cdat6wy6"
-config/icon="uid://bqk7u388k1r5f"
+config/icon="uid://clfaoeiwo1vg1"
 
 [autoload]
 

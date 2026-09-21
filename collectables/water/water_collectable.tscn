@@ -13,6 +13,68 @@ shader_parameter/shimmer_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.2
 shader_parameter/speed = 2.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rih88"]
+atlas = ExtResource("2_nly7e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_soa2b"]
+atlas = ExtResource("2_nly7e")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r16y"]
+atlas = ExtResource("2_nly7e")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovh0n"]
+atlas = ExtResource("2_nly7e")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abmsc"]
+atlas = ExtResource("2_nly7e")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7uey"]
+atlas = ExtResource("2_nly7e")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h322r"]
+atlas = ExtResource("2_nly7e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_odegq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rih88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_soa2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0r16y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovh0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abmsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7uey")
+}],
+"loop": 0,
+"name": &"despawn",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h322r")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gm1p2"]
 radius = 33.0
 height = 74.0
@@ -26,10 +88,11 @@ modulate = Color(1, 1, 1, 0.4)
 position = Vector2(0, 2)
 texture = ExtResource("3_clnd8")
 
-[node name="Texture" parent="." index="1" unique_id=1043436902]
+[node name="Texture" parent="." index="1" unique_id=615243985]
 material = SubResource("ShaderMaterial_h322r")
-texture = ExtResource("2_nly7e")
-hframes = 6
+sprite_frames = SubResource("SpriteFrames_odegq")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Collision" parent="." index="2" unique_id=1014183451]
 position = Vector2(0, -2)

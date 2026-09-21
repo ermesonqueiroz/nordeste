@@ -1,6 +1,7 @@
 extends Area2D
 class_name BaseCollectable
 
+@export var _time_to_despawn: float = 8.0
 @export var _collect_sfx: AudioStream
 
 @export_category("Floating Effect")
@@ -11,10 +12,11 @@ class_name BaseCollectable
 @export var pulse_speed: float = 6.0
 @export var pulse_intensity: float = 0.05
 
-@onready var _texture: Sprite2D = $Texture
+@onready var _texture: AnimatedSprite2D = $Texture
 
 var _start_y: float = 0.0
 var _time_accumulator: float = 0.0
+var _despawn_timer: float = 0
 
 var _is_collected: bool = false
 
@@ -25,8 +27,18 @@ func _ready() -> void:
 		_start_y = _texture.position.y
 
 	_time_accumulator = randf() * 10.0
+	_despawn_timer = _time_to_despawn
 
 func _process(delta: float) -> void:
+	_despawn_timer -= delta
+
+	if _despawn_timer <= 0:
+		if _texture.sprite_frames.has_animation("despawn"):
+			_texture.play("despawn")
+			await _texture.animation_finished
+
+		queue_free()
+
 	if not _texture:
 		return
 

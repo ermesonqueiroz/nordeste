@@ -5,6 +5,7 @@ class_name EnemySpawner
 	# {"scene": PackedScene, "cost": 1, "min_level": 1}
 ]
 @export var _character: BaseCharacter
+@export var enabled: bool = true
 
 var _spawn_enemy_interval: float = 2
 
@@ -13,7 +14,7 @@ func _ready() -> void:
 	_start_enemies_spawn()
 
 func _start_enemies_spawn():
-	while true:
+	while enabled:
 		await get_tree().create_timer(_spawn_enemy_interval).timeout
 
 		if get_tree().paused:

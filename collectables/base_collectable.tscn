@@ -5,6 +5,6 @@
 [node name="BaseCollectable" type="Area2D" unique_id=596021622]
 script = ExtResource("1_odegq")
 
-[node name="Texture" type="Sprite2D" parent="." unique_id=1043436902]
+[node name="Texture" type="AnimatedSprite2D" parent="." unique_id=615243985]
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1014183451]
