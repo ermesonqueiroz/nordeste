@@ -1,0 +1,52 @@
+{
+  "Weapons": {
+    "0": {
+      "WEAPON_NAME": "Mata-grilo",
+      "DAMAGE": 100,
+      "MAX_AMMO": 10,
+      "RELOAD_TIME": 0.6,
+      "ATTACK_INTERVAL": 0.4,
+      "PROJECTILES": 1,
+      "SPREAD_PROJECTILES_ANGLE_DEGREES": 15,
+      "ORBIT_DISTANCE": 18,
+      "WEAPON_ICON": "res://weapons/revolver/icon.png",
+      "WEAPON_SCENE": "res://weapons/revolver/revolver.tscn"
+    },
+    "1": {
+      "WEAPON_NAME": "Espalha brasa",
+      "DAMAGE": 20,
+      "MAX_AMMO": 6,
+      "RELOAD_TIME": 0.8,
+      "ATTACK_INTERVAL": 0.9,
+      "PROJECTILES": 1,
+      "SPREAD_PROJECTILES_ANGLE_DEGREES": 15,
+      "ORBIT_DISTANCE": 18,
+      "WEAPON_ICON": "res://weapons/firegun/icon.png",
+      "WEAPON_SCENE": "res://weapons/firegun/firegun_weapon.tscn"
+    },
+    "2": {
+      "WEAPON_NAME": "Estraga-velorio",
+      "DAMAGE": 24,
+      "MAX_AMMO": 4,
+      "RELOAD_TIME": 1.2,
+      "ATTACK_INTERVAL": 1,
+      "PROJECTILES": 3,
+      "SPREAD_PROJECTILES_ANGLE_DEGREES": 5,
+      "ORBIT_DISTANCE": 18,
+      "WEAPON_ICON": "res://weapons/shotgun/icon.png",
+      "WEAPON_SCENE": "res://weapons/shotgun/shotgun_weapon.tscn"
+    },
+    "3": {
+      "WEAPON_NAME": "Alisa couro",
+      "DAMAGE": 18,
+      "MAX_AMMO": 5,
+      "RELOAD_TIME": 1.3,
+      "ATTACK_INTERVAL": 0.9,
+      "PROJECTILES": 1,
+      "SPREAD_PROJECTILES_ANGLE_DEGREES": 15,
+      "ORBIT_DISTANCE": 18,
+      "WEAPON_ICON": "res://weapons/chinela/icon.png",
+      "WEAPON_SCENE": "res://weapons/chinela/chinela_weapon.tscn"
+    }
+  }
+}

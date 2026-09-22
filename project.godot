@@ -23,7 +23,9 @@ config/icon="uid://clfaoeiwo1vg1"
 [autoload]
 
 SoundManager="*uid://d1dh1vln5a58"
-GameManager="*uid://dxw20ec8scuef"
+GameManager="*uid://cpktcficvcdkp"
+WeaponManager="*uid://cjyhnlcldn6nx"
+Utils="*uid://ck45nal54meta"
 
 [display]
 

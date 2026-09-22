@@ -1,6 +1,5 @@
 extends Control
 
-@export var available_weapons: Array[WeaponData] = []
 @export var weapon_button: PackedScene
 @export var weapon_stats_panel: PanelContainer
 @export var weapon_name_label: Label
@@ -36,8 +35,8 @@ func _ready() -> void:
 	SoundManager.play(_enter_weapon_selection_sfx, -2)
 
 func _populate_shelf() -> void:
-	for i in range(min(available_weapons.size(), shelf_slots.size())):
-		var weapon_data = available_weapons[i]
+	for i in range(min(WeaponManager.available_weapons.size(), shelf_slots.size())):
+		var weapon_data = WeaponManager.available_weapons.values()[i]
 		var target_slot = shelf_slots[i] as Node2D
 
 		var card = weapon_button.instantiate()
