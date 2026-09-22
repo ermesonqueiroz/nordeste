@@ -2,7 +2,7 @@
   "Weapons": {
     "0": {
       "WEAPON_NAME": "Mata-grilo",
-      "DAMAGE": 100,
+      "DAMAGE": 8,
       "MAX_AMMO": 10,
       "RELOAD_TIME": 0.6,
       "ATTACK_INTERVAL": 0.4,
@@ -26,7 +26,7 @@
     },
     "2": {
       "WEAPON_NAME": "Estraga-velorio",
-      "DAMAGE": 24,
+      "DAMAGE": 8,
       "MAX_AMMO": 4,
       "RELOAD_TIME": 1.2,
       "ATTACK_INTERVAL": 1,
@@ -45,6 +45,18 @@
       "PROJECTILES": 1,
       "SPREAD_PROJECTILES_ANGLE_DEGREES": 15,
       "ORBIT_DISTANCE": 18,
+      "WEAPON_ICON": "res://weapons/chinela/icon.png",
+      "WEAPON_SCENE": "res://weapons/chinela/chinela_weapon.tscn"
+    },
+    "4": {
+      "WEAPON_NAME": "Choquito",
+      "DAMAGE": 5,
+      "MAX_AMMO": 30,
+      "RELOAD_TIME": 2,
+      "ATTACK_INTERVAL": 0.33,
+      "PROJECTILES": 1,
+      "SPREAD_PROJECTILES_ANGLE_DEGREES": 15,
+      "ORBIT_DISTANCE": 16,
       "WEAPON_ICON": "res://weapons/chinela/icon.png",
       "WEAPON_SCENE": "res://weapons/chinela/chinela_weapon.tscn"
     }

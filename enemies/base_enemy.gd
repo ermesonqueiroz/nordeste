@@ -6,7 +6,7 @@ class_name BaseEnemy
 @export var move_speed: float = 50.0
 @export var max_health: float = 20.0
 @export var update_target_interval: float = 0.15
-@export var damage_immunity_duration: float = 0.2
+@export var damage_immunity_duration: float = 0
 
 @onready var _texture: Sprite2D = $Texture
 @onready var animation: AnimationPlayer = $Animation
@@ -25,6 +25,8 @@ var knockback_timer: float = 0.0
 
 var _update_timer: float = 0.0
 var cached_character_direction: Vector2 = Vector2.ZERO
+
+var _hit_history: Dictionary = {}
 
 func _ready() -> void:
 	z_index = 1
@@ -108,6 +110,12 @@ func _on_hitbox_entered(hitbox: HitBox) -> void:
 
 	if damage_cooldown > 0:
 		return
+
+	var hitbox_id = hitbox.get_instance_id()
+	if _hit_history.has(hitbox_id):
+		return
+
+	_hit_history[hitbox_id] = true
 
 	damage_cooldown = damage_immunity_duration
 	_take_damage(hitbox.damage)
