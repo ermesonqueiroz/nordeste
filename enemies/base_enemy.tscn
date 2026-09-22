@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://cxo64sjp7i3x4" path="res://common/hurtbox.gd" id="3_jtyv1"]
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="4_35jd6"]
 [ext_resource type="Script" uid="uid://dvn6fs6a1v72h" path="res://common/hitbox.gd" id="4_a33f8"]
+[ext_resource type="Script" uid="uid://0qwoj13ei42n" path="res://scripts/states/state_machine.gd" id="8_315q6"]
+[ext_resource type="Script" uid="uid://brk6ykjfpblgh" path="res://scripts/states/enemy/enemy_die_state.gd" id="9_j2d0b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35jd6"]
 resource_local_to_scene = true
@@ -18,10 +20,11 @@ shader_parameter/flash_value = 0.0
 font = ExtResource("4_35jd6")
 outline_color = Color(0, 0, 0, 1)
 
-[node name="BaseEnemy" type="CharacterBody2D" unique_id=1834857299]
+[node name="BaseEnemy" type="CharacterBody2D" unique_id=1834857299 node_paths=PackedStringArray("_die_state")]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_j7qyq")
+_die_state = NodePath("StateMachine/EnemyDieState")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=256664707]
 material = SubResource("ShaderMaterial_35jd6")
@@ -48,3 +51,11 @@ metadata/_custom_type_script = "uid://bp8c06jwp11jr"
 [node name="DieAudio" type="AudioStreamPlayer" parent="." unique_id=203196940]
 stream = ExtResource("3_b5ht1")
 volume_db = -9.0
+
+[node name="StateMachine" type="Node" parent="." unique_id=2019483535]
+script = ExtResource("8_315q6")
+metadata/_custom_type_script = "uid://0qwoj13ei42n"
+
+[node name="EnemyDieState" type="Node" parent="StateMachine" unique_id=1740252931]
+script = ExtResource("9_j2d0b")
+metadata/_custom_type_script = "uid://brk6ykjfpblgh"

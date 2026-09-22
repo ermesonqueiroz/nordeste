@@ -14,7 +14,7 @@ shader_parameter/flash_value = 0.0
 size = Vector2(23, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_goi2v"]
-size = Vector2(23, 29)
+size = Vector2(16.5, 28)
 
 [sub_resource type="Animation" id="Animation_mfk0j"]
 length = 0.001
@@ -185,9 +185,12 @@ _animations = {
 "run_top": "run_right"
 }
 
+[node name="DustParticles" parent="." index="0" unique_id=59756565]
+position = Vector2(2, 19)
+
 [node name="Shadow" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="0" unique_id=1032822076]
 modulate = Color(1, 1, 1, 0.5)
-position = Vector2(2, 0)
+position = Vector2(1, 1)
 texture = ExtResource("3_k5olh")
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="1" unique_id=1474570970]
@@ -200,12 +203,11 @@ vframes = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0" unique_id=1568370168]
-position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_vb32k")
 debug_color = Color(0, 1, 0, 0.277)
 
 [node name="Collision" parent="." index="3" unique_id=209974859]
-position = Vector2(0.5, 9.5)
+position = Vector2(-2, 11)
 shape = SubResource("RectangleShape2D_goi2v")
 
 [node name="Animation" parent="." index="4" unique_id=314084126]
@@ -216,3 +218,7 @@ limit_left = -2500
 limit_top = -2500
 limit_right = 2500
 limit_bottom = 2500
+
+[node name="ReloadBar" parent="." index="7" unique_id=1910036739]
+offset_top = 0.0
+offset_bottom = 3.0

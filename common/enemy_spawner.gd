@@ -39,7 +39,6 @@ func _start_enemies_spawn():
 			var chosen_enemy_data = affordable_enemies.pick_random()
 
 			var new_enemy: BaseEnemy = chosen_enemy_data["scene"].instantiate()
-			new_enemy.player = _character
 
 			var angle = randf() * TAU
 			var spawn_distance = 600

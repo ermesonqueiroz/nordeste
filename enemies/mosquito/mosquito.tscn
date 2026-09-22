@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://enemies/base_enemy.tscn" id="1_pqv3g"]
 [ext_resource type="Texture2D" uid="uid://bxv8y585h1m6t" path="res://enemies/mosquito/texture.png" id="2_xu6hp"]
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://collectables/water/water_collectable.tscn" id="3_dxpoy"]
+[ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="4_iurcn"]
 
 [sub_resource type="Shader" id="Shader_xu6hp"]
 code = "shader_type canvas_item;
@@ -16,7 +17,7 @@ void fragment() {
 	COLOR.a = texture_color.a;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xu6hp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iurcn"]
 resource_local_to_scene = true
 shader = SubResource("Shader_xu6hp")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -98,7 +99,7 @@ move_speed = 30.0
 max_health = 28.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
-material = SubResource("ShaderMaterial_xu6hp")
+material = SubResource("ShaderMaterial_iurcn")
 texture = ExtResource("2_xu6hp")
 hframes = 4
 
@@ -119,3 +120,10 @@ debug_color = Color(0, 1, 0, 0.42000002)
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_vb32k")
 debug_color = Color(1, 0, 0, 0.42000002)
+
+[node name="StateMachine" parent="." index="7" unique_id=2019483535 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("EnemyChaseState")
+
+[node name="EnemyChaseState" type="Node" parent="StateMachine" index="0" unique_id=1164576009]
+script = ExtResource("4_iurcn")
+metadata/_custom_type_script = "uid://jdo4kxeg1qw8"

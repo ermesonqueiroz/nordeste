@@ -5,8 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://collectables/water/water_collectable.tscn" id="2_7gtrk"]
 [ext_resource type="Script" uid="uid://b33caura4hltj" path="res://enemies/tapuru/tapuru_enemy.gd" id="2_x1ars"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_52wki"]
+[ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="6_1vnvv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1ars"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vnvv"]
 resource_local_to_scene = true
 shader = ExtResource("3_52wki")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -90,7 +91,7 @@ move_speed = 25.0
 max_health = 14.0
 
 [node name="Texture" parent="." index="0" unique_id=256664707]
-material = SubResource("ShaderMaterial_x1ars")
+material = SubResource("ShaderMaterial_1vnvv")
 texture = ExtResource("2_5xepv")
 hframes = 3
 
@@ -111,3 +112,10 @@ debug_color = Color(0, 1, 0, 0.42000002)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vb32k")
 debug_color = Color(1, 0, 0, 0.42000002)
+
+[node name="StateMachine" parent="." index="7" unique_id=2019483535 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("EnemyChaseState")
+
+[node name="EnemyChaseState" type="Node" parent="StateMachine" index="0" unique_id=1524797256]
+script = ExtResource("6_1vnvv")
+metadata/_custom_type_script = "uid://jdo4kxeg1qw8"

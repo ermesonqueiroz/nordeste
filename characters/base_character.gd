@@ -43,7 +43,7 @@ var knockback_timer: float = 0.0
 var is_invulnerable: bool = false
 
 var current_water_amount = 0
-var current_level = 10
+var current_level = 1
 var water_amount_to_next_level = 10
 
 var upgrades_applied: Dictionary = {}

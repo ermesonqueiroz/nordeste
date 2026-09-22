@@ -7,8 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://ckugknqf02q6r" path="res://enemies/frog/texture.png" id="3_pk5b2"]
 [ext_resource type="Texture2D" uid="uid://b8ik3nx5mx73n" path="res://enemies/frog/shadow.png" id="5_qhe0n"]
 [ext_resource type="PackedScene" uid="uid://dsorna41wewd2" path="res://enemies/frog/tongue/frog_tongue.tscn" id="7_s11j4"]
+[ext_resource type="Script" uid="uid://bsf86yn3284st" path="res://scripts/states/enemy/frog/frog_idle_state.gd" id="8_ud06j"]
+[ext_resource type="Script" uid="uid://bp7su3v43gecu" path="res://scripts/states/enemy/frog/frog_attack_state.gd" id="9_5dpq1"]
+[ext_resource type="Script" uid="uid://bjksbu3g2ml4q" path="res://scripts/states/enemy/frog/frog_jump_state.gd" id="9_vjju4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s11j4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjju4"]
 resource_local_to_scene = true
 shader = ExtResource("2_pk5b2")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -114,7 +117,7 @@ scale = Vector2(1.3828125, 1.3828125)
 texture = ExtResource("5_qhe0n")
 
 [node name="Texture" parent="." index="1" unique_id=256664707]
-material = SubResource("ShaderMaterial_s11j4")
+material = SubResource("ShaderMaterial_vjju4")
 texture = ExtResource("3_pk5b2")
 hframes = 4
 vframes = 3
@@ -144,3 +147,22 @@ shape = SubResource("CircleShape2D_vgy74")
 debug_color = Color(1, 1, 1, 0.3019608)
 
 [node name="FrogTongue" parent="." index="7" unique_id=2072801992 instance=ExtResource("7_s11j4")]
+
+[node name="StateMachine" parent="." index="10" unique_id=2019483535 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("FrogIdleState")
+
+[node name="FrogIdleState" type="Node" parent="StateMachine" index="0" unique_id=1441840280 node_paths=PackedStringArray("jump_state", "attack_state")]
+script = ExtResource("8_ud06j")
+jump_state = NodePath("../FrogJumpState")
+attack_state = NodePath("../FrogAttackState")
+metadata/_custom_type_script = "uid://bsf86yn3284st"
+
+[node name="FrogJumpState" type="Node" parent="StateMachine" index="1" unique_id=1379621666 node_paths=PackedStringArray("idle_state")]
+script = ExtResource("9_vjju4")
+idle_state = NodePath("../FrogIdleState")
+metadata/_custom_type_script = "uid://bjksbu3g2ml4q"
+
+[node name="FrogAttackState" type="Node" parent="StateMachine" index="2" unique_id=1335366886 node_paths=PackedStringArray("idle_state")]
+script = ExtResource("9_5dpq1")
+idle_state = NodePath("../FrogIdleState")
+metadata/_custom_type_script = "uid://bp7su3v43gecu"

@@ -125,6 +125,7 @@ font = ExtResource("12_dv4fs")
 font_size = 32
 
 [node name="GameLevel" type="Node2D" unique_id=1376921944 node_paths=PackedStringArray("_character")]
+y_sort_enabled = true
 script = ExtResource("1_qsd0w")
 _character = NodePath("CearenseCharacter")
 
@@ -135,7 +136,11 @@ position = Vector2(-2, 0)
 position = Vector2(287, 335)
 collision_mask = 1
 
+[node name="FrogEnemy" parent="." unique_id=1834857299 instance=ExtResource("5_f2ouj")]
+position = Vector2(522, 421)
+
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_character")]
+visible = false
 script = ExtResource("8_v7qp1")
 _enemy_pool = Array[Dictionary]([{
 "cost": 2,
@@ -151,9 +156,11 @@ _enemy_pool = Array[Dictionary]([{
 "scene": ExtResource("5_f2ouj")
 }])
 _character = NodePath("../CearenseCharacter")
+enabled = false
 metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
 
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]
+visible = false
 
 [node name="FogParallax" type="Parallax2D" parent="Foreground" unique_id=727524041]
 z_index = 5

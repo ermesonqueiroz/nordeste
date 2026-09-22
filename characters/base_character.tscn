@@ -32,7 +32,7 @@ gravity = Vector3(0, -15, 0)
 scale_curve = SubResource("CurveTexture_cag4a")
 alpha_curve = SubResource("CurveTexture_6ps22")
 
-[node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 node_paths=PackedStringArray("_animation")]
+[node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 node_paths=PackedStringArray("_animation") groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_r08u6")
 _animation = NodePath("Animation")
