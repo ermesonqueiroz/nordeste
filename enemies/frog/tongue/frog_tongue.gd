@@ -5,7 +5,7 @@ class_name FrogTongue
 @onready var _tip: Area2D = $Tip
 
 var direction: Vector2
-var max_distance: float = 200
+@export var max_distance: float = 200
 
 var is_shooting: bool = false
 var shoot_timer: float = 0.0

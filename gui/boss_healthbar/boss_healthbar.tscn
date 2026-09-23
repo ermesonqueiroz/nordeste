@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://yeujaswh0qce"]
+
+[ext_resource type="Texture2D" uid="uid://b2r8kp7rtw53l" path="res://gui/boss_healthbar/progress.png" id="1_rekbf"]
+[ext_resource type="Script" uid="uid://cfujun7o7hhhe" path="res://gui/boss_healthbar/boss_healthbar.gd" id="1_ydmby"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ydmby"]
+load_path = "res://.godot/imported/under_texture.png-94ed0e84d069c662a1e948e526d1340f.ctex"
+
+[node name="BossHealthbar" type="TextureProgressBar" unique_id=395015920]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -40.0
+offset_right = 147.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+texture_over = SubResource("CompressedTexture2D_ydmby")
+texture_progress = ExtResource("1_rekbf")
+texture_progress_offset = Vector2(7, 4)
+tint_under = Color(0.26666668, 0.26666668, 0.26666668, 1)
+script = ExtResource("1_ydmby")

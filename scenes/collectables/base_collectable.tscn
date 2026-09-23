@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://b0nbnxpanmbm2"]
 
-[ext_resource type="Script" uid="uid://d2e5lkabsbvct" path="res://collectables/base_collectable.gd" id="1_odegq"]
+[ext_resource type="Script" uid="uid://d2e5lkabsbvct" path="res://scenes/collectables/base_collectable.gd" id="1_odegq"]
+[ext_resource type="AudioStream" uid="uid://uwkp5tvyw0ju" path="res://sfx/collect_audio.wav" id="2_5axqd"]
 
 [node name="BaseCollectable" type="Area2D" unique_id=596021622]
 script = ExtResource("1_odegq")
+_collect_sfx = ExtResource("2_5axqd")
 
 [node name="Texture" type="AnimatedSprite2D" parent="." unique_id=615243985]
 

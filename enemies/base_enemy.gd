@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name BaseEnemy
 
+signal took_damage
+
 @export var _die_state: State
 @export var collectable_to_drop_on_die: PackedScene
 @export var collectable_amount_to_drop: int = 1
@@ -8,10 +10,12 @@ class_name BaseEnemy
 @export var max_health: float = 20.0
 @export var update_target_interval: float = 0.15
 @export var damage_immunity_duration: float = 0
+@export var knockback_intensity: int = 300
 
 @onready var texture: Sprite2D = $Texture
 @onready var animation: AnimationPlayer = $Animation
 @onready var _hurtbox: HurtBox = $HurtBox
+@onready var _hit_particles: GPUParticles2D = $HitParticles
 
 var spawnPosition: Vector2
 var health: float
@@ -24,7 +28,6 @@ var knockback_timer: float = 0.0
 var _hit_history: Dictionary = {}
 
 func _ready() -> void:
-	z_index = 1
 	health = max_health
 
 	if spawnPosition:
@@ -47,6 +50,8 @@ func _take_damage(damage: float) -> void:
 	health -= damage
 	$DamageLabelSpawner.spawn_label(damage)
 	$DieAudio.play()
+
+	took_damage.emit()
 
 	var tween = get_tree().create_tween()
 	tween.tween_method(
@@ -74,6 +79,7 @@ func _drop_collectable():
 func _on_hitbox_entered(hitbox: HitBox) -> void:
 	if health <= 0:
 		return
+
 	var hitbox_id = hitbox.get_instance_id()
 	if _hit_history.has(hitbox_id):
 		return
@@ -84,7 +90,10 @@ func _on_hitbox_entered(hitbox: HitBox) -> void:
 	var knockback_dir: Vector2
 	knockback_dir = hitbox.knockback_direction
 
+	_hit_particles.restart()
+	_hit_particles.rotation = hitbox.knockback_direction.angle()
+
 	if hitbox.pulls_target:
-		_apply_knockback(-knockback_dir, 300, 0.1)
+		_apply_knockback(-knockback_dir, knockback_intensity, 0.1)
 	else:
-		_apply_knockback(knockback_dir, 200, 0.15)
+		_apply_knockback(knockback_dir, knockback_intensity, 0.15)

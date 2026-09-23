@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bckoujuag284g"]
+
+[ext_resource type="Texture2D" uid="uid://cn2bweqdlcsc7" path="res://scenes/common/ground_crack/texture.png" id="1_50bp4"]
+[ext_resource type="Script" uid="uid://bfosmgohna4nj" path="res://scenes/common/ground_crack/ground_crack.gd" id="2_la5al"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70400"]
+atlas = ExtResource("1_50bp4")
+region = Rect2(264, 64, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la5al"]
+atlas = ExtResource("1_50bp4")
+region = Rect2(264, 64, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6c0u"]
+atlas = ExtResource("1_50bp4")
+region = Rect2(0, 128, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpb53"]
+atlas = ExtResource("1_50bp4")
+region = Rect2(88, 128, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ljkq"]
+atlas = ExtResource("1_50bp4")
+region = Rect2(176, 128, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4r63"]
+atlas = ExtResource("1_50bp4")
+region = Rect2(264, 128, 88, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_36vok"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70400")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la5al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6c0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpb53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ljkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4r63")
+}],
+"loop": 0,
+"name": &"exit",
+"speed": 10.0
+}]
+
+[node name="GroundCrack" type="AnimatedSprite2D" unique_id=1448925992]
+sprite_frames = SubResource("SpriteFrames_36vok")
+animation = &"exit"
+autoplay = "default"
+script = ExtResource("2_la5al")

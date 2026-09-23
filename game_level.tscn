@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
 [ext_resource type="Texture2D" uid="uid://dxrbtek3fejkt" path="res://gui/waterbar/over_texture.png" id="8_whhu8"]
 [ext_resource type="Script" uid="uid://cttxt0w3v2w8m" path="res://gui/waterbar/waterbar.gd" id="9_anq5l"]
+[ext_resource type="Script" uid="uid://c63k1x1spcdp0" path="res://scripts/common/boss_spawner.gd" id="9_sk2he"]
 [ext_resource type="Script" uid="uid://cdyqfbq7f6j0o" path="res://gui/game_over/game_over.gd" id="10_anq5l"]
 [ext_resource type="PackedScene" uid="uid://8p1p1luyh4tu" path="res://enemies/tapuru/tapuru_enemy.tscn" id="10_jpbmx"]
 [ext_resource type="LabelSettings" uid="uid://xp6ddldq0p0s" path="res://gui/label_settings.tres" id="11_5d4hl"]
@@ -136,9 +137,6 @@ position = Vector2(-2, 0)
 position = Vector2(287, 335)
 collision_mask = 1
 
-[node name="FrogEnemy" parent="." unique_id=1834857299 instance=ExtResource("5_f2ouj")]
-position = Vector2(522, 421)
-
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_character")]
 visible = false
 script = ExtResource("8_v7qp1")
@@ -156,11 +154,14 @@ _enemy_pool = Array[Dictionary]([{
 "scene": ExtResource("5_f2ouj")
 }])
 _character = NodePath("../CearenseCharacter")
-enabled = false
 metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
 
+[node name="BossSpawner" type="Node2D" parent="." unique_id=555905329 node_paths=PackedStringArray("_character")]
+script = ExtResource("9_sk2he")
+_character = NodePath("../CearenseCharacter")
+metadata/_custom_type_script = "uid://c63k1x1spcdp0"
+
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]
-visible = false
 
 [node name="FogParallax" type="Parallax2D" parent="Foreground" unique_id=727524041]
 z_index = 5

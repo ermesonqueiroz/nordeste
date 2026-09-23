@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://d3cswtsor34r1"]
 
-[ext_resource type="PackedScene" uid="uid://b0nbnxpanmbm2" path="res://collectables/base_collectable.tscn" id="1_wxeup"]
-[ext_resource type="Texture2D" uid="uid://fxuxs8brjps1" path="res://collectables/water/texture.png" id="2_nly7e"]
-[ext_resource type="Script" uid="uid://dxyp62vg0faf3" path="res://collectables/water/water_collectable.gd" id="2_oh2cy"]
-[ext_resource type="Texture2D" uid="uid://cdbp4a3k7trce" path="res://collectables/water/shadow.png" id="3_clnd8"]
-[ext_resource type="AudioStream" uid="uid://uwkp5tvyw0ju" path="res://collectables/water/collect_audio.wav" id="4_oh2cy"]
+[ext_resource type="PackedScene" uid="uid://b0nbnxpanmbm2" path="res://scenes/collectables/base_collectable.tscn" id="1_wxeup"]
+[ext_resource type="Texture2D" uid="uid://fxuxs8brjps1" path="res://scenes/collectables/water/texture.png" id="2_nly7e"]
+[ext_resource type="Script" uid="uid://dxyp62vg0faf3" path="res://scenes/collectables/water/water_collectable.gd" id="2_oh2cy"]
+[ext_resource type="Texture2D" uid="uid://cdbp4a3k7trce" path="res://scenes/collectables/water/shadow.png" id="3_clnd8"]
 [ext_resource type="Shader" uid="uid://couv7jj28af83" path="res://shaders/shimmer.gdshader" id="5_h322r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h322r"]
@@ -81,7 +80,6 @@ height = 74.0
 
 [node name="WaterCollectable" unique_id=596021622 instance=ExtResource("1_wxeup")]
 script = ExtResource("2_oh2cy")
-_collect_sfx = ExtResource("4_oh2cy")
 
 [node name="Shadow" type="Sprite2D" parent="." index="0" unique_id=1031820222]
 modulate = Color(1, 1, 1, 0.4)
@@ -97,6 +95,3 @@ autoplay = "idle"
 [node name="Collision" parent="." index="2" unique_id=1014183451]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_gm1p2")
-
-[node name="CollectAudio" type="AudioStreamPlayer" parent="." index="3" unique_id=1875203653]
-stream = ExtResource("4_oh2cy")

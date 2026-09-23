@@ -14,10 +14,10 @@ func _ready() -> void:
 	_start_enemies_spawn()
 
 func _start_enemies_spawn():
-	while enabled:
+	while true:
 		await get_tree().create_timer(_spawn_enemy_interval).timeout
 
-		if get_tree().paused:
+		if get_tree().paused or not enabled:
 			continue
 
 		var difficulty_budget: int = 1 + int(_character.current_level / 2.0)

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://enemies/base_enemy.tscn" id="1_gm6ui"]
 [ext_resource type="Texture2D" uid="uid://dr8fuf1fwr6fs" path="res://enemies/tapuru/tapuru.png" id="2_5xepv"]
-[ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://collectables/water/water_collectable.tscn" id="2_7gtrk"]
+[ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="2_7gtrk"]
 [ext_resource type="Script" uid="uid://b33caura4hltj" path="res://enemies/tapuru/tapuru_enemy.gd" id="2_x1ars"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_52wki"]
 [ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="6_1vnvv"]

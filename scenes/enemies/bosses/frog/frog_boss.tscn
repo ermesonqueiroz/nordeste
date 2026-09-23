@@ -1,0 +1,287 @@
+[gd_scene format=3 uid="uid://ccmb70jigra2w"]
+
+[ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://enemies/base_enemy.tscn" id="1_gknw1"]
+[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_ig1op"]
+[ext_resource type="Script" uid="uid://b1kn040qmuo1" path="res://scenes/enemies/bosses/frog/frog_boss.gd" id="2_rmk6u"]
+[ext_resource type="Texture2D" uid="uid://b1lkocdbtua4u" path="res://scenes/enemies/bosses/frog/texture.png" id="3_ig1op"]
+[ext_resource type="PackedScene" uid="uid://bp61xg7s1s434" path="res://scenes/collectables/ice_cube/ice_cube_collectable.tscn" id="3_s1ix7"]
+[ext_resource type="Texture2D" uid="uid://w8j3vueo8bua" path="res://scenes/enemies/bosses/frog/shadow.png" id="4_rmk6u"]
+[ext_resource type="Script" uid="uid://bsf86yn3284st" path="res://scripts/states/enemy/frog/frog_idle_state.gd" id="4_tyas0"]
+[ext_resource type="Script" uid="uid://le8ac4kn81va" path="res://scenes/enemies/bosses/frog/jump_impact.gd" id="5_mluuk"]
+[ext_resource type="Script" uid="uid://bjksbu3g2ml4q" path="res://scripts/states/enemy/frog/frog_jump_state.gd" id="5_odk5m"]
+[ext_resource type="Script" uid="uid://bp7su3v43gecu" path="res://scripts/states/enemy/frog/frog_attack_state.gd" id="6_0f67p"]
+[ext_resource type="PackedScene" uid="uid://dsorna41wewd2" path="res://enemies/frog/tongue/frog_tongue.tscn" id="7_odk5m"]
+[ext_resource type="Texture2D" uid="uid://bebiglhur6lrd" path="res://scenes/enemies/bosses/frog/jump_texture.png" id="7_rmk6u"]
+[ext_resource type="Script" uid="uid://bwqywdhf2ywe2" path="res://scripts/states/enemy/frog/frog_smash_jump_attack_state.gd" id="13_hcly2"]
+[ext_resource type="AudioStream" uid="uid://bqmsomf6y3djf" path="res://sfx/ground_impact.mp3" id="14_s1ix7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcly2"]
+atlas = ExtResource("7_rmk6u")
+region = Rect2(0, 0, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1ix7"]
+atlas = ExtResource("7_rmk6u")
+region = Rect2(88, 0, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vp5d0"]
+atlas = ExtResource("7_rmk6u")
+region = Rect2(176, 0, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd1hi"]
+atlas = ExtResource("7_rmk6u")
+region = Rect2(0, 64, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ltav"]
+atlas = ExtResource("7_rmk6u")
+region = Rect2(88, 64, 88, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2mx4"]
+atlas = ExtResource("7_rmk6u")
+region = Rect2(176, 64, 88, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6bu7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcly2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1ix7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vp5d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd1hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ltav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2mx4")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vp5d0"]
+resource_local_to_scene = true
+shader = ExtResource("2_ig1op")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig1op"]
+radius = 18.0
+height = 36.0
+
+[sub_resource type="Animation" id="Animation_41gdl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tyas0"]
+resource_name = "attack"
+length = 0.5000100074507295
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_ig1op"]
+resource_name = "idle"
+length = 0.5000100074507295
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_t0bxj"]
+resource_name = "movement"
+length = 0.3000100044704974
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.20178907),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_s1ix7"]
+resource_name = "smash_jump_attack"
+length = 0.20001000298038127
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.00071527064, 0.09928472),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_hcly2"]
+resource_name = "wind_up"
+length = 0.3000100044704974
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.20288518),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_41gdl"]
+_data = {
+&"RESET": SubResource("Animation_41gdl"),
+&"attack": SubResource("Animation_tyas0"),
+&"idle": SubResource("Animation_ig1op"),
+&"movement": SubResource("Animation_t0bxj"),
+&"smash_jump_attack": SubResource("Animation_s1ix7"),
+&"wind_up": SubResource("Animation_hcly2")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ig1op"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_odk5m"]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vb32k"]
+radius = 28.0
+
+[node name="FrogBoss" unique_id=1834857299 node_paths=PackedStringArray("jump_state") instance=ExtResource("1_gknw1")]
+script = ExtResource("2_rmk6u")
+jump_state = NodePath("StateMachine/FrogJumpState")
+collectable_to_drop_on_die = ExtResource("3_s1ix7")
+max_health = 1000.0
+knockback_intensity = 0
+
+[node name="Shadow" type="Sprite2D" parent="." index="0" unique_id=325950201]
+modulate = Color(1, 1, 1, 0.8)
+position = Vector2(0, 6)
+texture = ExtResource("4_rmk6u")
+
+[node name="JumpImpact" type="AnimatedSprite2D" parent="." index="2" unique_id=1132074631 node_paths=PackedStringArray("jump_state")]
+position = Vector2(0, 1)
+scale = Vector2(1.245, 1.245)
+sprite_frames = SubResource("SpriteFrames_6bu7n")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+script = ExtResource("5_mluuk")
+jump_state = NodePath("../StateMachine/FrogJumpState")
+
+[node name="Texture" parent="." index="3" unique_id=256664707]
+material = SubResource("ShaderMaterial_vp5d0")
+texture = ExtResource("3_ig1op")
+hframes = 5
+vframes = 4
+
+[node name="Collision" parent="." index="4" unique_id=1981917045]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_ig1op")
+
+[node name="Animation" parent="." index="5" unique_id=890871356]
+libraries/ = SubResource("AnimationLibrary_41gdl")
+autoplay = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(479947753) index="0" unique_id=49994333]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_ig1op")
+debug_color = Color(0, 1, 0, 0.26666668)
+
+[node name="AttackArea" type="Area2D" parent="." index="7" unique_id=1555107289]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="0" unique_id=447996282]
+shape = SubResource("CircleShape2D_odk5m")
+debug_color = Color(1, 1, 1, 0.3019608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1181660510) index="0" unique_id=2096175741]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_vb32k")
+debug_color = Color(1, 0, 0, 0.26666668)
+
+[node name="FrogTongue" parent="." index="11" unique_id=2072801992 instance=ExtResource("7_odk5m")]
+position = Vector2(0, 8)
+max_distance = 300.0
+
+[node name="StateMachine" parent="." index="12" unique_id=2019483535 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("FrogIdleState")
+
+[node name="FrogIdleState" type="Node" parent="StateMachine" index="0" unique_id=1119793085 node_paths=PackedStringArray("jump_state", "pool_attack_state", "attack_area")]
+script = ExtResource("4_tyas0")
+jump_state = NodePath("../FrogJumpState")
+pool_attack_state = [NodePath("../FrogSmashJumpAttackState"), NodePath("../FrogAttackState")]
+attack_area = NodePath("../../AttackArea")
+metadata/_custom_type_script = "uid://bsf86yn3284st"
+
+[node name="FrogJumpState" type="Node" parent="StateMachine" index="1" unique_id=1158787575 node_paths=PackedStringArray("idle_state", "shadow", "jump_impact_sprite")]
+script = ExtResource("5_odk5m")
+idle_state = NodePath("../FrogIdleState")
+shadow = NodePath("../../Shadow")
+screen_shake_intensity = 15
+jump_impact_sprite = NodePath("../../JumpImpact")
+max_shadow_offset = 30.0
+ground_impact_sfx = ExtResource("14_s1ix7")
+metadata/_custom_type_script = "uid://bjksbu3g2ml4q"
+
+[node name="FrogAttackState" type="Node" parent="StateMachine" index="2" unique_id=1180935045 node_paths=PackedStringArray("idle_state", "tongue")]
+script = ExtResource("6_0f67p")
+idle_state = NodePath("../FrogIdleState")
+tongue = NodePath("../../FrogTongue")
+metadata/_custom_type_script = "uid://bp7su3v43gecu"
+
+[node name="FrogSmashJumpAttackState" type="Node" parent="StateMachine" index="3" unique_id=23340387 node_paths=PackedStringArray("idle_state", "shadow", "jump_impact_sprite")]
+script = ExtResource("13_hcly2")
+idle_state = NodePath("../FrogIdleState")
+shadow = NodePath("../../Shadow")
+screen_shake_intensity = 30
+jump_impact_sprite = NodePath("../../JumpImpact")
+ground_impact_sfx = ExtResource("14_s1ix7")
+metadata/_custom_type_script = "uid://bwqywdhf2ywe2"

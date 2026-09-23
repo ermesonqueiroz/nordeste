@@ -33,6 +33,7 @@ scale_curve = SubResource("CurveTexture_cag4a")
 alpha_curve = SubResource("CurveTexture_6ps22")
 
 [node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 node_paths=PackedStringArray("_animation") groups=["player"]]
+z_index = 1
 collision_mask = 4
 script = ExtResource("1_r08u6")
 _animation = NodePath("Animation")
@@ -55,7 +56,7 @@ metadata/_custom_type_script = "uid://cxo64sjp7i3x4"
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=314084126]
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1821164045]
+[node name="Camera" type="Camera2D" parent="." unique_id=1821164045 groups=["camera"]]
 limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true

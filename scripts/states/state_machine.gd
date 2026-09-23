@@ -1,6 +1,8 @@
 extends Node
 class_name StateMachine
 
+signal state_exited(state: State)
+
 @export var initial_state: State
 var active_state: State
 
@@ -24,6 +26,7 @@ func switch_state(new_state: State):
 
 	if active_state:
 		active_state.exit()
+		state_exited.emit(active_state)
 
 	active_state = new_state
 	active_state.enter()

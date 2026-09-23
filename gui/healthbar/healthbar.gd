@@ -29,7 +29,7 @@ func _apply_health_instant(max_hp: int, current_hp: int) -> void:
 	background.custom_minimum_size.y = target_height
 	fill_mask.custom_minimum_size.y = target_height
 	health_fill.size.y = target_fill_height
-	damage_fill.size.y = target_fill_height # A barra branca começa igualada
+	damage_fill.size.y = target_fill_height
 
 func update_health_bar(new_max: int, new_current: int) -> void:
 	var target_height = _calculate_total_height(new_max)

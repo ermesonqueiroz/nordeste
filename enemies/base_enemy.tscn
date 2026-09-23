@@ -9,6 +9,34 @@
 [ext_resource type="Script" uid="uid://dvn6fs6a1v72h" path="res://common/hitbox.gd" id="4_a33f8"]
 [ext_resource type="Script" uid="uid://0qwoj13ei42n" path="res://scripts/states/state_machine.gd" id="8_315q6"]
 [ext_resource type="Script" uid="uid://brk6ykjfpblgh" path="res://scripts/states/enemy/enemy_die_state.gd" id="9_j2d0b"]
+[ext_resource type="Texture2D" uid="uid://ilt83eidf20d" path="res://enemies/damage_particle_texture.png" id="10_fngk5"]
+
+[sub_resource type="Curve" id="Curve_2dfbn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.70656365, 1), 8.8214847e-07, 8.8214847e-07, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hcly2"]
+curve = SubResource("Curve_2dfbn")
+
+[sub_resource type="Curve" id="Curve_ccr3n"]
+_data = [Vector2(0.70270264, 1), 0.72167087, 0.72167087, 0, 0, Vector2(1, 0), 0.09510283, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_s1ix7"]
+curve = SubResource("Curve_ccr3n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_epbio"]
+emission_shape = 1
+emission_sphere_radius = 13.35
+velocity_pivot = Vector3(1, 0, 0)
+spread = 10.0
+flatness = 0.056
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_s1ix7")
+alpha_curve = SubResource("CurveTexture_hcly2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35jd6"]
 resource_local_to_scene = true
@@ -21,10 +49,20 @@ font = ExtResource("4_35jd6")
 outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=1834857299 node_paths=PackedStringArray("_die_state")]
+z_index = 1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_j7qyq")
 _die_state = NodePath("StateMachine/EnemyDieState")
+
+[node name="HitParticles" type="GPUParticles2D" parent="." unique_id=1548375953]
+emitting = false
+amount = 10
+texture = ExtResource("10_fngk5")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_epbio")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=256664707]
 material = SubResource("ShaderMaterial_35jd6")

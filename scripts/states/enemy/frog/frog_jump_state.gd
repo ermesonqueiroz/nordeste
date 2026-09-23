@@ -2,8 +2,16 @@ extends State
 class_name FrogJumpState
 
 @export var idle_state: State
+@export var shadow: Node2D
+@export var screen_shake_intensity: int = 0
+@export var jump_impact_sprite: AnimatedSprite2D
+@export var max_shadow_offset: float = 15.0
+@export var ground_impact_sfx: AudioStream
 
-@onready var _enemy: FrogEnemy = owner
+@onready var _enemy: BaseEnemy = owner
+@onready var initial_shadow_y: float = shadow.position.y
+@onready var initial_shadow_modulate: Color = shadow.modulate
+@onready var initial_shadow_scale: Vector2 = shadow.scale
 
 var _initial_jump_timer: float = 0.4
 var _jump_timer: float = 0.0
@@ -31,15 +39,19 @@ func update_physics(delta: float):
 	var scale_factor = 1.0 + (jump_curve * 0.3)
 	_enemy.texture.scale = Vector2.ONE * scale_factor
 
-	var max_shadow_offset = 15.0
-	_enemy.shadow.position.y = _enemy.initial_shadow_y + (jump_curve * max_shadow_offset)
+	shadow.position.y = initial_shadow_y + (jump_curve * max_shadow_offset)
 
-	var shadow_scale_factor = 1.0 + (jump_curve * 0.1)
-	_enemy.shadow.scale = _enemy.initial_shadow_scale * shadow_scale_factor
+	var shadow_scale_factor = 1.0 - (jump_curve * 0.1)
+	shadow.scale = initial_shadow_scale * shadow_scale_factor
 
 func exit():
-	_enemy.shadow.position.y = _enemy.initial_shadow_y
-	_enemy.shadow.modulate = _enemy.initial_shadow_modulate
-	_enemy.shadow.scale = _enemy.initial_shadow_scale
+	SoundManager.play(ground_impact_sfx, -8)
+	var camera = get_tree().get_first_node_in_group("camera")
+	if camera and screen_shake_intensity > 0:
+		camera.screen_shake(screen_shake_intensity, 0.3)
+
+	shadow.position.y = initial_shadow_y
+	shadow.modulate = initial_shadow_modulate
+	shadow.scale = initial_shadow_scale
 	_enemy.texture.scale = Vector2.ONE
 	_enemy.scale = Vector2.ONE

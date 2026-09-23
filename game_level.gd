@@ -5,6 +5,7 @@ class_name GameLevel
 
 @onready var _game_over: ColorRect = $GUI/GameOver
 @onready var _level_up: ColorRect = $GUI/LevelUp
+@onready var _boss_healthbar: PackedScene = preload("res://gui/boss_healthbar/boss_healthbar.tscn")
 
 var pending_level_ups: int = 0
 
@@ -17,6 +18,7 @@ func _ready() -> void:
 
 	_character.health_updated.connect(_on_character_health_updated)
 	_character.level_updated.connect(_on_character_level_updated)
+	$BossSpawner.boss_spawned.connect(_on_boss_spawned)
 
 	if _level_up.has_signal("upgrade_selected"):
 		_level_up.upgrade_selected.connect(_on_upgrade_selected)
@@ -53,3 +55,14 @@ func _on_character_health_updated() -> void:
 	if _character.current_health <= 0:
 		_game_over.show_screen()
 		get_tree().paused = true
+
+func _on_boss_spawned(boss: BaseEnemy):
+	var new_boss_healthbar: BossHealthbar = _boss_healthbar.instantiate()
+	new_boss_healthbar.boss = boss
+	$GUI.add_child(new_boss_healthbar)
+	$EnemySpawner.enabled = false
+	boss.took_damage.connect(_on_boss_took_damage)
+
+func _on_boss_took_damage():
+	print($BossSpawner.last_boss.health <= 0)
+	$EnemySpawner.enabled = $BossSpawner.last_boss.health <= 0

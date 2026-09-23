@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bp61xg7s1s434"]
+
+[ext_resource type="PackedScene" uid="uid://b0nbnxpanmbm2" path="res://scenes/collectables/base_collectable.tscn" id="1_sppxf"]
+[ext_resource type="Script" uid="uid://df443c3l4dn5n" path="res://scenes/collectables/ice_cube/ice_cube_collectable.gd" id="2_mdf4u"]
+[ext_resource type="Texture2D" uid="uid://cdbp4a3k7trce" path="res://scenes/collectables/water/shadow.png" id="3_0vkr2"]
+[ext_resource type="Texture2D" uid="uid://drpa84gfsgivr" path="res://scenes/collectables/ice_cube/texture.png" id="3_dk6lv"]
+[ext_resource type="Shader" uid="uid://couv7jj28af83" path="res://shaders/shimmer.gdshader" id="4_ehyye"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnonk"]
+shader = ExtResource("4_ehyye")
+shader_parameter/shimmer_color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.2
+shader_parameter/speed = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vkr2"]
+atlas = ExtResource("3_dk6lv")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dk6lv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vkr2")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vnonk"]
+radius = 33.0
+height = 74.0
+
+[node name="IceCubeCollectable" unique_id=596021622 instance=ExtResource("1_sppxf")]
+script = ExtResource("2_mdf4u")
+_time_to_despawn = 60.0
+
+[node name="Shadow" type="Sprite2D" parent="." index="0" unique_id=718412482]
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(0, 2)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_0vkr2")
+
+[node name="Texture" parent="." index="1" unique_id=615243985]
+material = SubResource("ShaderMaterial_vnonk")
+sprite_frames = SubResource("SpriteFrames_dk6lv")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.07904748
+
+[node name="Collision" parent="." index="2" unique_id=1014183451]
+shape = SubResource("CapsuleShape2D_vnonk")

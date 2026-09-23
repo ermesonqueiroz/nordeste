@@ -14,7 +14,7 @@ shader_parameter/flash_value = 0.0
 size = Vector2(23, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_goi2v"]
-size = Vector2(16.5, 28)
+size = Vector2(16.5, 11)
 
 [sub_resource type="Animation" id="Animation_mfk0j"]
 length = 0.001
@@ -189,7 +189,7 @@ _animations = {
 position = Vector2(2, 19)
 
 [node name="Shadow" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="0" unique_id=1032822076]
-modulate = Color(1, 1, 1, 0.5)
+modulate = Color(1, 1, 1, 0.8)
 position = Vector2(1, 1)
 texture = ExtResource("3_k5olh")
 
@@ -207,7 +207,7 @@ shape = SubResource("RectangleShape2D_vb32k")
 debug_color = Color(0, 1, 0, 0.277)
 
 [node name="Collision" parent="." index="3" unique_id=209974859]
-position = Vector2(-2, 11)
+position = Vector2(-2, 19.5)
 shape = SubResource("RectangleShape2D_goi2v")
 
 [node name="Animation" parent="." index="4" unique_id=314084126]
