@@ -60,5 +60,71 @@
       "WEAPON_ICON": "res://weapons/chinela/icon.png",
       "WEAPON_SCENE": "res://weapons/chinela/chinela_weapon.tscn"
     }
+  },
+  "Upgrades": {
+    "increase_attack_speed": {
+      "UPGRADE_NAME": "Mãos ligeiras",
+      "UPGRADE_DESCRIPTION": "Attack rate +20%",
+      "MAX_USES": 5,
+      "UPGRADE_ICON": "res://sprites/upgrades/increase_attack_rate_icon.png",
+      "UPGRADE_SCRIPT": "res://scripts/upgrades/increase_attack_rate_upgrade.gd",
+      "ACTIVE": true
+    },
+    "increase_character_health": {
+      "UPGRADE_NAME": "Vida da bexiga",
+      "UPGRADE_DESCRIPTION": "Max health +1",
+      "MAX_USES": 10,
+      "UPGRADE_ICON": "res://sprites/upgrades/increase_character_health_icon.png",
+      "UPGRADE_SCRIPT": "res://scripts/upgrades/increase_character_health_upgrade.gd",
+      "ACTIVE": true
+    },
+    "increase_projectile_damage": {
+      "UPGRADE_NAME": "Dano da peste",
+      "UPGRADE_DESCRIPTION": "Damage +8",
+      "MAX_USES": 10,
+      "UPGRADE_ICON": "res://sprites/upgrades/increase_projectile_damage_icon.png",
+      "UPGRADE_SCRIPT": "res://scripts/upgrades/increase_projectile_damage_upgrade.gd",
+      "ACTIVE": true
+    },
+    "increase_projectile_size": {
+      "UPGRADE_NAME": "Sei não kkk",
+      "UPGRADE_DESCRIPTION": "Projectile size +20%",
+      "MAX_USES": 4,
+      "UPGRADE_ICON": "res://sprites/upgrades/increase_projectile_size_icon.png",
+      "UPGRADE_SCRIPT": "res://scripts/upgrades/increase_projectile_size_upgrade.gd",
+      "ACTIVE": true
+    },
+    "increase_weapon_max_ammo": {
+      "UPGRADE_NAME": "Mais bala",
+      "UPGRADE_DESCRIPTION": "Max ammo +1",
+      "MAX_USES": 6,
+      "UPGRADE_ICON": "res://sprites/upgrades/increase_weapon_max_ammo_icon.png",
+      "UPGRADE_SCRIPT": "res://scripts/upgrades/increase_weapon_max_ammo_upgrade.gd",
+      "ACTIVE": true
+    },
+    "increase_character_move_speed": {
+      "UPGRADE_NAME": "Avexado",
+      "UPGRADE_DESCRIPTION": "Move speed +10%",
+      "MAX_USES": 8,
+      "UPGRADE_ICON": "res://sprites/upgrades/increase_character_move_speed_icon.png",
+      "UPGRADE_SCRIPT": "res://scripts/upgrades/increase_character_move_speed_upgrade.gd",
+      "ACTIVE": true
+    },
+    "weapon_reload_speed": {
+      "UPGRADE_NAME": "kkkkk",
+      "UPGRADE_DESCRIPTION": "Reload speed +15%",
+      "MAX_USES": 5,
+      "UPGRADE_ICON": "res://sprites/upgrades/weapon_reload_speed_icon.png",
+      "UPGRADE_SCRIPT": "res://scripts/upgrades/weapon_reload_speed_upgrade.gd",
+      "ACTIVE": true
+    },
+    "weapon_projectiles": {
+      "UPGRADE_NAME": "Bala em dobro",
+      "UPGRADE_DESCRIPTION": "Projectiles amount x2",
+      "MAX_USES": 2,
+      "UPGRADE_ICON": "res://sprites/upgrades/weapon_projectiles_icon.png",
+      "UPGRADE_SCRIPT": "res://scripts/upgrades/weapon_projectiles_upgrade.gd",
+      "ACTIVE": true
+    }
   }
 }

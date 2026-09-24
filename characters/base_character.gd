@@ -29,8 +29,6 @@ signal level_updated
 @onready var _dust_particles: GPUParticles2D = $DustParticles
 
 var weapon: BaseWeapon
-
-var enemy: PackedScene = load("res://enemies/mosquito/mosquito.tscn")
 var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.tscn")
 
 var last_direction: Vector2 = Vector2.RIGHT
@@ -167,9 +165,9 @@ func _level_up() -> void:
 	current_level += 1
 
 	if current_level < 20:
-		water_amount_to_next_level = int(10 + (current_level * 4))
+		water_amount_to_next_level = int(10 + (current_level * 1))
 	else:
-		water_amount_to_next_level = int(10 + (current_level * 6))
+		water_amount_to_next_level = int(10 + (current_level * 4))
 
 	level_updated.emit()
 
@@ -219,14 +217,14 @@ func add_water(amount: int):
 	current_water_amount += amount
 	water_collected.emit()
 
-func can_apply_upgrade(upgrade: BaseUpgrade) -> bool:
+func can_apply_upgrade(upgrade: UpgradeData) -> bool:
 	if upgrade.max_uses == -1:
 		return true
 
 	var current_uses = upgrades_applied.get(upgrade.id, 0)
 	return current_uses < upgrade.max_uses
 
-func apply_upgrade(upgrade: BaseUpgrade) -> void:
+func apply_upgrade(upgrade: UpgradeData) -> void:
 	if not can_apply_upgrade(upgrade):
 		return
 
@@ -234,7 +232,7 @@ func apply_upgrade(upgrade: BaseUpgrade) -> void:
 		upgrades_applied[upgrade.id] = 0
 
 	upgrades_applied[upgrade.id] += 1
-	upgrade.apply_upgrade(self)
+	upgrade.implementation.apply_upgrade(self)
 
 func _on_hitbox_entered(hitbox: HitBox):
 	if is_invulnerable:

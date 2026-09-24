@@ -64,5 +64,4 @@ func _on_boss_spawned(boss: BaseEnemy):
 	boss.took_damage.connect(_on_boss_took_damage)
 
 func _on_boss_took_damage():
-	print($BossSpawner.last_boss.health <= 0)
 	$EnemySpawner.enabled = $BossSpawner.last_boss.health <= 0

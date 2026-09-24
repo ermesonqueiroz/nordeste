@@ -26,6 +26,7 @@ SoundManager="*uid://d1dh1vln5a58"
 GameManager="*uid://cpktcficvcdkp"
 WeaponManager="*uid://cjyhnlcldn6nx"
 Utils="*uid://ck45nal54meta"
+UpgradeManager="*uid://dufhptp0vci6s"
 
 [display]
 

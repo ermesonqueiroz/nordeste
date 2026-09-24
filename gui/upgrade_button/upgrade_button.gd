@@ -1,7 +1,7 @@
 extends TextureButton
 class_name UpgradeButton
 
-@export var upgrade: BaseUpgrade
+@export var upgrade: UpgradeData
 
 @onready var _title: Label = $Title
 @onready var _description: Label = $Description

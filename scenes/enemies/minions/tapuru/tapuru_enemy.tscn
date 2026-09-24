@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://8p1p1luyh4tu"]
+
+[ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://scenes/enemies/minions/base_enemy.tscn" id="1_gm6ui"]
+[ext_resource type="Texture2D" uid="uid://dr8fuf1fwr6fs" path="res://scenes/enemies/minions/tapuru/tapuru.png" id="2_5xepv"]
+[ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="2_7gtrk"]
+[ext_resource type="Script" uid="uid://b33caura4hltj" path="res://scenes/enemies/minions/tapuru/tapuru_enemy.gd" id="2_x1ars"]
+[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_52wki"]
+[ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="6_1vnvv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vnvv"]
+resource_local_to_scene = true
+shader = ExtResource("3_52wki")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dv1qm"]
+radius = 2.0
+height = 22.0
+
+[sub_resource type="Animation" id="Animation_52wki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_x1ars"]
+resource_name = "movement"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vnvv"]
+_data = {
+&"RESET": SubResource("Animation_52wki"),
+&"movement": SubResource("Animation_x1ars")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb32k"]
+radius = 5.0
+height = 26.0
+
+[node name="TapuruEnemy" unique_id=1834857299 instance=ExtResource("1_gm6ui")]
+script = ExtResource("2_x1ars")
+collectable_to_drop_on_die = ExtResource("2_7gtrk")
+move_speed = 25.0
+max_health = 14.0
+
+[node name="Texture" parent="." index="0" unique_id=256664707]
+material = SubResource("ShaderMaterial_1vnvv")
+texture = ExtResource("2_5xepv")
+hframes = 3
+
+[node name="Collision" parent="." index="1" unique_id=1981917045]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_dv1qm")
+
+[node name="Animation" parent="." index="2" unique_id=890871356]
+libraries/ = SubResource("AnimationLibrary_1vnvv")
+autoplay = &"movement"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(479947753) index="0" unique_id=110507186]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vb32k")
+debug_color = Color(0, 1, 0, 0.42000002)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1181660510) index="0" unique_id=1715428537]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vb32k")
+debug_color = Color(1, 0, 0, 0.42000002)
+
+[node name="StateMachine" parent="." index="7" unique_id=2019483535 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("EnemyChaseState")
+
+[node name="EnemyChaseState" type="Node" parent="StateMachine" index="0" unique_id=1524797256]
+script = ExtResource("6_1vnvv")
+metadata/_custom_type_script = "uid://jdo4kxeg1qw8"
