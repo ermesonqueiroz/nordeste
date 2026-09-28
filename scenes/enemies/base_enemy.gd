@@ -3,7 +3,10 @@ class_name BaseEnemy
 
 signal took_damage
 
-@export var _die_state: State
+@export_category("States")
+@export var die_state: State
+@export var hit_state: State
+
 @export var collectable_to_drop_on_die: PackedScene
 @export var collectable_amount_to_drop: int = 1
 @export var move_speed: float = 50.0
@@ -14,8 +17,8 @@ signal took_damage
 
 @onready var texture: Sprite2D = $Texture
 @onready var animation: AnimationPlayer = $Animation
-@onready var _hurtbox: HurtBox = $HurtBox
-@onready var _hit_particles: GPUParticles2D = $HitParticles
+@onready var hurtbox: HurtBox = $HurtBox
+@onready var hit_particles: GPUParticles2D = $HitParticles
 
 var spawnPosition: Vector2
 var health: float
@@ -33,7 +36,7 @@ func _ready() -> void:
 	if spawnPosition:
 		position = spawnPosition
 
-	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
+	hurtbox.hitbox_entered.connect(_on_hitbox_entered)
 
 func _physics_process(delta: float) -> void:
 	if knockback_timer > 0:
@@ -51,24 +54,10 @@ func _take_damage(damage: float) -> void:
 	$DamageLabelSpawner.spawn_label(damage)
 	$DieAudio.play()
 
+	if hit_state:
+		$StateMachine.switch_state(hit_state)
+
 	took_damage.emit()
-
-	var tween = get_tree().create_tween()
-	tween.tween_method(
-		func(val): texture.material.set_shader_parameter("flash_value", val),
-		0, 1, 0.15
-	)
-	tween.chain().tween_method(
-		func(val): texture.material.set_shader_parameter("flash_value", val),
-		1, 0, 0.15
-	)
-
-	if health <= 0:
-		$StateMachine.switch_state(_die_state)
-
-func _apply_knockback(direction: Vector2, intensity: float, knockback_duration: float):
-	knockback = direction * intensity
-	knockback_timer = knockback_duration
 
 func _drop_collectable():
 	for i in collectable_amount_to_drop:
@@ -85,15 +74,5 @@ func _on_hitbox_entered(hitbox: HitBox) -> void:
 		return
 
 	_hit_history[hitbox_id] = true
+	hit_particles.rotation = hitbox.knockback_direction.angle()
 	_take_damage(hitbox.damage)
-
-	var knockback_dir: Vector2
-	knockback_dir = hitbox.knockback_direction
-
-	_hit_particles.restart()
-	_hit_particles.rotation = hitbox.knockback_direction.angle()
-
-	if hitbox.pulls_target:
-		_apply_knockback(-knockback_dir, knockback_intensity, 0.1)
-	else:
-		_apply_knockback(knockback_dir, knockback_intensity, 0.15)

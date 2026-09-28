@@ -21,9 +21,11 @@ func _process(delta: float) -> void:
 	if spawn_enemy_timer <= 0:
 		spawn_enemy_timer = spawn_enemy_interval_seconds
 
-		if last_boss:
+		if is_instance_valid(last_boss):
 			if last_boss.health > 0:
 				return
+		else:
+			last_boss = null
 
 		last_boss_spawned_index = min(enemy_pool.size() - 1, last_boss_spawned_index + 1)
 		_spawn_boss_by_index(last_boss_spawned_index)

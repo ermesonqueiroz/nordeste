@@ -132,6 +132,7 @@ _character = NodePath("../CearenseCharacter")
 metadata/_custom_type_script = "uid://c63k1x1spcdp0"
 
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]
+visible = false
 
 [node name="FogParallax" type="Parallax2D" parent="Foreground" unique_id=727524041]
 z_index = 5

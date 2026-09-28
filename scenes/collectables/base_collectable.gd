@@ -19,6 +19,7 @@ var _time_accumulator: float = 0.0
 var _despawn_timer: float = 0
 
 var _is_collected: bool = false
+var _is_despawning: bool = false
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -32,8 +33,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_despawn_timer -= delta
 
-	if _despawn_timer <= 0:
-		if _texture.sprite_frames.has_animation("despawn"):
+	if _despawn_timer <= 0 and not _is_despawning:
+		_is_despawning = true
+		if _texture and _texture.sprite_frames.has_animation("despawn"):
 			_texture.play("despawn")
 			await _texture.animation_finished
 

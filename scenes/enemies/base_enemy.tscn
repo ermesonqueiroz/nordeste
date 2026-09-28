@@ -1,40 +1,36 @@
 [gd_scene format=3 uid="uid://b57x7fpuf1ehw"]
 
-[ext_resource type="Script" uid="uid://3lhfo88845fm" path="res://scenes/enemies/minions/base_enemy.gd" id="1_j7qyq"]
+[ext_resource type="Script" uid="uid://3lhfo88845fm" path="res://scenes/enemies/base_enemy.gd" id="1_j7qyq"]
 [ext_resource type="Script" uid="uid://bp8c06jwp11jr" path="res://damage_label_spawner.gd" id="2_bfj6p"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_xens1"]
-[ext_resource type="AudioStream" uid="uid://d454y5desh05" path="res://scenes/enemies/minions/Hit1.wav" id="3_b5ht1"]
+[ext_resource type="AudioStream" uid="uid://d454y5desh05" path="res://scenes/enemies/Hit1.wav" id="3_b5ht1"]
 [ext_resource type="Script" uid="uid://cxo64sjp7i3x4" path="res://common/hurtbox.gd" id="3_jtyv1"]
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="4_35jd6"]
 [ext_resource type="Script" uid="uid://dvn6fs6a1v72h" path="res://common/hitbox.gd" id="4_a33f8"]
 [ext_resource type="Script" uid="uid://0qwoj13ei42n" path="res://scripts/states/state_machine.gd" id="8_315q6"]
 [ext_resource type="Script" uid="uid://brk6ykjfpblgh" path="res://scripts/states/enemy/enemy_die_state.gd" id="9_j2d0b"]
-[ext_resource type="Texture2D" uid="uid://ilt83eidf20d" path="res://scenes/enemies/minions/damage_particle_texture.png" id="10_fngk5"]
+[ext_resource type="Texture2D" uid="uid://ilt83eidf20d" path="res://scenes/enemies/damage_particle_texture.png" id="10_fngk5"]
+[ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="11_ahw5l"]
 
-[sub_resource type="Curve" id="Curve_2dfbn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.70656365, 1), 8.8214847e-07, 8.8214847e-07, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_h4c3k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.39768338, 1), 0.0, 0.0, 0, 0, Vector2(0.59845555, 0), 0.0, 0.72167087, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_hcly2"]
-curve = SubResource("Curve_2dfbn")
-
-[sub_resource type="Curve" id="Curve_ccr3n"]
-_data = [Vector2(0.70270264, 1), 0.72167087, 0.72167087, 0, 0, Vector2(1, 0), 0.09510283, 0.0, 0, 0]
-point_count = 2
+curve = SubResource("Curve_h4c3k")
 
 [sub_resource type="CurveTexture" id="CurveTexture_s1ix7"]
-curve = SubResource("Curve_ccr3n")
+curve = SubResource("Curve_h4c3k")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_epbio"]
-emission_shape = 1
-emission_sphere_radius = 13.35
+emission_shape_offset = Vector3(10, 0, 0)
 velocity_pivot = Vector3(1, 0, 0)
-spread = 10.0
-flatness = 0.056
-initial_velocity_min = 200.0
+initial_velocity_min = 100.0
 initial_velocity_max = 200.0
-gravity = Vector3(0, 0, 0)
-scale_max = 1.5
+angular_velocity_min = -360.0
+angular_velocity_max = 359.99997
+gravity = Vector3(0, -50, 0)
+scale_min = 0.5
 scale_curve = SubResource("CurveTexture_s1ix7")
 alpha_curve = SubResource("CurveTexture_hcly2")
 
@@ -48,20 +44,24 @@ shader_parameter/flash_value = 0.0
 font = ExtResource("4_35jd6")
 outline_color = Color(0, 0, 0, 1)
 
-[node name="BaseEnemy" type="CharacterBody2D" unique_id=1834857299 node_paths=PackedStringArray("_die_state")]
+[node name="BaseEnemy" type="CharacterBody2D" unique_id=1834857299 node_paths=PackedStringArray("die_state", "hit_state")]
 z_index = 1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_j7qyq")
-_die_state = NodePath("StateMachine/EnemyDieState")
+die_state = NodePath("StateMachine/EnemyDieState")
+hit_state = NodePath("StateMachine/EnemyHitState")
 
 [node name="HitParticles" type="GPUParticles2D" parent="." unique_id=1548375953]
 emitting = false
-amount = 10
+amount = 18
 texture = ExtResource("10_fngk5")
-lifetime = 0.5
+lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
+trail_lifetime = 1.32
+trail_sections = 2
+trail_section_subdivisions = 2
 process_material = SubResource("ParticleProcessMaterial_epbio")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=256664707]
@@ -97,3 +97,8 @@ metadata/_custom_type_script = "uid://0qwoj13ei42n"
 [node name="EnemyDieState" type="Node" parent="StateMachine" unique_id=1740252931]
 script = ExtResource("9_j2d0b")
 metadata/_custom_type_script = "uid://brk6ykjfpblgh"
+
+[node name="EnemyHitState" type="Node" parent="StateMachine" unique_id=1886392550 node_paths=PackedStringArray("die_state")]
+script = ExtResource("11_ahw5l")
+die_state = NodePath("../EnemyDieState")
+metadata/_custom_type_script = "uid://35tpc4bft43y"
