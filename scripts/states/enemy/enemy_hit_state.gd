@@ -9,8 +9,9 @@ class_name EnemyHitState
 
 func enter():
 	_enemy.hit_particles.restart()
+	_enemy.animation.stop()
 
-	var tween = get_tree().create_tween()
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween.tween_method(
 		func(val): _enemy.texture.material.set_shader_parameter("flash_value", val),
 		0, 1, 0.15
@@ -20,5 +21,5 @@ func enter():
 		1, 0, 0.15
 	)
 
-	await get_tree().create_timer(0.12, false, false, true).timeout
+	await tween.finished
 	switch_state.emit(chase_state if _enemy.health > 0 else die_state)

@@ -24,6 +24,17 @@
 [ext_resource type="PackedScene" uid="uid://7v52lt3xs4hw" path="res://pause_menu.tscn" id="30_ovhxr"]
 [ext_resource type="AudioStream" uid="uid://bmdlqm5k8ngyf" path="res://sfx/the_wall_loopable.wav" id="31_ovhxr"]
 
+[sub_resource type="Gradient" id="Gradient_2obac"]
+offsets = PackedFloat32Array(0.37078652, 0.40449437, 0.58801496, 0.6741573, 0.9962547)
+colors = PackedColorArray(0.585062, 0.585062, 0.5850621, 1, 0.23031479, 0.23031497, 0.23031488, 1, 0.23137255, 0.23137255, 0.23137255, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2obac"]
+gradient = SubResource("Gradient_2obac")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="Gradient" id="Gradient_5d4hl"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
@@ -100,12 +111,22 @@ y_sort_enabled = true
 script = ExtResource("1_qsd0w")
 _character = NodePath("CearenseCharacter")
 
-[node name="Terrain" parent="." unique_id=1863512682 instance=ExtResource("1_df5pp")]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=600797741]
+color = Color(0.27387273, 0.27387273, 0.27387273, 1)
+
+[node name="Terrain" parent="CanvasModulate" unique_id=1863512682 instance=ExtResource("1_df5pp")]
 position = Vector2(-2, 0)
 
 [node name="CearenseCharacter" parent="." unique_id=1555303638 instance=ExtResource("3_anq5l")]
+physics_interpolation_mode = 0
 position = Vector2(287, 335)
 collision_mask = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="CearenseCharacter" unique_id=1200111052]
+position = Vector2(1, 1)
+scale = Vector2(1.03125, 1.03125)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_2obac")
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_character")]
 visible = false
@@ -132,7 +153,6 @@ _character = NodePath("../CearenseCharacter")
 metadata/_custom_type_script = "uid://c63k1x1spcdp0"
 
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]
-visible = false
 
 [node name="FogParallax" type="Parallax2D" parent="Foreground" unique_id=727524041]
 z_index = 5
@@ -142,11 +162,13 @@ autoscroll = Vector2(100, 0)
 repeat_times = 8
 
 [node name="FogSprite" type="Sprite2D" parent="Foreground/FogParallax" unique_id=306652000]
-modulate = Color(1, 0.5764706, 0.08235294, 0.78431374)
+visible = false
+modulate = Color(0.74558026, 0.7455802, 0.7455802, 0.52156866)
 position = Vector2(660, 187)
 texture = SubResource("NoiseTexture2D_5d4hl")
 
 [node name="SandParallax" type="Parallax2D" parent="Foreground" unique_id=552432213]
+visible = false
 z_index = 6
 scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(-8, 13)
@@ -223,6 +245,7 @@ character = NodePath("../../../../../CearenseCharacter")
 
 [node name="GameOver" type="ColorRect" parent="GUI" unique_id=874190358 node_paths=PackedStringArray("_restart_button", "_main_menu_button", "_survival_time_label", "_enemies_killed_label")]
 process_mode = 3
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -7,8 +7,8 @@ extends Control
 @export var weapon_ammo_label: Label
 @export var attack_interval_label: Label
 @export var reload_time_label: Label
-@export var start_button: Button
-@export var back_button: Button
+@export var start_button: AnimatedButton
+@export var back_button: AnimatedButton
 
 @onready var shelf_slots: Array[Node] = [
 	$Weapons/Slot1,

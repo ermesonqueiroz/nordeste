@@ -7,6 +7,8 @@ signal level_updated
 
 @export_category("Variables")
 @export var _move_speed: float = 128.0
+@export var _acceleration: float = 900.0
+@export var _deceleration: float = 1200.0
 
 @export_category("Objects")
 @export var _animation: AnimationPlayer
@@ -80,10 +82,10 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	_move()
+	_move(delta)
 	_animate()
 
-func _move():
+func _move(delta: float) -> void:
 	var _direction: Vector2 = Input.get_vector(
 		"move_left", "move_right", "move_up", "move_down"
 	)
@@ -93,7 +95,9 @@ func _move():
 
 	var speed = _move_speed / 2 if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) else _move_speed
 
-	velocity = _direction * speed
+	var target_velocity = _direction * speed
+	var rate = _acceleration if _direction != Vector2.ZERO else _deceleration
+	velocity = velocity.move_toward(target_velocity, rate * delta)
 	move_and_slide()
 
 func _animate() -> void:
@@ -102,59 +106,49 @@ func _animate() -> void:
 		var shooting_direction = (get_global_mouse_position() - global_position).normalized()
 		var shooting_animation: String
 
-		if shooting_direction.x < 0:
-			shooting_animation = _animations["run_left"] if velocity != Vector2.ZERO else _animations["idle_left"]
-
-		if shooting_direction.x > 0:
-			shooting_animation = _animations["run_right"] if velocity != Vector2.ZERO else _animations["idle_right"]
+		if abs(shooting_direction.x) > abs(shooting_direction.y):
+			shooting_animation = _animations["run_left"] if shooting_direction.x < 0 else _animations["run_right"]
+		else:
+			shooting_animation = _animations["run_top"] if shooting_direction.y < 0 else _animations["run_bottom"]
 
 		if _animation.has_animation(shooting_animation):
 			_animation.play(shooting_animation)
-
 		return
 
-	if velocity.length() > 0:
+	if velocity.length() > 5.0:
 		_dust_particles.emitting = true
 		_dust_particles.position.x = 0
 
-		if velocity.x < 0:
-			if _animation.has_animation(_animations["run_left"]):
-				_animation.play(_animations["run_left"])
-
-			if _dust_particles:
-				_dust_particles.scale.x = -1
-				_dust_particles.position.x = -8
-
-			return
-
-		if velocity.x > 0:
-			if _animation.has_animation(_animations["run_right"]):
-				_animation.play(_animations["run_right"])
-
-			if _dust_particles:
-				_dust_particles.scale.x = 1
-				_dust_particles.position.x = 8
-
-			return
-
-		if velocity.y < 0:
-			if _animation.has_animation(_animations["run_top"]):
-				_animation.play(_animations["run_top"])
-			return
-
-		if velocity.y > 0:
-			if _animation.has_animation(_animations["run_bottom"]):
-				_animation.play(_animations["run_bottom"])
-			return
+		if abs(velocity.x) >= abs(velocity.y):
+			if velocity.x < 0:
+				if _animation.has_animation(_animations["run_left"]):
+					_animation.play(_animations["run_left"])
+				if _dust_particles:
+					_dust_particles.scale.x = -1
+					_dust_particles.position.x = -8
+			else:
+				if _animation.has_animation(_animations["run_right"]):
+					_animation.play(_animations["run_right"])
+				if _dust_particles:
+					_dust_particles.scale.x = 1
+					_dust_particles.position.x = 8
+		else:
+			if velocity.y < 0:
+				if _animation.has_animation(_animations["run_top"]):
+					_animation.play(_animations["run_top"])
+			else:
+				if _animation.has_animation(_animations["run_bottom"]):
+					_animation.play(_animations["run_bottom"])
+		return
 
 	_dust_particles.emitting = false
 
 	if last_direction.x < 0:
-		_animation.play(_animations["idle_left"])
-		return
-
-	_animation.play(_animations["idle_right"])
-	return
+		if _animation.has_animation(_animations["idle_left"]):
+			_animation.play(_animations["idle_left"])
+	else:
+		if _animation.has_animation(_animations["idle_right"]):
+			_animation.play(_animations["idle_right"])
 
 func _on_water_collected() -> void:
 	while current_water_amount >= water_amount_to_next_level:

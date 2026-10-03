@@ -20,8 +20,6 @@ func _physics_process(delta: float):
 		)
 
 		shake_intensity = max(shake_intensity - shake_decay * delta, 0)
-	else:
-		offset = lerp(offset, Vector2.ZERO, 10.5 * delta)
 
 func screen_shake(intensity: int, time: float):
 	randomize()

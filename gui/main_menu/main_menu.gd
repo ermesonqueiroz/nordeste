@@ -1,8 +1,8 @@
 extends Control
 
-@export var _start_button: Button
-@export var _settings_button: Button
-@export var _quit_button: Button
+@export var _start_button: AnimatedButton
+@export var _settings_button: AnimatedButton
+@export var _quit_button: AnimatedButton
 @onready var _pop_sfx = preload("res://gui/sfx/pop.wav")
 
 func _ready() -> void:

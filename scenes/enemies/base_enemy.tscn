@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="11_ahw5l"]
 
 [sub_resource type="Curve" id="Curve_h4c3k"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.39768338, 1), 0.0, 0.0, 0, 0, Vector2(0.59845555, 0), 0.0, 0.72167087, 0, 0]
+_data = [Vector2(0, 0.7032967), 0.0, 0.0, 0, 0, Vector2(0.39768338, 1), 0.0, 0.0, 0, 0, Vector2(0.60240966, 0), 0.0, 0.72167087, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_hcly2"]
@@ -30,11 +30,12 @@ initial_velocity_max = 200.0
 angular_velocity_min = -360.0
 angular_velocity_max = 359.99997
 gravity = Vector3(0, -50, 0)
-scale_min = 0.5
+scale_min = 0.39999998
+scale_max = 0.7
 scale_curve = SubResource("CurveTexture_s1ix7")
 alpha_curve = SubResource("CurveTexture_hcly2")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_35jd6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahw5l"]
 resource_local_to_scene = true
 shader = ExtResource("2_xens1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -54,9 +55,9 @@ hit_state = NodePath("StateMachine/EnemyHitState")
 
 [node name="HitParticles" type="GPUParticles2D" parent="." unique_id=1548375953]
 emitting = false
-amount = 18
+amount = 24
 texture = ExtResource("10_fngk5")
-lifetime = 0.4
+lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
 trail_lifetime = 1.32
@@ -65,7 +66,7 @@ trail_section_subdivisions = 2
 process_material = SubResource("ParticleProcessMaterial_epbio")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=256664707]
-material = SubResource("ShaderMaterial_35jd6")
+material = SubResource("ShaderMaterial_ahw5l")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1981917045]
 

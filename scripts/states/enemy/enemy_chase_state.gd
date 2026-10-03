@@ -19,6 +19,7 @@ func update_physics(delta: float):
 
 	_enemy.velocity = _current_target_direction * _enemy.move_speed
 	_enemy.move_and_slide()
+	_enemy.animation.play("movement")
 
 func _update_target_direction():
 	var character = get_tree().get_first_node_in_group("player")

@@ -4,14 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dr8fuf1fwr6fs" path="res://scenes/enemies/minions/tapuru/tapuru.png" id="2_5xepv"]
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="2_7gtrk"]
 [ext_resource type="Script" uid="uid://b33caura4hltj" path="res://scenes/enemies/minions/tapuru/tapuru_enemy.gd" id="2_x1ars"]
-[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_52wki"]
 [ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="6_1vnvv"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a51ae"]
-resource_local_to_scene = true
-shader = ExtResource("3_52wki")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_value = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dv1qm"]
 radius = 2.0
@@ -90,16 +83,15 @@ collectable_to_drop_on_die = ExtResource("2_7gtrk")
 move_speed = 25.0
 max_health = 14.0
 
-[node name="Texture" parent="." index="1" unique_id=256664707]
-material = SubResource("ShaderMaterial_a51ae")
+[node name="Texture" parent="." index="2" unique_id=256664707]
 texture = ExtResource("2_5xepv")
 hframes = 3
 
-[node name="Collision" parent="." index="2" unique_id=1981917045]
+[node name="Collision" parent="." index="3" unique_id=1981917045]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_dv1qm")
 
-[node name="Animation" parent="." index="3" unique_id=890871356]
+[node name="Animation" parent="." index="4" unique_id=890871356]
 libraries/ = SubResource("AnimationLibrary_1vnvv")
 autoplay = &"movement"
 
@@ -113,7 +105,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vb32k")
 debug_color = Color(1, 0, 0, 0.42000002)
 
-[node name="StateMachine" parent="." index="8" unique_id=2019483535 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="9" unique_id=2019483535 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("EnemyChaseState")
 
 [node name="EnemyChaseState" type="Node" parent="StateMachine" index="0" unique_id=1524797256]

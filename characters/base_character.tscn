@@ -29,19 +29,23 @@ emission_shape = 1
 emission_sphere_radius = 6.0
 direction = Vector3(-1, 0, 0)
 gravity = Vector3(0, -15, 0)
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_cag4a")
+color = Color(0, 0, 0, 1)
 alpha_curve = SubResource("CurveTexture_6ps22")
 
 [node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 node_paths=PackedStringArray("_animation") groups=["player"]]
+physics_interpolation_mode = 1
 z_index = 1
 collision_mask = 4
 script = ExtResource("1_r08u6")
 _animation = NodePath("Animation")
 
 [node name="DustParticles" type="GPUParticles2D" parent="." unique_id=59756565]
+visible = false
 position = Vector2(0, 24)
+amount = 1
 texture = ExtResource("2_cag4a")
-lifetime = 0.8
 process_material = SubResource("ParticleProcessMaterial_cag4a")
 
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=2022331021]

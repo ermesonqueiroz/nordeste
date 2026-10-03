@@ -5,7 +5,7 @@
       "DAMAGE": 8,
       "MAX_AMMO": 10,
       "RELOAD_TIME": 0.6,
-      "ATTACK_INTERVAL": 0.4,
+      "ATTACK_INTERVAL": 0.3,
       "PROJECTILES": 1,
       "SPREAD_PROJECTILES_ANGLE_DEGREES": 15,
       "ORBIT_DISTANCE": 18,

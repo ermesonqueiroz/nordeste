@@ -19,6 +19,7 @@ signal took_damage
 @onready var animation: AnimationPlayer = $Animation
 @onready var hurtbox: HurtBox = $HurtBox
 @onready var hit_particles: GPUParticles2D = $HitParticles
+@onready var hitbox: HitBox = $HitBox
 
 var spawnPosition: Vector2
 var health: float
@@ -65,6 +66,10 @@ func _drop_collectable():
 		new_collectable.global_position = global_position
 		get_tree().current_scene.add_child(new_collectable)
 
+func _apply_knockback(direction: Vector2, intensity: float, knockback_duration: float):
+	knockback = -last_direction * intensity
+	knockback_timer = knockback_duration
+
 func _on_hitbox_entered(hitbox: HitBox) -> void:
 	if health <= 0:
 		return
@@ -76,3 +81,16 @@ func _on_hitbox_entered(hitbox: HitBox) -> void:
 	_hit_history[hitbox_id] = true
 	hit_particles.rotation = hitbox.knockback_direction.angle()
 	_take_damage(hitbox.damage)
+
+	var attacker_position = hitbox.get_parent().global_position
+	var knockback_dir: Vector2
+
+	if hitbox.pulls_target:
+		knockback_dir = (attacker_position - global_position).normalized()
+		_apply_knockback(knockback_dir, 300, 0.1)
+	else:
+		knockback_dir = (global_position - attacker_position).normalized()
+		_apply_knockback(knockback_dir, 200, 0.15)
+
+	if hitbox is BaseProjectile:
+		hitbox.queue_free()

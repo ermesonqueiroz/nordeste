@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://c7s5bkn3hetau"]
+
+[ext_resource type="FontFile" uid="uid://d4drq4ll6m0ly" path="res://fonts/xilosa.ttf" id="1_tmv5g"]
+
+[resource]
+font = ExtResource("1_tmv5g")
+font_size = 32

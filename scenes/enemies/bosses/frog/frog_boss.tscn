@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ccmb70jigra2w"]
 
 [ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://scenes/enemies/base_enemy.tscn" id="1_gknw1"]
-[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_ig1op"]
 [ext_resource type="Script" uid="uid://b1kn040qmuo1" path="res://scenes/enemies/bosses/frog/frog_boss.gd" id="2_rmk6u"]
 [ext_resource type="Texture2D" uid="uid://b1lkocdbtua4u" path="res://scenes/enemies/bosses/frog/texture.png" id="3_ig1op"]
 [ext_resource type="PackedScene" uid="uid://bp61xg7s1s434" path="res://scenes/collectables/ice_cube/ice_cube_collectable.tscn" id="3_s1ix7"]
@@ -64,12 +63,6 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s1ix7"]
-resource_local_to_scene = true
-shader = ExtResource("2_ig1op")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_value = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig1op"]
 radius = 18.0
@@ -218,7 +211,6 @@ script = ExtResource("5_mluuk")
 jump_state = NodePath("../StateMachine/FrogJumpState")
 
 [node name="Texture" parent="." index="3" unique_id=256664707]
-material = SubResource("ShaderMaterial_s1ix7")
 texture = ExtResource("3_ig1op")
 hframes = 5
 vframes = 4

@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://dwufmv1ry0ila"]
 
-[ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://scenes/enemies/minions/base_enemy.tscn" id="1_kvoyt"]
+[ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://scenes/enemies/base_enemy.tscn" id="1_kvoyt"]
 [ext_resource type="Script" uid="uid://bm5628vy2akm7" path="res://scenes/enemies/minions/frog/frog_enemy.gd" id="2_5kfhr"]
-[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_pk5b2"]
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="3_aitgp"]
 [ext_resource type="Texture2D" uid="uid://ckugknqf02q6r" path="res://scenes/enemies/minions/frog/texture.png" id="3_pk5b2"]
 [ext_resource type="Texture2D" uid="uid://b8ik3nx5mx73n" path="res://scenes/enemies/minions/frog/shadow.png" id="5_qhe0n"]
@@ -10,12 +9,6 @@
 [ext_resource type="Script" uid="uid://bsf86yn3284st" path="res://scripts/states/enemy/frog/frog_idle_state.gd" id="8_ud06j"]
 [ext_resource type="Script" uid="uid://bp7su3v43gecu" path="res://scripts/states/enemy/frog/frog_attack_state.gd" id="9_5dpq1"]
 [ext_resource type="Script" uid="uid://bjksbu3g2ml4q" path="res://scripts/states/enemy/frog/frog_jump_state.gd" id="9_vjju4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8cra"]
-resource_local_to_scene = true
-shader = ExtResource("2_pk5b2")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_value = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhe0n"]
 height = 24.0
@@ -117,7 +110,6 @@ scale = Vector2(1.3828125, 1.3828125)
 texture = ExtResource("5_qhe0n")
 
 [node name="Texture" parent="." index="2" unique_id=256664707]
-material = SubResource("ShaderMaterial_l8cra")
 texture = ExtResource("3_pk5b2")
 hframes = 4
 vframes = 3
