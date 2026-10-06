@@ -19,11 +19,11 @@ func _ready():
 func enter():
 	_idle_timer = _initial_idle_timer
 
-	if _enemy.animation:
-		if _enemy.animation.is_playing() and _enemy.animation.current_animation != "idle":
-			_enemy.animation.animation_finished.connect(func(_anim_name): _enemy.animation.play("idle"))
+	if _enemy.texture:
+		if _enemy.texture.is_playing() and _enemy.texture.animation != "idle":
+			_enemy.texture.animation_finished.connect(func(_anim_name): _enemy.texture.play("idle"))
 		else:
-			_enemy.animation.play("idle")
+			_enemy.texture.play("idle")
 
 func update_physics(delta: float):
 	_idle_timer -= delta

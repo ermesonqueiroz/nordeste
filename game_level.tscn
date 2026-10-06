@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://gx6wyt75v23d" path="res://characters/cearense/cearense_character.tscn" id="3_anq5l"]
 [ext_resource type="PackedScene" uid="uid://dwufmv1ry0ila" path="res://scenes/enemies/minions/frog/frog_enemy.tscn" id="5_f2ouj"]
 [ext_resource type="Texture2D" uid="uid://bepumsi5qo72" path="res://gui/hud_decoration.png" id="7_w051k"]
+[ext_resource type="PackedScene" uid="uid://bp6klenyydvyc" path="res://scenes/enemies/minions/tejo/tejo_enemy.tscn" id="8_1gss8"]
 [ext_resource type="Texture2D" uid="uid://dda1oa36sj2kf" path="res://gui/waterbar/progress_texture.png" id="8_2obac"]
 [ext_resource type="Texture2D" uid="uid://cv0w6ykclabor" path="res://gui/waterbar/under_texture.png" id="8_f88ab"]
 [ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
@@ -20,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ygmk0trld1sp" path="res://gui/healthbar/healthbar.tscn" id="14_w051k"]
 [ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
 [ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="19_sk2he"]
+[ext_resource type="PackedScene" uid="uid://dhl3eq8q2ursb" path="res://projectiles/bullet/bullet_projectile.tscn" id="25_1gss8"]
 [ext_resource type="Script" uid="uid://cybntdswjjg3r" path="res://survival_time.gd" id="29_sk2he"]
 [ext_resource type="PackedScene" uid="uid://7v52lt3xs4hw" path="res://pause_menu.tscn" id="30_ovhxr"]
 [ext_resource type="AudioStream" uid="uid://bmdlqm5k8ngyf" path="res://sfx/the_wall_loopable.wav" id="31_ovhxr"]
@@ -106,6 +108,13 @@ corner_detail = 1
 font = ExtResource("12_dv4fs")
 font_size = 32
 
+[sub_resource type="Environment" id="Environment_whhu8"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 0.3
+glow_hdr_threshold = 0.4
+
 [node name="GameLevel" type="Node2D" unique_id=1376921944 node_paths=PackedStringArray("_character")]
 y_sort_enabled = true
 script = ExtResource("1_qsd0w")
@@ -119,6 +128,7 @@ position = Vector2(-2, 0)
 
 [node name="CearenseCharacter" parent="." unique_id=1555303638 instance=ExtResource("3_anq5l")]
 physics_interpolation_mode = 0
+modulate = Color(1.224127, 1.224127, 1.224127, 1)
 position = Vector2(287, 335)
 collision_mask = 1
 
@@ -143,6 +153,10 @@ _enemy_pool = Array[Dictionary]([{
 "cost": 4,
 "min_level": 5,
 "scene": ExtResource("5_f2ouj")
+}, {
+"cost": 6,
+"min_level": 1,
+"scene": ExtResource("8_1gss8")
 }])
 _character = NodePath("../CearenseCharacter")
 metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
@@ -416,3 +430,9 @@ visible = false
 stream = ExtResource("31_ovhxr")
 volume_db = -15.742
 autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=341226410]
+environment = SubResource("Environment_whhu8")
+
+[node name="BulletProjectile" parent="." unique_id=1412444270 instance=ExtResource("25_1gss8")]
+position = Vector2(307, 300)

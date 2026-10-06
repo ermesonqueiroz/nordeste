@@ -11,7 +11,7 @@ var _attack_duration: float = 1.0
 func enter():
 	var anim_duration = _enemy.animation.get_animation("attack").length
 
-	_enemy.animation.play("attack")
+	_enemy.texture.play("attack")
 	await _enemy.animation.animation_finished
 
 	var player = get_tree().get_first_node_in_group("player")
@@ -19,7 +19,7 @@ func enter():
 	tongue.shoot(player_direction, _attack_duration)
 
 	await get_tree().create_timer(_attack_duration - anim_duration / 2).timeout
-	_enemy.animation.play_backwards("attack")
+	_enemy.texture.play_backwards("attack")
 
 	await _enemy.animation.animation_finished
 	switch_state.emit(idle_state)

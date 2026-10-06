@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://bp6klenyydvyc"]
+
+[ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://scenes/enemies/base_enemy.tscn" id="1_op1fw"]
+[ext_resource type="Script" uid="uid://cd24801q6vvyj" path="res://scenes/enemies/minions/tejo/tejo_enemy.gd" id="2_em32k"]
+[ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="2_fvbtu"]
+[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_q8fnn"]
+[ext_resource type="Texture2D" uid="uid://bpnpgrbw1seqy" path="res://sprites/enemies/minions/tejo/texture.png" id="3_q8fnn"]
+[ext_resource type="Script" uid="uid://sy301jr7j8s5" path="res://projectiles/chinela/sprite_trail.gd" id="4_pv3ak"]
+[ext_resource type="Script" uid="uid://dkhjcqdt45yv5" path="res://scripts/states/enemy/enemy_side_chase_state.gd" id="6_em32k"]
+[ext_resource type="Texture2D" uid="uid://cu04ihw4raqiq" path="res://sprites/enemies/minions/tejo/shadow.png" id="6_g456x"]
+[ext_resource type="Script" uid="uid://b53w4fqxirn4p" path="res://scripts/states/enemy/enemy_dash_attack_state.gd" id="7_i4nlx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pv3ak"]
+resource_local_to_scene = true
+shader = ExtResource("2_q8fnn")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpxq2"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(124, 128, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d3bv"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(248, 128, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ompke"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(372, 128, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qiio"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(0, 192, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g456x"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(0, 0, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8rqf"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(124, 0, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksokm"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(248, 0, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crrx6"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(372, 0, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjx28"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(0, 64, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjews"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(124, 64, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p2wb"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(248, 64, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eglpd"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(372, 64, 124, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwbor"]
+atlas = ExtResource("3_q8fnn")
+region = Rect2(0, 128, 124, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g456x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpxq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d3bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ompke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qiio")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g456x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8rqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksokm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crrx6")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjx28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjews")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p2wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eglpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwbor")
+}],
+"loop": 1,
+"name": &"movement",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g456x"]
+shader = ExtResource("2_q8fnn")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pv3ak"]
+radius = 12.0
+height = 42.0
+
+[node name="TejoEnemy" unique_id=1834857299 node_paths=PackedStringArray("attack_state") instance=ExtResource("1_op1fw")]
+script = ExtResource("2_em32k")
+attack_state = NodePath("StateMachine/EnemyDashAttackState")
+collectable_to_drop_on_die = ExtResource("2_fvbtu")
+
+[node name="Shadow" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="0" unique_id=1122432323]
+modulate = Color(1, 1, 1, 0.8)
+texture = ExtResource("6_g456x")
+
+[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
+material = SubResource("ShaderMaterial_pv3ak")
+sprite_frames = SubResource("SpriteFrames_g456x")
+animation = &"movement"
+autoplay = "idle"
+
+[node name="SpriteTrail" type="Node2D" parent="." index="1" unique_id=2136676164 node_paths=PackedStringArray("texture")]
+material = SubResource("ShaderMaterial_g456x")
+script = ExtResource("4_pv3ak")
+texture = NodePath("../SpriteGroup/Texture")
+
+[node name="Collision" parent="." index="3" unique_id=1981917045]
+position = Vector2(0, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pv3ak")
+
+[node name="Collision" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(479947753) index="0" unique_id=563498973]
+position = Vector2(0, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pv3ak")
+debug_color = Color(0.38902915, 0.6117018, 0, 0.41960785)
+
+[node name="Collision" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1181660510) index="0" unique_id=1038374902]
+position = Vector2(0, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pv3ak")
+debug_color = Color(0.98533183, 0, 0.3394318, 0.41960785)
+
+[node name="StateMachine" parent="." index="8" unique_id=2019483535 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("EnemySideChaseState")
+
+[node name="EnemyHitState" parent="StateMachine" index="1" unique_id=1886392550 node_paths=PackedStringArray("chase_state")]
+chase_state = NodePath("../EnemySideChaseState")
+
+[node name="EnemySideChaseState" type="Node" parent="StateMachine" index="2" unique_id=945466830 node_paths=PackedStringArray("attack_state")]
+script = ExtResource("6_em32k")
+attack_state = NodePath("../EnemyDashAttackState")
+attack_range_x = 80.0
+vertical_tolerance = 40.0
+metadata/_custom_type_script = "uid://dkhjcqdt45yv5"
+
+[node name="EnemyDashAttackState" type="Node" parent="StateMachine" index="3" unique_id=233771221 node_paths=PackedStringArray("chase_state")]
+script = ExtResource("7_i4nlx")
+chase_state = NodePath("../EnemySideChaseState")
+dash_duration = 0.8
+overshoot_distance = 160.0
+metadata/_custom_type_script = "uid://b53w4fqxirn4p"

@@ -39,7 +39,7 @@ physics_interpolation_mode = 1
 z_index = 1
 collision_mask = 4
 script = ExtResource("1_r08u6")
-_animation = NodePath("Animation")
+_animation = NodePath("")
 
 [node name="DustParticles" type="GPUParticles2D" parent="." unique_id=59756565]
 visible = false
@@ -50,15 +50,13 @@ process_material = SubResource("ParticleProcessMaterial_cag4a")
 
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=2022331021]
 
-[node name="Texture" type="Sprite2D" parent="SpriteGroup" unique_id=1474570970]
+[node name="Texture" type="AnimatedSprite2D" parent="SpriteGroup" unique_id=1234021748]
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1570772349]
 script = ExtResource("4_l7dgf")
 metadata/_custom_type_script = "uid://cxo64sjp7i3x4"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=209974859]
-
-[node name="Animation" type="AnimationPlayer" parent="." unique_id=314084126]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1821164045 groups=["camera"]]
 limit_left = 0

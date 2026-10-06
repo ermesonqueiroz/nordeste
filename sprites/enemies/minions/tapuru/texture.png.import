@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxv8y585h1m6t"
-path="res://.godot/imported/texture.png-c6e33b4ebf44b33b79cf95da1e2176a7.ctex"
+uid="uid://1hrcgya357mr"
+path="res://.godot/imported/texture.png-09b0552df4ade4f59659bc1de0a8f366.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemies/minions/mosquito/texture.png"
-dest_files=["res://.godot/imported/texture.png-c6e33b4ebf44b33b79cf95da1e2176a7.ctex"]
+source_file="res://sprites/enemies/minions/tapuru/texture.png"
+dest_files=["res://.godot/imported/texture.png-09b0552df4ade4f59659bc1de0a8f366.ctex"]
 
 [params]
 

@@ -9,7 +9,7 @@ class_name EnemyHitState
 
 func enter():
 	_enemy.hit_particles.restart()
-	_enemy.animation.stop()
+	_enemy.texture.stop()
 
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween.tween_method(

@@ -12,6 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://ilt83eidf20d" path="res://scenes/enemies/damage_particle_texture.png" id="10_fngk5"]
 [ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="11_ahw5l"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahw5l"]
+resource_local_to_scene = true
+shader = ExtResource("2_xens1")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
 [sub_resource type="Curve" id="Curve_h4c3k"]
 _data = [Vector2(0, 0.7032967), 0.0, 0.0, 0, 0, Vector2(0.39768338, 1), 0.0, 0.0, 0, 0, Vector2(0.60240966, 0), 0.0, 0.72167087, 0, 0]
 point_count = 3
@@ -35,12 +41,6 @@ scale_max = 0.7
 scale_curve = SubResource("CurveTexture_s1ix7")
 alpha_curve = SubResource("CurveTexture_hcly2")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahw5l"]
-resource_local_to_scene = true
-shader = ExtResource("2_xens1")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_value = 0.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_bfj6p"]
 font = ExtResource("4_35jd6")
 outline_color = Color(0, 0, 0, 1)
@@ -52,6 +52,11 @@ collision_mask = 2
 script = ExtResource("1_j7qyq")
 die_state = NodePath("StateMachine/EnemyDieState")
 hit_state = NodePath("StateMachine/EnemyHitState")
+
+[node name="SpriteGroup" type="Node2D" parent="." unique_id=1407936606]
+
+[node name="Texture" type="AnimatedSprite2D" parent="SpriteGroup" unique_id=1371528666]
+material = SubResource("ShaderMaterial_ahw5l")
 
 [node name="HitParticles" type="GPUParticles2D" parent="." unique_id=1548375953]
 emitting = false
@@ -65,12 +70,7 @@ trail_sections = 2
 trail_section_subdivisions = 2
 process_material = SubResource("ParticleProcessMaterial_epbio")
 
-[node name="Texture" type="Sprite2D" parent="." unique_id=256664707]
-material = SubResource("ShaderMaterial_ahw5l")
-
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1981917045]
-
-[node name="Animation" type="AnimationPlayer" parent="." unique_id=890871356]
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=479947753]
 collision_layer = 2

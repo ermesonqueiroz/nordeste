@@ -11,7 +11,6 @@ signal level_updated
 @export var _deceleration: float = 1200.0
 
 @export_category("Objects")
-@export var _animation: AnimationPlayer
 @export var _animations: Dictionary = {
 	"idle": "idle",
 	"idle_right": "idle_right",
@@ -25,7 +24,7 @@ signal level_updated
 }
 
 @onready var _camera: BaseCharacterCamera = $Camera
-@onready var _texture: Sprite2D = $SpriteGroup/Texture
+@onready var texture: AnimatedSprite2D = $SpriteGroup/Texture
 @onready var _audio: AudioStreamPlayer = $Audio
 @onready var _hurtbox: HurtBox = $HurtBox
 @onready var _dust_particles: GPUParticles2D = $DustParticles
@@ -49,7 +48,7 @@ var water_amount_to_next_level = 10
 var upgrades_applied: Dictionary = {}
 
 func _ready() -> void:
-	_texture.material.set_shader_parameter("flash_value", 0.0)
+	texture.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
 	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
 
@@ -111,8 +110,8 @@ func _animate() -> void:
 		else:
 			shooting_animation = _animations["run_top"] if shooting_direction.y < 0 else _animations["run_bottom"]
 
-		if _animation.has_animation(shooting_animation):
-			_animation.play(shooting_animation)
+		if texture.sprite_frames.has_animation(shooting_animation):
+			texture.play(shooting_animation)
 		return
 
 	if velocity.length() > 5.0:
@@ -121,34 +120,34 @@ func _animate() -> void:
 
 		if abs(velocity.x) >= abs(velocity.y):
 			if velocity.x < 0:
-				if _animation.has_animation(_animations["run_left"]):
-					_animation.play(_animations["run_left"])
+				if texture.sprite_frames.has_animation(_animations["run_left"]):
+					texture.play(_animations["run_left"])
 				if _dust_particles:
 					_dust_particles.scale.x = -1
 					_dust_particles.position.x = -8
 			else:
-				if _animation.has_animation(_animations["run_right"]):
-					_animation.play(_animations["run_right"])
+				if texture.sprite_frames.has_animation(_animations["run_right"]):
+					texture.play(_animations["run_right"])
 				if _dust_particles:
 					_dust_particles.scale.x = 1
 					_dust_particles.position.x = 8
 		else:
 			if velocity.y < 0:
-				if _animation.has_animation(_animations["run_top"]):
-					_animation.play(_animations["run_top"])
+				if texture.sprite_frames.has_animation(_animations["run_top"]):
+					texture.play(_animations["run_top"])
 			else:
-				if _animation.has_animation(_animations["run_bottom"]):
-					_animation.play(_animations["run_bottom"])
+				if texture.sprite_frames.has_animation(_animations["run_bottom"]):
+					texture.play(_animations["run_bottom"])
 		return
 
 	_dust_particles.emitting = false
 
 	if last_direction.x < 0:
-		if _animation.has_animation(_animations["idle_left"]):
-			_animation.play(_animations["idle_left"])
+		if texture.sprite_frames.has_animation(_animations["idle_left"]):
+			texture.play(_animations["idle_left"])
 	else:
-		if _animation.has_animation(_animations["idle_right"]):
-			_animation.play(_animations["idle_right"])
+		if texture.sprite_frames.has_animation(_animations["idle_right"]):
+			texture.play(_animations["idle_right"])
 
 func _on_water_collected() -> void:
 	while current_water_amount >= water_amount_to_next_level:
@@ -196,15 +195,15 @@ func apply_invulnerability(duration: float):
 
 	is_invulnerable = true
 
-	if _texture.material is ShaderMaterial:
+	if texture.material is ShaderMaterial:
 		var flash_cycles = max(1, int(duration / 0.5))
 		var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT)
 		tween.set_loops(flash_cycles)
-		tween.tween_property(_texture, "modulate:a", 0.6, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).set_delay(0.2)
-		tween.chain().tween_property(_texture, "modulate:a", 1, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(texture, "modulate:a", 0.6, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).set_delay(0.2)
+		tween.chain().tween_property(texture, "modulate:a", 1, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	await get_tree().create_timer(duration).timeout
-	_texture.modulate.a = 1
+	texture.modulate.a = 1
 	is_invulnerable = false
 
 func add_water(amount: int):
@@ -234,11 +233,11 @@ func _on_hitbox_entered(hitbox: HitBox):
 
 	_take_damage(hitbox.damage)
 
-	_texture.material.set_shader_parameter("flash_value", 1)
+	texture.material.set_shader_parameter("flash_value", 1)
 	Engine.time_scale = 0.2
 	await get_tree().create_timer(0.1, true, false, true).timeout
 	Engine.time_scale = 1.0
-	_texture.material.set_shader_parameter("flash_value", 0)
+	texture.material.set_shader_parameter("flash_value", 0)
 
 	if is_instance_valid(hitbox) and hitbox.get_parent():
 		var attacker_position = hitbox.get_parent().global_position

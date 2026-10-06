@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr8fuf1fwr6fs"
-path="res://.godot/imported/tapuru.png-d264b5651a22c6bf0234d4cd88e2d86d.ctex"
+uid="uid://bmemjtk7p3g04"
+path="res://.godot/imported/texture.png-0832adcf676625f9c59384ab84f5e97a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemies/minions/tapuru/tapuru.png"
-dest_files=["res://.godot/imported/tapuru.png-d264b5651a22c6bf0234d4cd88e2d86d.ctex"]
+source_file="res://sprites/characters/main/texture.png"
+dest_files=["res://.godot/imported/texture.png-0832adcf676625f9c59384ab84f5e97a.ctex"]
 
 [params]
 

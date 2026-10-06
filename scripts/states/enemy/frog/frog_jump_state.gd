@@ -18,7 +18,7 @@ var _jump_timer: float = 0.0
 
 func enter():
 	_jump_timer = _initial_jump_timer
-	_enemy.animation.play("movement")
+	_enemy.texture.play("movement")
 
 func update_physics(delta: float):
 	_jump_timer -= delta

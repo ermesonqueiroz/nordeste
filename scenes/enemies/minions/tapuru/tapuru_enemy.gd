@@ -3,4 +3,4 @@ class_name TapuruEnemy
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	texture.flip_h = velocity.x < 0
+	sprite_group.scale.x = -1 if velocity.x < 0 else 1

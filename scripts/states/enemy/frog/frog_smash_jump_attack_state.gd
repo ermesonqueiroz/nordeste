@@ -26,7 +26,7 @@ func enter():
 	_current_timer = wind_up_duration
 	_is_jumping = false
 
-	_enemy.animation.play("wind_up")
+	_enemy.texture.play("wind_up")
 
 	_start_position = _enemy.global_position
 	var character = get_tree().get_first_node_in_group("player")
@@ -47,7 +47,7 @@ func update_physics(delta: float):
 			else:
 				_target_position = _start_position
 
-			_enemy.animation.play("smash_jump_attack")
+			_enemy.texture.play("smash_jump_attack")
 
 		return
 

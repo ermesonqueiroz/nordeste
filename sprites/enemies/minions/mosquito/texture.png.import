@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckugknqf02q6r"
-path="res://.godot/imported/texture.png-32a21662e386a63611f2d3c7383c70d4.ctex"
+uid="uid://bxv8y585h1m6t"
+path="res://.godot/imported/texture.png-2f0b7c5128c19ebd8a98a188dbb19ab1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemies/minions/frog/texture.png"
-dest_files=["res://.godot/imported/texture.png-32a21662e386a63611f2d3c7383c70d4.ctex"]
+source_file="res://sprites/enemies/minions/mosquito/texture.png"
+dest_files=["res://.godot/imported/texture.png-2f0b7c5128c19ebd8a98a188dbb19ab1.ctex"]
 
 [params]
 
