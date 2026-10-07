@@ -4,10 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="2_7gtrk"]
 [ext_resource type="Script" uid="uid://b33caura4hltj" path="res://scenes/enemies/minions/tapuru/tapuru_enemy.gd" id="2_x1ars"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="4_5yw55"]
+[ext_resource type="Texture2D" uid="uid://lcxlmacnywjm" path="res://sprites/enemies/minions/tapuru/shadow.png" id="4_gsf37"]
 [ext_resource type="Texture2D" uid="uid://1hrcgya357mr" path="res://sprites/enemies/minions/tapuru/texture.png" id="5_a51ae"]
 [ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="6_1vnvv"]
+[ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="8_tpt1t"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a51ae"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swdxc"]
 resource_local_to_scene = true
 shader = ExtResource("4_5yw55")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -50,30 +52,41 @@ height = 22.0
 radius = 5.0
 height = 26.0
 
-[node name="TapuruEnemy" unique_id=1834857299 instance=ExtResource("1_gm6ui")]
+[node name="TapuruEnemy" unique_id=1834857299 node_paths=PackedStringArray("hit_state") instance=ExtResource("1_gm6ui")]
 script = ExtResource("2_x1ars")
+hit_state = NodePath("StateMachine/EnemyHitState")
 collectable_to_drop_on_die = ExtResource("2_7gtrk")
 move_speed = 25.0
 max_health = 14.0
 
-[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="0" unique_id=1371528666]
-material = SubResource("ShaderMaterial_a51ae")
+[node name="Shadow" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="0" unique_id=2060603050]
+modulate = Color(1, 1, 1, 0.6)
+texture = ExtResource("4_gsf37")
+
+[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
+material = SubResource("ShaderMaterial_swdxc")
 sprite_frames = SubResource("SpriteFrames_g456x")
 animation = &"movement"
 autoplay = "movement"
-frame = 1
-frame_progress = 0.8441117
+frame_progress = 0.518206
 
 [node name="Collision" parent="." index="2" unique_id=1981917045]
+visible = false
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_dv1qm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(479947753) index="0" unique_id=110507186]
+[node name="HurtBox" parent="." index="3" unique_id=479947753]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0" unique_id=110507186]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vb32k")
 debug_color = Color(0, 1, 0, 0.42000002)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1181660510) index="0" unique_id=1715428537]
+[node name="HitBox" parent="." index="4" unique_id=1181660510]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=1715428537]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vb32k")
 debug_color = Color(1, 0, 0, 0.42000002)
@@ -85,5 +98,8 @@ initial_state = NodePath("EnemyChaseState")
 script = ExtResource("6_1vnvv")
 metadata/_custom_type_script = "uid://jdo4kxeg1qw8"
 
-[node name="EnemyHitState" parent="StateMachine" index="2" unique_id=1886392550 node_paths=PackedStringArray("chase_state")]
+[node name="EnemyHitState" type="Node" parent="StateMachine" index="2" unique_id=223024425 node_paths=PackedStringArray("chase_state", "die_state")]
+script = ExtResource("8_tpt1t")
 chase_state = NodePath("../EnemyChaseState")
+die_state = NodePath("../EnemyDieState")
+metadata/_custom_type_script = "uid://35tpc4bft43y"

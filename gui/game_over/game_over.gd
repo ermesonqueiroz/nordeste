@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func show_screen() -> void:
 	visible = true
-	SoundManager.play(_game_over_sfx, 0, Node.ProcessMode.PROCESS_MODE_ALWAYS)
+	SoundManager.play(_game_over_sfx, 0, null, Node.ProcessMode.PROCESS_MODE_ALWAYS)
 	GameManager.is_game_active = false
 
 	var total_seconds = int(GameManager.survival_time)

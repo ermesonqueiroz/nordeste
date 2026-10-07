@@ -45,7 +45,7 @@ func update_physics(delta: float):
 	shadow.scale = initial_shadow_scale * shadow_scale_factor
 
 func exit():
-	SoundManager.play(ground_impact_sfx, -8)
+	SoundManager.play(ground_impact_sfx, -8, _enemy.global_position)
 	var camera = get_tree().get_first_node_in_group("camera")
 	if camera and screen_shake_intensity > 0:
 		camera.screen_shake(screen_shake_intensity, 0.3)

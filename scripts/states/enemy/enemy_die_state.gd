@@ -6,9 +6,9 @@ class_name EnemyDieState
 func enter():
 	_enemy.set_physics_process(false)
 	if _enemy.hitbox:
-		_enemy.hitbox.monitorable = false
+		_enemy.hitbox.set_deferred("monitorable", false)
 
-	var sprite = _enemy.get_node_or_null("Sprite2D") if _enemy.has_node("Sprite2D") else _enemy.texture
+	var sprite = _enemy.texture
 
 	if sprite:
 		var tween = get_tree().create_tween().set_parallel(true)
@@ -20,7 +20,7 @@ func enter():
 		await tween.finished
 
 		var shrink_tween = get_tree().create_tween()
-		shrink_tween.tween_property(sprite, "scale", Vector2.ZERO, 0.1)
+		shrink_tween.tween_property(sprite, "scale", Vector2.ZERO, 0.2)
 		await shrink_tween.finished
 
 	if GameManager:

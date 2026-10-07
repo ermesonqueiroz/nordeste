@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://8ymptcs7v4pt"]
 
 [ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://scenes/enemies/base_enemy.tscn" id="1_pqv3g"]
+[ext_resource type="Script" uid="uid://bpv8vg82rcspr" path="res://scenes/enemies/minions/mosquito/mosquito.gd" id="2_diepv"]
 [ext_resource type="Texture2D" uid="uid://bxv8y585h1m6t" path="res://sprites/enemies/minions/mosquito/texture.png" id="2_xu6hp"]
+[ext_resource type="Texture2D" uid="uid://vfolojlmfiev" path="res://sprites/enemies/minions/mosquito/shadow.png" id="3_2ldwe"]
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="3_dxpoy"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_slj8c"]
 [ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="4_iurcn"]
+[ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="8_jqotc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5o8s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jqotc"]
 resource_local_to_scene = true
 shader = ExtResource("3_slj8c")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -55,13 +58,20 @@ size = Vector2(11, 20)
 radius = 8.0
 height = 24.0
 
-[node name="Mosquito" unique_id=1834857299 instance=ExtResource("1_pqv3g")]
+[node name="Mosquito" unique_id=1834857299 node_paths=PackedStringArray("chase_state", "hit_state") instance=ExtResource("1_pqv3g")]
+script = ExtResource("2_diepv")
+chase_state = NodePath("StateMachine/EnemyChaseState")
+hit_state = NodePath("StateMachine/EnemyHitState")
 collectable_to_drop_on_die = ExtResource("3_dxpoy")
 move_speed = 30.0
 max_health = 28.0
 
-[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="0" unique_id=1371528666]
-material = SubResource("ShaderMaterial_q5o8s")
+[node name="Shadow" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="0" unique_id=1159510765]
+modulate = Color(1, 1, 1, 0.6)
+texture = ExtResource("3_2ldwe")
+
+[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
+material = SubResource("ShaderMaterial_jqotc")
 sprite_frames = SubResource("SpriteFrames_a51ae")
 animation = &"movement"
 autoplay = "movement"
@@ -88,5 +98,8 @@ initial_state = NodePath("EnemyChaseState")
 script = ExtResource("4_iurcn")
 metadata/_custom_type_script = "uid://jdo4kxeg1qw8"
 
-[node name="EnemyHitState" parent="StateMachine" index="2" unique_id=1886392550 node_paths=PackedStringArray("chase_state")]
+[node name="EnemyHitState" type="Node" parent="StateMachine" index="2" unique_id=176201292 node_paths=PackedStringArray("chase_state", "die_state")]
+script = ExtResource("8_jqotc")
 chase_state = NodePath("../EnemyChaseState")
+die_state = NodePath("../EnemyDieState")
+metadata/_custom_type_script = "uid://35tpc4bft43y"

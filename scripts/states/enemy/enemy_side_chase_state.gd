@@ -1,7 +1,7 @@
 extends State
 class_name EnemySideChaseState
 
-@export var attack_state: State
+@export var windup_state: State
 @export var attack_range_x: float = 40.0
 @export var vertical_tolerance: float = 15.0
 
@@ -16,8 +16,8 @@ func update_physics(delta: float):
 	if not character:
 		return
 
-	if _is_beside_player(character) and attack_state:
-		switch_state.emit(attack_state)
+	if _is_beside_player(character) and windup_state:
+		switch_state.emit(windup_state)
 		return
 
 	_update_target_direction_timer -= delta

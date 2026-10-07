@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w8j3vueo8bua"
-path="res://.godot/imported/shadow.png-32287d4629720a475d458bd4349e7a30.ctex"
+uid="uid://cnemvx4vl65ak"
+path="res://.godot/imported/Icon-iOS-TintedLight-1024x1024@1x.png-b333f555e81b5f7fb9fa07fbbe00eb12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemies/bosses/frog/shadow.png"
-dest_files=["res://.godot/imported/shadow.png-32287d4629720a475d458bd4349e7a30.ctex"]
+source_file="res://icons/apple/Icon Exports/Icon-iOS-TintedLight-1024x1024@1x.png"
+dest_files=["res://.godot/imported/Icon-iOS-TintedLight-1024x1024@1x.png-b333f555e81b5f7fb9fa07fbbe00eb12.ctex"]
 
 [params]
 

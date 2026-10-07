@@ -2,8 +2,8 @@ extends Control
 class_name Settings
 
 @export var _window_mode_option: HorizontalSpin
-@export var _apply_button: Button
-@export var _back_button: Button
+@export var _apply_button: AnimatedButton
+@export var _back_button: AnimatedButton
 @export var _master_volume_slider: HSlider
 
 var selected_window_mode: DisplayServer.WindowMode = DisplayServer.WINDOW_MODE_WINDOWED

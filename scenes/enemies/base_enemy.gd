@@ -55,6 +55,9 @@ func _take_damage(damage: float) -> void:
 	$DamageLabelSpawner.spawn_label(damage)
 	$DieAudio.play()
 
+	if health <= 0:
+		$StateMachine.switch_state(die_state)
+
 	if hit_state:
 		$StateMachine.switch_state(hit_state)
 
@@ -66,31 +69,39 @@ func _drop_collectable():
 		new_collectable.global_position = global_position
 		get_tree().current_scene.add_child(new_collectable)
 
-func _apply_knockback(direction: Vector2, intensity: float, knockback_duration: float):
+func _apply_knockback(intensity: float, knockback_duration: float):
 	knockback = -last_direction * intensity
 	knockback_timer = knockback_duration
 
-func _on_hitbox_entered(hitbox: HitBox) -> void:
+func _on_hitbox_entered(external_hitbox: HitBox) -> void:
 	if health <= 0:
 		return
 
-	var hitbox_id = hitbox.get_instance_id()
+	var hitbox_id = external_hitbox.get_instance_id()
 	if _hit_history.has(hitbox_id):
 		return
 
 	_hit_history[hitbox_id] = true
-	hit_particles.rotation = hitbox.knockback_direction.angle()
-	_take_damage(hitbox.damage)
+	hit_particles.rotation = external_hitbox.knockback_direction.angle()
 
-	var attacker_position = hitbox.get_parent().global_position
-	var knockback_dir: Vector2
+	_take_damage(external_hitbox.damage)
+	_apply_knockback(200, 0.15)
+	play_hit_visuals()
 
-	if hitbox.pulls_target:
-		knockback_dir = (attacker_position - global_position).normalized()
-		_apply_knockback(knockback_dir, 300, 0.1)
-	else:
-		knockback_dir = (global_position - attacker_position).normalized()
-		_apply_knockback(knockback_dir, 200, 0.15)
+	if external_hitbox is BaseProjectile:
+		external_hitbox.queue_free()
 
-	if hitbox is BaseProjectile:
-		hitbox.queue_free()
+func play_hit_visuals():
+	if hit_particles:
+		hit_particles.restart()
+
+	if texture and texture.material:
+		var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+		tween.tween_method(
+			func(val): texture.material.set_shader_parameter("flash_value", val),
+			0, 1, 0.15
+		)
+		tween.chain().tween_method(
+			func(val): texture.material.set_shader_parameter("flash_value", val),
+			1, 0, 0.15
+		)

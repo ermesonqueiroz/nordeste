@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dh7twxysp1a2w"]
 
-[ext_resource type="Script" uid="uid://bsex8wd87dso5" path="res://gui/components/animated_button/animated_button.gd" id="1_1iq4v"]
+[ext_resource type="Script" uid="uid://doex08ol4863a" path="res://gui/components/animated_button/animated_button.gd" id="1_1iq4v"]
 [ext_resource type="FontFile" uid="uid://d4drq4ll6m0ly" path="res://fonts/xilosa.ttf" id="1_k43ay"]
 
 [node name="AnimatedButton" type="HBoxContainer" unique_id=443587078]

@@ -16,7 +16,7 @@ func _ready() -> void:
 	visible = false
 
 func show_screen() -> void:
-	SoundManager.play(_level_up_sfx, 0, ProcessMode.PROCESS_MODE_ALWAYS)
+	SoundManager.play(_level_up_sfx, 0, null, ProcessMode.PROCESS_MODE_ALWAYS)
 	show()
 	_setup_buttons()
 

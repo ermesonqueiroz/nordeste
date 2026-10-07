@@ -8,6 +8,7 @@ class_name FrogBoss
 func _ready():
 	super._ready()
 	$StateMachine.state_exited.connect(_on_state_exited)
+	$StateMachine.state_entered.connect(_on_state_entered)
 
 func _on_state_exited(state: State):
 	if state != jump_state:
@@ -18,3 +19,9 @@ func _on_state_exited(state: State):
 	new_ground_crack.global_position = global_position + Vector2(-5, 5)
 
 	get_tree().current_scene.add_child(new_ground_crack)
+
+func _on_state_entered(state: State):
+	if state != die_state:
+		return
+
+	$FrogTongue.is_returning = true

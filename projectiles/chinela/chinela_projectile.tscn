@@ -21,6 +21,5 @@ rotation = 0.75398225
 shape = SubResource("CapsuleShape2D_gvwno")
 debug_color = Color(1, 0, 0, 0.42000002)
 
-[node name="SpriteTrail" type="Node2D" parent="." index="3" unique_id=1688976709 node_paths=PackedStringArray("texture")]
+[node name="SpriteTrail" type="Node2D" parent="." index="3" unique_id=1688976709]
 script = ExtResource("5_ftsal")
-texture = NodePath("../SpriteGroup/Texture")

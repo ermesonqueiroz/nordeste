@@ -21,14 +21,14 @@
 [ext_resource type="PackedScene" uid="uid://ygmk0trld1sp" path="res://gui/healthbar/healthbar.tscn" id="14_w051k"]
 [ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
 [ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="19_sk2he"]
-[ext_resource type="PackedScene" uid="uid://dhl3eq8q2ursb" path="res://projectiles/bullet/bullet_projectile.tscn" id="25_1gss8"]
+[ext_resource type="FontFile" uid="uid://d4drq4ll6m0ly" path="res://fonts/xilosa.ttf" id="22_1gss8"]
 [ext_resource type="Script" uid="uid://cybntdswjjg3r" path="res://survival_time.gd" id="29_sk2he"]
 [ext_resource type="PackedScene" uid="uid://7v52lt3xs4hw" path="res://pause_menu.tscn" id="30_ovhxr"]
 [ext_resource type="AudioStream" uid="uid://bmdlqm5k8ngyf" path="res://sfx/the_wall_loopable.wav" id="31_ovhxr"]
 
 [sub_resource type="Gradient" id="Gradient_2obac"]
-offsets = PackedFloat32Array(0.37078652, 0.40449437, 0.58801496, 0.6741573, 0.9962547)
-colors = PackedColorArray(0.585062, 0.585062, 0.5850621, 1, 0.23031479, 0.23031497, 0.23031488, 1, 0.23137255, 0.23137255, 0.23137255, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.16479401, 0.3857678, 0.40449437, 0.58801496, 0.6741573, 0.9962547)
+colors = PackedColorArray(1, 1, 1, 1, 0.8, 0.8, 0.8, 1, 0.798921, 0.798921, 0.798921, 1, 0.23031479, 0.23031497, 0.23031488, 1, 0.23137255, 0.23137255, 0.23137255, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2obac"]
 gradient = SubResource("Gradient_2obac")
@@ -73,7 +73,8 @@ color = Color(0.9764706, 0.8039216, 0.5568628, 1)
 color_ramp = SubResource("GradientTexture1D_5d4hl")
 
 [sub_resource type="LabelSettings" id="LabelSettings_anq5l"]
-font = ExtResource("12_dv4fs")
+font = ExtResource("22_1gss8")
+font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_ibsu8"]
 font = ExtResource("19_sk2he")
@@ -100,13 +101,9 @@ corner_detail = 1
 bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
 corner_detail = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vb32k"]
-bg_color = Color(0, 0, 0, 0.6)
-corner_detail = 1
-
 [sub_resource type="LabelSettings" id="LabelSettings_g55cv"]
-font = ExtResource("12_dv4fs")
-font_size = 32
+font = ExtResource("22_1gss8")
+font_size = 24
 
 [sub_resource type="Environment" id="Environment_whhu8"]
 background_mode = 3
@@ -121,7 +118,7 @@ script = ExtResource("1_qsd0w")
 _character = NodePath("CearenseCharacter")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=600797741]
-color = Color(0.27387273, 0.27387273, 0.27387273, 1)
+color = Color(0.46120125, 0.5825698, 0.85609174, 1)
 
 [node name="Terrain" parent="CanvasModulate" unique_id=1863512682 instance=ExtResource("1_df5pp")]
 position = Vector2(-2, 0)
@@ -135,11 +132,11 @@ collision_mask = 1
 [node name="PointLight2D" type="PointLight2D" parent="CearenseCharacter" unique_id=1200111052]
 position = Vector2(1, 1)
 scale = Vector2(1.03125, 1.03125)
+energy = 0.6
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_2obac")
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_character")]
-visible = false
 script = ExtResource("8_v7qp1")
 _enemy_pool = Array[Dictionary]([{
 "cost": 2,
@@ -164,6 +161,7 @@ metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
 [node name="BossSpawner" type="Node2D" parent="." unique_id=555905329 node_paths=PackedStringArray("_character")]
 script = ExtResource("9_sk2he")
 _character = NodePath("../CearenseCharacter")
+enabled = false
 metadata/_custom_type_script = "uid://c63k1x1spcdp0"
 
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]
@@ -224,6 +222,7 @@ theme_override_constants/margin_top = 18
 
 [node name="WaterBar" type="TextureProgressBar" parent="GUI/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1355095233 node_paths=PackedStringArray("character")]
 layout_mode = 2
+size_flags_vertical = 0
 value = 100.0
 stretch_margin_left = 4
 stretch_margin_right = 4
@@ -236,14 +235,17 @@ character = NodePath("../../../../../../CearenseCharacter")
 
 [node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/WaterBar" unique_id=327242225]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -18.5
-offset_top = -1.0
-offset_right = 19.5
-offset_bottom = 12.0
+offset_top = -5.5
+offset_right = 21.5
+offset_bottom = 9.5
 grow_horizontal = 2
+grow_vertical = 2
 text = "Level 0"
 label_settings = SubResource("LabelSettings_anq5l")
 horizontal_alignment = 1
@@ -397,25 +399,16 @@ theme_override_constants/separation = 24
 process_mode = 3
 _character = NodePath("../../CearenseCharacter")
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI" unique_id=1918909216]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -48.0
+[node name="MarginContainer2" type="MarginContainer" parent="GUI" unique_id=1411090492]
+offset_left = 862.0
 offset_top = 8.0
-offset_right = -8.0
+offset_right = 952.0
 offset_bottom = 48.0
-grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vb32k")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/PanelContainer" unique_id=1411090492]
-layout_mode = 2
 theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = -2
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 0
 
-[node name="SurvivalTime" type="Label" parent="GUI/PanelContainer/MarginContainer" unique_id=191347993]
+[node name="SurvivalTime" type="Label" parent="GUI/MarginContainer2" unique_id=191347993]
 layout_mode = 2
 text = "00:00"
 label_settings = SubResource("LabelSettings_g55cv")
@@ -433,6 +426,3 @@ autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=341226410]
 environment = SubResource("Environment_whhu8")
-
-[node name="BulletProjectile" parent="." unique_id=1412444270 instance=ExtResource("25_1gss8")]
-position = Vector2(307, 300)

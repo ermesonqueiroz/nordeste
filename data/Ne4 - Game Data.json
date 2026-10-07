@@ -2,7 +2,7 @@
   "Weapons": {
     "0": {
       "WEAPON_NAME": "Mata-grilo",
-      "DAMAGE": 8,
+      "DAMAGE": 1000,
       "MAX_AMMO": 10,
       "RELOAD_TIME": 0.6,
       "ATTACK_INTERVAL": 0.3,

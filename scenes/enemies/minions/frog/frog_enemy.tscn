@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bp7su3v43gecu" path="res://scripts/states/enemy/frog/frog_attack_state.gd" id="9_5dpq1"]
 [ext_resource type="Script" uid="uid://bjksbu3g2ml4q" path="res://scripts/states/enemy/frog/frog_jump_state.gd" id="9_vjju4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_35ygy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8cra"]
 resource_local_to_scene = true
 shader = ExtResource("4_1vyjk")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -107,7 +107,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iw0po")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"movement",
 "speed": 10.0
 }]
@@ -137,7 +137,7 @@ scale = Vector2(1.3828125, 1.3828125)
 texture = ExtResource("5_qhe0n")
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
-material = SubResource("ShaderMaterial_35ygy")
+material = SubResource("ShaderMaterial_l8cra")
 sprite_frames = SubResource("SpriteFrames_q5o8s")
 animation = &"attack"
 autoplay = "idle"
@@ -187,4 +187,4 @@ tongue = NodePath("../../FrogTongue")
 metadata/_custom_type_script = "uid://bp7su3v43gecu"
 
 [node name="EnemyHitState" parent="StateMachine" index="4" unique_id=1886392550 node_paths=PackedStringArray("chase_state")]
-chase_state = NodePath("../FrogJumpState")
+chase_state = NodePath("../FrogIdleState")
