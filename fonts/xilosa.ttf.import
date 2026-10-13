@@ -3,11 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://d4drq4ll6m0ly"
-valid=false
+path="res://.godot/imported/xilosa.ttf-b687e3044cc238df01e513f1b624d18a.fontdata"
 
 [deps]
 
 source_file="res://fonts/xilosa.ttf"
+dest_files=["res://.godot/imported/xilosa.ttf-b687e3044cc238df01e513f1b624d18a.fontdata"]
 
 [params]
 

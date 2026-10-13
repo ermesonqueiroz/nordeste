@@ -3,11 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bxxrcnu4jyuq3"
-valid=false
+path="res://.godot/imported/reload.mp3-6d83a95237510b74c8f5cb1f36fcd97d.mp3str"
 
 [deps]
 
 source_file="res://sfx/reload.mp3"
+dest_files=["res://.godot/imported/reload.mp3-6d83a95237510b74c8f5cb1f36fcd97d.mp3str"]
 
 [params]
 

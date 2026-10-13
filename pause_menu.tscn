@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7v52lt3xs4hw"]
 
 [ext_resource type="Script" uid="uid://boxeaybcbq6aj" path="res://pause_menu.gd" id="1_05uyy"]
-[ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="2_p81d2"]
+[ext_resource type="FontFile" path="res://fonts/m6x11.ttf" id="2_p81d2"]
 [ext_resource type="FontFile" uid="uid://dte78ddqidmhj" path="res://fonts/m5x7.ttf" id="3_2nc7s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgy74"]

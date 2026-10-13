@@ -24,13 +24,14 @@ signal level_updated
 }
 
 @onready var _camera: BaseCharacterCamera = $Camera
-@onready var texture: AnimatedSprite2D = $SpriteGroup/Texture
+@onready var texture: Sprite2D = $SpriteGroup/Texture
+@onready var animation: AnimationPlayer = $Animation
 @onready var _audio: AudioStreamPlayer = $Audio
 @onready var _hurtbox: HurtBox = $HurtBox
 @onready var _dust_particles: GPUParticles2D = $DustParticles
 
 var weapon: BaseWeapon
-var projectile: PackedScene = load("res://projectiles/bullet/bullet_projectile.tscn")
+var projectile: PackedScene = load("res://scenes/projectiles/bullet/bullet_projectile.tscn")
 
 var last_direction: Vector2 = Vector2.RIGHT
 
@@ -51,7 +52,6 @@ func _ready() -> void:
 	texture.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
 	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
-
 	_setup_selected_weapon()
 
 func _setup_selected_weapon() -> void:
@@ -65,7 +65,7 @@ func _setup_selected_weapon() -> void:
 			weapon = weapon_data.weapon_scene.instantiate() as BaseWeapon
 			weapon._character = self
 			weapon.setup(weapon_data)
-			$SpriteGroup.add_child(weapon)
+			get_node_or_null("SpriteGroup/WeaponGroup").add_child(weapon)
 			$ReloadBar.setup(self)
 
 			weapon.weapon_fired.connect(_on_weapon_fired)
@@ -92,7 +92,11 @@ func _move(delta: float) -> void:
 	if _direction != Vector2.ZERO:
 		last_direction = _direction
 
-	var speed = _move_speed / 2 if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) else _move_speed
+	var mouse_position = get_global_mouse_position()
+	var mouse_direction = (mouse_position - global_position).normalized()
+
+	var should_slow = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or (mouse_direction.x * _direction.normalized().x) < 0
+	var speed = _move_speed * 0.7 if should_slow else _move_speed
 
 	var target_velocity = _direction * speed
 	var rate = _acceleration if _direction != Vector2.ZERO else _deceleration
@@ -100,54 +104,28 @@ func _move(delta: float) -> void:
 	move_and_slide()
 
 func _animate() -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		_dust_particles.emitting = false
-		var shooting_direction = (get_global_mouse_position() - global_position).normalized()
+	animation.speed_scale = 1.0
+	var mouse_position = get_global_mouse_position()
+	var mouse_direction = (mouse_position - global_position).normalized()
+
+	if velocity != Vector2.ZERO:
 		var shooting_animation: String
 
-		if abs(shooting_direction.x) > abs(shooting_direction.y):
-			shooting_animation = _animations["run_left"] if shooting_direction.x < 0 else _animations["run_right"]
-		else:
-			shooting_animation = _animations["run_top"] if shooting_direction.y < 0 else _animations["run_bottom"]
+		shooting_animation = _animations["run_left"] if mouse_direction.x < 0 else _animations["run_right"]
 
-		if texture.sprite_frames.has_animation(shooting_animation):
-			texture.play(shooting_animation)
+		if animation.has_animation(shooting_animation):
+			if (mouse_direction.x * velocity.normalized().x) < 0:
+				animation.speed_scale = -1.0
+
+			animation.play(shooting_animation)
 		return
 
-	if velocity.length() > 5.0:
-		_dust_particles.emitting = true
-		_dust_particles.position.x = 0
-
-		if abs(velocity.x) >= abs(velocity.y):
-			if velocity.x < 0:
-				if texture.sprite_frames.has_animation(_animations["run_left"]):
-					texture.play(_animations["run_left"])
-				if _dust_particles:
-					_dust_particles.scale.x = -1
-					_dust_particles.position.x = -8
-			else:
-				if texture.sprite_frames.has_animation(_animations["run_right"]):
-					texture.play(_animations["run_right"])
-				if _dust_particles:
-					_dust_particles.scale.x = 1
-					_dust_particles.position.x = 8
-		else:
-			if velocity.y < 0:
-				if texture.sprite_frames.has_animation(_animations["run_top"]):
-					texture.play(_animations["run_top"])
-			else:
-				if texture.sprite_frames.has_animation(_animations["run_bottom"]):
-					texture.play(_animations["run_bottom"])
-		return
-
-	_dust_particles.emitting = false
-
-	if last_direction.x < 0:
-		if texture.sprite_frames.has_animation(_animations["idle_left"]):
-			texture.play(_animations["idle_left"])
+	if mouse_direction.x < 0:
+		if animation.has_animation(_animations["idle_left"]):
+			animation.play(_animations["idle_left"])
 	else:
-		if texture.sprite_frames.has_animation(_animations["idle_right"]):
-			texture.play(_animations["idle_right"])
+		if animation.has_animation(_animations["idle_right"]):
+			animation.play(_animations["idle_right"])
 
 func _on_water_collected() -> void:
 	while current_water_amount >= water_amount_to_next_level:

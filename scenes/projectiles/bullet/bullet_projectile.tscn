@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dhl3eq8q2ursb"]
+
+[ext_resource type="PackedScene" uid="uid://cm4p3w1o35o0p" path="res://scenes/projectiles/base_projectile.tscn" id="1_aa150"]
+[ext_resource type="Texture2D" uid="uid://gw6jswmrbxju" path="res://sprites/projectiles/fire_ball/texture.png" id="2_5pb0c"]
+
+[sub_resource type="Curve" id="Curve_of6ip"]
+_limits = [0.0, 5.5, 0.0, 1.0]
+_data = [Vector2(0, 4.792079), 0.0, -5.554454, 0, 0, Vector2(1, 0), -6.347949, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_of6ip"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.827451, 0.31764707, 0.13333334, 1, 0.827451, 0.5764706, 0.07058824, 1, 0.9019608, 0.72156864, 0.21568628, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v2ns"]
+atlas = ExtResource("2_5pb0c")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jxyw"]
+atlas = ExtResource("2_5pb0c")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccdlm"]
+atlas = ExtResource("2_5pb0c")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3aew"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v2ns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jxyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccdlm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_qbbl2"]
+offsets = PackedFloat32Array(0, 0.23181818)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i0pst"]
+gradient = SubResource("Gradient_qbbl2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufnha"]
+radius = 4.0
+height = 18.0
+
+[node name="BulletProjectile" unique_id=1412444270 instance=ExtResource("1_aa150")]
+
+[node name="SpriteGroup" parent="." index="0" unique_id=1065004391]
+modulate = Color(1.0025334, 1.0025334, 1.0025334, 1)
+
+[node name="Particles" type="CPUParticles2D" parent="SpriteGroup" index="0" unique_id=2129209163]
+visible = false
+position = Vector2(-2, 0)
+amount = 100
+lifetime = 0.6
+preprocess = 0.1
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_curve = SubResource("Curve_of6ip")
+color_ramp = SubResource("Gradient_of6ip")
+
+[node name="Texture" parent="SpriteGroup" index="1" unique_id=1027365086]
+position = Vector2(-2, 0)
+sprite_frames = SubResource("SpriteFrames_y3aew")
+autoplay = "default"
+frame_progress = 0.116120875
+flip_h = true
+
+[node name="PointLight2D" type="PointLight2D" parent="SpriteGroup" index="2" unique_id=1556187980]
+position = Vector2(4, 0)
+texture = SubResource("GradientTexture2D_i0pst")
+
+[node name="Collision" parent="." index="1" unique_id=1801896036]
+position = Vector2(1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ufnha")

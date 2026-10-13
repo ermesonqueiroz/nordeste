@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cv0w6ykclabor" path="res://gui/waterbar/under_texture.png" id="8_f88ab"]
 [ext_resource type="Script" uid="uid://cjsdbbpb0bhvm" path="res://common/enemy_spawner.gd" id="8_v7qp1"]
 [ext_resource type="Texture2D" uid="uid://dxrbtek3fejkt" path="res://gui/waterbar/over_texture.png" id="8_whhu8"]
+[ext_resource type="PackedScene" uid="uid://cp40wtwsrnffn" path="res://scenes/enemies/minions/death_fish/death_fish_enemy.tscn" id="9_353a4"]
 [ext_resource type="Script" uid="uid://cttxt0w3v2w8m" path="res://gui/waterbar/waterbar.gd" id="9_anq5l"]
 [ext_resource type="Script" uid="uid://c63k1x1spcdp0" path="res://scripts/common/boss_spawner.gd" id="9_sk2he"]
 [ext_resource type="Script" uid="uid://cdyqfbq7f6j0o" path="res://gui/game_over/game_over.gd" id="10_anq5l"]
@@ -25,17 +26,6 @@
 [ext_resource type="Script" uid="uid://cybntdswjjg3r" path="res://survival_time.gd" id="29_sk2he"]
 [ext_resource type="PackedScene" uid="uid://7v52lt3xs4hw" path="res://pause_menu.tscn" id="30_ovhxr"]
 [ext_resource type="AudioStream" uid="uid://bmdlqm5k8ngyf" path="res://sfx/the_wall_loopable.wav" id="31_ovhxr"]
-
-[sub_resource type="Gradient" id="Gradient_2obac"]
-offsets = PackedFloat32Array(0, 0.16479401, 0.3857678, 0.40449437, 0.58801496, 0.6741573, 0.9962547)
-colors = PackedColorArray(1, 1, 1, 1, 0.8, 0.8, 0.8, 1, 0.798921, 0.798921, 0.798921, 1, 0.23031479, 0.23031497, 0.23031488, 1, 0.23137255, 0.23137255, 0.23137255, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2obac"]
-gradient = SubResource("Gradient_2obac")
-width = 512
-height = 512
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_5d4hl"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -118,9 +108,9 @@ script = ExtResource("1_qsd0w")
 _character = NodePath("CearenseCharacter")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=600797741]
-color = Color(0.46120125, 0.5825698, 0.85609174, 1)
+color = Color(0.16336733, 0.25435162, 0.47294122, 1)
 
-[node name="Terrain" parent="CanvasModulate" unique_id=1863512682 instance=ExtResource("1_df5pp")]
+[node name="Terrain" parent="." unique_id=1863512682 instance=ExtResource("1_df5pp")]
 position = Vector2(-2, 0)
 
 [node name="CearenseCharacter" parent="." unique_id=1555303638 instance=ExtResource("3_anq5l")]
@@ -128,13 +118,6 @@ physics_interpolation_mode = 0
 modulate = Color(1.224127, 1.224127, 1.224127, 1)
 position = Vector2(287, 335)
 collision_mask = 1
-
-[node name="PointLight2D" type="PointLight2D" parent="CearenseCharacter" unique_id=1200111052]
-position = Vector2(1, 1)
-scale = Vector2(1.03125, 1.03125)
-energy = 0.6
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_2obac")
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_character")]
 script = ExtResource("8_v7qp1")
@@ -154,6 +137,10 @@ _enemy_pool = Array[Dictionary]([{
 "cost": 6,
 "min_level": 1,
 "scene": ExtResource("8_1gss8")
+}, {
+"cost": 5,
+"min_level": 1,
+"scene": ExtResource("9_353a4")
 }])
 _character = NodePath("../CearenseCharacter")
 metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
@@ -165,6 +152,7 @@ enabled = false
 metadata/_custom_type_script = "uid://c63k1x1spcdp0"
 
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]
+visible = false
 
 [node name="FogParallax" type="Parallax2D" parent="Foreground" unique_id=727524041]
 z_index = 5
@@ -174,13 +162,11 @@ autoscroll = Vector2(100, 0)
 repeat_times = 8
 
 [node name="FogSprite" type="Sprite2D" parent="Foreground/FogParallax" unique_id=306652000]
-visible = false
 modulate = Color(0.74558026, 0.7455802, 0.7455802, 0.52156866)
 position = Vector2(660, 187)
 texture = SubResource("NoiseTexture2D_5d4hl")
 
 [node name="SandParallax" type="Parallax2D" parent="Foreground" unique_id=552432213]
-visible = false
 z_index = 6
 scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(-8, 13)
@@ -426,3 +412,6 @@ autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=341226410]
 environment = SubResource("Environment_whhu8")
+
+[node name="TapuruEnemy" parent="." unique_id=1834857299 instance=ExtResource("10_jpbmx")]
+position = Vector2(32, 343)

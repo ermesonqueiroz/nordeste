@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://682a6t1ehwmn"]
+
+[ext_resource type="PackedScene" uid="uid://0n77a6gehfw3" path="res://scenes/weapons/base_weapon.tscn" id="1_hvu10"]
+[ext_resource type="Script" uid="uid://dvslgbroyp5ti" path="res://scenes/weapons/chinela/chinela_weapon.gd" id="2_sq7ox"]
+[ext_resource type="Texture2D" uid="uid://c8i24avo4c4t4" path="res://sprites/weapons/chinela/texture.png" id="3_ob42j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s05cg"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(0, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o28vb"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(53, 53, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_520q3"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(106, 53, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iei7j"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(159, 53, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfyt6"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(212, 53, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si2yk"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(265, 53, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2q0k"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(318, 53, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob42j"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(53, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp4du"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(106, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6kbr"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(159, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt4uq"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(212, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8emfs"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(265, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4pcl"]
+atlas = ExtResource("3_ob42j")
+region = Rect2(318, 0, 53, 53)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n2lt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s05cg")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o28vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_520q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iei7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfyt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si2yk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2q0k")
+}],
+"loop": 0,
+"name": &"reload",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob42j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp4du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6kbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt4uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8emfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4pcl")
+}],
+"loop": 0,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[node name="ChinelaWeapon" unique_id=1820149675 instance=ExtResource("1_hvu10")]
+script = ExtResource("2_sq7ox")
+
+[node name="Texture" parent="." index="0" unique_id=468804977]
+position = Vector2(7.200001, -3.7999992)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_7n2lt")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="Hand" parent="." index="1" unique_id=2017631549]
+position = Vector2(1.2000006, -0.7999992)
+
+[node name="ProjectileSpawnPoint" parent="." index="2" unique_id=749190617]
+position = Vector2(22.2, -6.799999)

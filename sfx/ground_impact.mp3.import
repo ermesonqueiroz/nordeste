@@ -3,11 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bqmsomf6y3djf"
-valid=false
+path="res://.godot/imported/ground_impact.mp3-b664bf7be45d9626ff54f991b900098a.mp3str"
 
 [deps]
 
 source_file="res://sfx/ground_impact.mp3"
+dest_files=["res://.godot/imported/ground_impact.mp3-b664bf7be45d9626ff54f991b900098a.mp3str"]
 
 [params]
 

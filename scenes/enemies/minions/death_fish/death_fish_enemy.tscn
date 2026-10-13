@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://cp40wtwsrnffn"]
+
+[ext_resource type="PackedScene" uid="uid://b57x7fpuf1ehw" path="res://scenes/enemies/base_enemy.tscn" id="1_sre4a"]
+[ext_resource type="Script" uid="uid://7omn0su1opav" path="res://scenes/enemies/minions/death_fish/death_fish_enemy.gd" id="2_3wj5m"]
+[ext_resource type="Texture2D" uid="uid://bj1w73wfvi7nr" path="res://sprites/enemies/minions/death_fish/shadow.png" id="2_q7a5i"]
+[ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="2_w1dfj"]
+[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_fw7bv"]
+[ext_resource type="Texture2D" uid="uid://cehlu0sdokyeo" path="res://sprites/enemies/minions/death_fish/texture.png" id="4_w1dfj"]
+[ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="5_fw7bv"]
+[ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="6_w1dfj"]
+[ext_resource type="Script" uid="uid://dosj4imyutbus" path="res://scripts/states/enemy/enemy_projectile_attack_state.gd" id="9_kcdh5"]
+[ext_resource type="PackedScene" uid="uid://oampvaj00uab" path="res://scenes/projectiles/death_fish/death_fish_projectile.tscn" id="10_pi7bj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3wj5m"]
+resource_local_to_scene = true
+shader = ExtResource("3_fw7bv")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcdh5"]
+atlas = ExtResource("4_w1dfj")
+region = Rect2(0, 0, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1f6r"]
+atlas = ExtResource("4_w1dfj")
+region = Rect2(65, 0, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi7bj"]
+atlas = ExtResource("4_w1dfj")
+region = Rect2(130, 0, 64, 66)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1ix7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcdh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1f6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi7bj")
+}],
+"loop": 1,
+"name": &"movement",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wj5m"]
+radius = 8.0
+height = 34.0
+
+[node name="DeathFishEnemy" unique_id=1834857299 node_paths=PackedStringArray("chase_state", "attack_state", "hit_state") instance=ExtResource("1_sre4a")]
+collision_mask = 3
+script = ExtResource("2_3wj5m")
+chase_state = NodePath("StateMachine/EnemyChaseState")
+attack_state = NodePath("StateMachine/EnemyProjectileAttackState")
+attack_cooldown = 5.0
+base_speed = 12.0
+float_amplitude = 6.0
+max_tilt_degrees = 15.0
+hit_state = NodePath("StateMachine/EnemyHitState")
+collectable_to_drop_on_die = ExtResource("2_w1dfj")
+move_speed = 70.0
+max_health = 40.0
+
+[node name="Shadow" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="0" unique_id=1921400601]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(-4, 11)
+texture = ExtResource("2_q7a5i")
+
+[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
+material = SubResource("ShaderMaterial_3wj5m")
+sprite_frames = SubResource("SpriteFrames_s1ix7")
+animation = &"movement"
+autoplay = "movement"
+frame_progress = 0.7846853
+
+[node name="Collision" parent="." index="2" unique_id=1981917045]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_3wj5m")
+
+[node name="Collision" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(479947753) index="0" unique_id=1085599421]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_3wj5m")
+debug_color = Color(0, 1, 0, 0.42000002)
+
+[node name="Collision" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1181660510) index="0" unique_id=780164449]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_3wj5m")
+debug_color = Color(1, 0, 0, 0.42000002)
+
+[node name="StateMachine" parent="." index="7" unique_id=2019483535 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("EnemyChaseState")
+
+[node name="EnemyHitState" type="Node" parent="StateMachine" index="1" unique_id=1643063363 node_paths=PackedStringArray("chase_state", "die_state")]
+script = ExtResource("5_fw7bv")
+chase_state = NodePath("../EnemyChaseState")
+die_state = NodePath("../EnemyDieState")
+metadata/_custom_type_script = "uid://35tpc4bft43y"
+
+[node name="EnemyChaseState" type="Node" parent="StateMachine" index="2" unique_id=286968382]
+script = ExtResource("6_w1dfj")
+stop_distance = 150.0
+metadata/_custom_type_script = "uid://jdo4kxeg1qw8"
+
+[node name="EnemyProjectileAttackState" type="Node" parent="StateMachine" index="3" unique_id=1289137068 node_paths=PackedStringArray("on_exit_state")]
+script = ExtResource("9_kcdh5")
+on_exit_state = NodePath("../EnemyChaseState")
+projectile = ExtResource("10_pi7bj")
+projectiles_amount = 3
+metadata/_custom_type_script = "uid://dosj4imyutbus"

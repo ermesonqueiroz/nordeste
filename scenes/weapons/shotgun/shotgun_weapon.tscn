@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://dtu71oiemwqbq"]
+
+[ext_resource type="PackedScene" uid="uid://0n77a6gehfw3" path="res://scenes/weapons/base_weapon.tscn" id="1_ukkib"]
+[ext_resource type="Script" uid="uid://brfty4578pd7" path="res://scenes/weapons/shotgun/shotgun_weapon.gd" id="2_1feo2"]
+[ext_resource type="Shader" uid="uid://cyqjyxhf5qp6c" path="res://shaders/glow.tres" id="3_7n2lt"]
+[ext_resource type="Texture2D" uid="uid://b7gl8haxyk4f1" path="res://sprites/weapons/shotgun/texture.png" id="3_ylbbl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ylbbl"]
+shader = ExtResource("3_7n2lt")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n2lt"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(0, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehqs4"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(46, 46, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhxr0"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(92, 46, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujm6p"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(138, 46, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbpnh"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(184, 46, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxild"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(230, 46, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4tn4"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(276, 46, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylbbl"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(46, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asiv7"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(92, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyknt"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(138, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6mp2"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(184, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5l4i"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(230, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8ahb"]
+atlas = ExtResource("3_ylbbl")
+region = Rect2(276, 0, 46, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bjcrl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n2lt")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehqs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhxr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujm6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbpnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxild")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4tn4")
+}],
+"loop": 0,
+"name": &"reload",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylbbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asiv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyknt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6mp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5l4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8ahb")
+}],
+"loop": 0,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[node name="ShotgunWeapon" unique_id=1820149675 instance=ExtResource("1_ukkib")]
+script = ExtResource("2_1feo2")
+
+[node name="Texture" parent="." index="0" unique_id=468804977]
+material = SubResource("ShaderMaterial_ylbbl")
+instance_shader_parameters/GlowColor = Color(18.328726, 18.328726, 17.976582, 1)
+instance_shader_parameters/MaskColor = Color(0.96862745, 0.96862745, 0.9490196, 1)
+instance_shader_parameters/Tolerance = 0.0010000000475
+position = Vector2(14.2, -4.6000004)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_bjcrl")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="Hand" parent="." index="1" unique_id=2017631549]
+position = Vector2(0.8000001, -0.99999994)
+
+[node name="ProjectileSpawnPoint" parent="." index="2" unique_id=749190617]
+position = Vector2(24.2, -6.6000004)

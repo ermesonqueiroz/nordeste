@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="2_fvbtu"]
 [ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="2_q8fnn"]
 [ext_resource type="Texture2D" uid="uid://bpnpgrbw1seqy" path="res://sprites/enemies/minions/tejo/texture.png" id="3_q8fnn"]
-[ext_resource type="Script" uid="uid://sy301jr7j8s5" path="res://projectiles/chinela/sprite_trail.gd" id="4_pv3ak"]
+[ext_resource type="Script" uid="uid://sy301jr7j8s5" path="res://scenes/projectiles/chinela/sprite_trail.gd" id="4_pv3ak"]
 [ext_resource type="Script" uid="uid://dkhjcqdt45yv5" path="res://scripts/states/enemy/enemy_side_chase_state.gd" id="6_em32k"]
 [ext_resource type="Texture2D" uid="uid://cu04ihw4raqiq" path="res://sprites/enemies/minions/tejo/shadow.png" id="6_g456x"]
 [ext_resource type="Texture2D" uid="uid://bvuwupvnpewcs" path="res://sprites/warning.png" id="7_crrx6"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://6nbg7pmgsyuk" path="res://scripts/states/enemy/enemy_recovery_state.gd" id="11_crrx6"]
 [ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="13_vjx28"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cjews"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjx28"]
 resource_local_to_scene = true
 shader = ExtResource("2_q8fnn")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -152,7 +152,7 @@ modulate = Color(1, 1, 1, 0.8)
 texture = ExtResource("6_g456x")
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
-material = SubResource("ShaderMaterial_cjews")
+material = SubResource("ShaderMaterial_vjx28")
 sprite_frames = SubResource("SpriteFrames_g456x")
 animation = &"attack"
 autoplay = "idle"
