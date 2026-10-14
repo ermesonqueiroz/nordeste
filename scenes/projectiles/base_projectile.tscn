@@ -4,7 +4,7 @@
 
 [node name="BaseProjectile" type="Area2D" unique_id=1912904560]
 z_index = 1
-collision_mask = 2
+collision_mask = 18
 script = ExtResource("1_ufnha")
 damage = 20
 metadata/_custom_type_script = "uid://dvn6fs6a1v72h"

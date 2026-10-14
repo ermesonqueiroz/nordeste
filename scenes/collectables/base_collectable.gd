@@ -12,7 +12,8 @@ class_name BaseCollectable
 @export var pulse_speed: float = 6.0
 @export var pulse_intensity: float = 0.05
 
-@onready var _texture: AnimatedSprite2D = $Texture
+@onready var _texture: AnimatedSprite2D = $SpriteGroup/Texture
+@onready var sprite_group: Node2D = $SpriteGroup
 @onready var area_2d: Area2D = $Area2D
 
 var _start_y: float = 0.0
@@ -50,15 +51,15 @@ func _process(delta: float) -> void:
 
 		queue_free()
 
-	if not _texture:
+	if not sprite_group:
 		return
 
 	_time_accumulator += delta
-	_texture.position.y = _start_y + sin(_time_accumulator * float_speed) * float_amplitude
+	sprite_group.position.y = _start_y + sin(_time_accumulator * float_speed) * float_amplitude
 
 	var scale_x = 1.0 + sin(_time_accumulator * pulse_speed) * pulse_intensity
 	var scale_y = 1.0 + cos(_time_accumulator * pulse_speed) * pulse_intensity
-	_texture.scale = Vector2(scale_x, scale_y)
+	sprite_group.scale = Vector2(scale_x, scale_y)
 
 func _on_body_entered(body: Node2D) -> void:
 	if _is_collected:

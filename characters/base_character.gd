@@ -182,9 +182,13 @@ func apply_invulnerability(duration: float):
 	texture.modulate.a = 1
 	is_invulnerable = false
 
-func add_water(amount: int):
+func add_water(amount: int) -> void:
 	current_water_amount += amount
 	water_collected.emit()
+
+func add_health() -> void:
+	current_health = min(max_health, current_health + 1)
+	health_updated.emit()
 
 func can_apply_upgrade(upgrade: UpgradeData) -> bool:
 	if upgrade.max_uses == -1:

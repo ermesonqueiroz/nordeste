@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dciae3r8vfi0q" path="res://gui/crosshair/crosshair.tscn" id="17_gyjtv"]
 [ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="19_sk2he"]
 [ext_resource type="FontFile" uid="uid://d4drq4ll6m0ly" path="res://fonts/xilosa.ttf" id="22_1gss8"]
+[ext_resource type="Script" uid="uid://bjmr5hulukh7f" path="res://scripts/common/breakable_spawner.gd" id="27_f2ouj"]
 [ext_resource type="Script" uid="uid://cybntdswjjg3r" path="res://survival_time.gd" id="29_sk2he"]
 [ext_resource type="PackedScene" uid="uid://7v52lt3xs4hw" path="res://pause_menu.tscn" id="30_ovhxr"]
 [ext_resource type="AudioStream" uid="uid://bmdlqm5k8ngyf" path="res://sfx/the_wall_loopable.wav" id="31_ovhxr"]
@@ -98,8 +99,7 @@ font_size = 24
 [sub_resource type="Environment" id="Environment_whhu8"]
 background_mode = 3
 glow_enabled = true
-glow_intensity = 0.1
-glow_bloom = 0.1
+glow_intensity = 0.4
 
 [node name="GameLevel" type="Node2D" unique_id=1376921944 node_paths=PackedStringArray("_character", "boss_spawner")]
 y_sort_enabled = true
@@ -411,3 +411,10 @@ script = ExtResource("9_sk2he")
 _character = NodePath("../CearenseCharacter")
 enabled = false
 metadata/_custom_type_script = "uid://c63k1x1spcdp0"
+
+[node name="BreakableSpawner" type="Node2D" parent="." unique_id=199527833]
+script = ExtResource("27_f2ouj")
+metadata/_custom_type_script = "uid://bjmr5hulukh7f"
+
+[node name="FrogEnemy" parent="BreakableSpawner" unique_id=1834857299 instance=ExtResource("5_f2ouj")]
+position = Vector2(193, 489)

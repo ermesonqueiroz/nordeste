@@ -13,7 +13,9 @@ float_amplitude = null
 pulse_speed = null
 pulse_intensity = null
 
-[node name="Texture" type="AnimatedSprite2D" parent="." unique_id=615243985]
+[node name="SpriteGroup" type="Node2D" parent="." unique_id=960411195]
+
+[node name="Texture" type="AnimatedSprite2D" parent="SpriteGroup" unique_id=615243985]
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1014183451]
 

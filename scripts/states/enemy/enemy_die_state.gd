@@ -22,6 +22,4 @@ func enter():
 	if GameManager:
 		GameManager.add_kill()
 
-	await _enemy.hit_particles.finished
-
-	_enemy.queue_free()
+	_enemy.call_deferred("queue_free")

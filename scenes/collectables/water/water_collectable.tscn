@@ -94,7 +94,7 @@ modulate = Color(1, 1, 1, 0.4)
 position = Vector2(0, 2)
 texture = ExtResource("3_clnd8")
 
-[node name="Texture" parent="." index="1" unique_id=615243985]
+[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(960411195) index="0" unique_id=615243985]
 material = SubResource("ShaderMaterial_h322r")
 sprite_frames = SubResource("SpriteFrames_odegq")
 animation = &"idle"

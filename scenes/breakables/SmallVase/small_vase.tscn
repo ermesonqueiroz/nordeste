@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bfoo1skh43bw4"]
+
+[ext_resource type="PackedScene" uid="uid://k6gm60qsac1k" path="res://scenes/breakables/breakable.tscn" id="1_25aew"]
+[ext_resource type="Texture2D" uid="uid://c2obnujawp8xc" path="res://sprites/objects/vase_spritesheet.png" id="2_4yull"]
+[ext_resource type="PackedScene" uid="uid://debb8eyxhrgi5" path="res://scenes/collectables/health/health_collectable.tscn" id="2_e3nig"]
+[ext_resource type="Texture2D" uid="uid://cdbp4a3k7trce" path="res://scenes/collectables/water/shadow.png" id="3_5vka6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wstn"]
+atlas = ExtResource("2_4yull")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25aew"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wstn")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w2hct"]
+radius = 22.090721
+
+[node name="SmallVase" unique_id=1590943576 instance=ExtResource("1_25aew")]
+collectable = ExtResource("2_e3nig")
+
+[node name="Shadow" type="Sprite2D" parent="." index="0" unique_id=2033233439]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(0, 4)
+texture = ExtResource("3_5vka6")
+
+[node name="Texture" parent="." index="1" unique_id=1536985489]
+sprite_frames = SubResource("SpriteFrames_25aew")
+
+[node name="Collision" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(1744154127) index="0" unique_id=1606465870]
+visible = false
+shape = SubResource("CircleShape2D_w2hct")

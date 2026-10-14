@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://debb8eyxhrgi5"]
+
+[ext_resource type="PackedScene" uid="uid://b0nbnxpanmbm2" path="res://scenes/collectables/base_collectable.tscn" id="1_ol0ju"]
+[ext_resource type="Texture2D" uid="uid://be2scpgqdx7on" path="res://sprites/collectables/icons_spritesheet.png" id="2_eu5fl"]
+[ext_resource type="Script" uid="uid://b0txgmyayg40x" path="res://scripts/collectables/health_collectable.gd" id="2_k2fks"]
+[ext_resource type="Texture2D" uid="uid://cdbp4a3k7trce" path="res://scenes/collectables/water/shadow.png" id="2_nqq40"]
+[ext_resource type="Texture2D" uid="uid://4oiqtt57dwgf" path="res://sprites/light/heart_light.png" id="4_xvr54"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvr54"]
+atlas = ExtResource("2_eu5fl")
+region = Rect2(18, 52, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ol0ju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvr54")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvr54"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eu5fl"]
+radius = 42.047592
+
+[node name="HealthCollectable" unique_id=747584745 instance=ExtResource("1_ol0ju")]
+script = ExtResource("2_k2fks")
+float_speed = 4.0
+float_amplitude = 3.0
+pulse_speed = 6.0
+pulse_intensity = 0.05
+
+[node name="Shadow" type="Sprite2D" parent="." index="0" unique_id=1152387036]
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(0, 2)
+texture = ExtResource("2_nqq40")
+
+[node name="PointLight2D" type="PointLight2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(960411195) index="0" unique_id=1509162829]
+color = Color(0.71236116, 0, 0.17758083, 1)
+energy = 8.0
+texture = ExtResource("4_xvr54")
+
+[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(960411195) index="1" unique_id=615243985]
+sprite_frames = SubResource("SpriteFrames_ol0ju")
+
+[node name="Collision" parent="." index="2" unique_id=1014183451]
+visible = false
+shape = SubResource("CircleShape2D_xvr54")
+
+[node name="Collision" type="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(851844958) index="0" unique_id=1901636169]
+visible = false
+shape = SubResource("CircleShape2D_eu5fl")
