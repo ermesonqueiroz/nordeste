@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ilt83eidf20d" path="res://scenes/enemies/damage_particle_texture.png" id="10_fngk5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gsf37"]
+resource_local_to_scene = true
 shader = ExtResource("2_xens1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0

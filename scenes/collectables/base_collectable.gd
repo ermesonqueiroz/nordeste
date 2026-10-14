@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 class_name BaseCollectable
 
 @export var _time_to_despawn: float = 8.0
@@ -13,6 +13,7 @@ class_name BaseCollectable
 @export var pulse_intensity: float = 0.05
 
 @onready var _texture: AnimatedSprite2D = $Texture
+@onready var area_2d: Area2D = $Area2D
 
 var _start_y: float = 0.0
 var _time_accumulator: float = 0.0
@@ -22,13 +23,21 @@ var _is_collected: bool = false
 var _is_despawning: bool = false
 
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
+	area_2d.body_entered.connect(_on_body_entered)
 
 	if _texture:
 		_start_y = _texture.position.y
 
 	_time_accumulator = randf() * 10.0
 	_despawn_timer = _time_to_despawn
+
+func _physics_process(delta: float) -> void:
+	var collision = move_and_collide(velocity * delta)
+
+	if collision:
+		velocity = velocity.bounce(collision.get_normal())
+
+	velocity -= velocity * delta * 4
 
 func _process(delta: float) -> void:
 	_despawn_timer -= delta

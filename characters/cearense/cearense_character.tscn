@@ -500,14 +500,13 @@ modulate = Color(1, 1, 1, 0.8)
 texture = ExtResource("2_k5olh")
 
 [node name="ArmBack" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="1" unique_id=1165608874]
+use_parent_material = true
 position = Vector2(6, -1)
 texture = ExtResource("3_rlfms")
 offset = Vector2(-7, 0)
 flip_h = true
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="2" unique_id=418713458]
-self_modulate = Color(1, 1, 1, 1)
-use_parent_material = true
 texture = ExtResource("4_mfk0j")
 hframes = 6
 vframes = 4
@@ -516,6 +515,7 @@ vframes = 4
 rotation = 1.5707964
 
 [node name="ArmFront" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="4" unique_id=26950060]
+use_parent_material = true
 position = Vector2(-5, 0)
 texture = ExtResource("5_k5olh")
 offset = Vector2(5, 0)

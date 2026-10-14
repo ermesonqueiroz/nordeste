@@ -37,6 +37,7 @@ func _ready() -> void:
 	if spawnPosition:
 		position = spawnPosition
 
+	$StateMachine.state_entered.connect(func(state): print(state))
 	hurtbox.hitbox_entered.connect(_on_hitbox_entered)
 
 func _physics_process(delta: float) -> void:
@@ -55,9 +56,6 @@ func _take_damage(damage: float) -> void:
 	$DamageLabelSpawner.spawn_label(damage)
 	$DieAudio.play()
 
-	if health <= 0:
-		$StateMachine.switch_state(die_state)
-
 	if hit_state:
 		$StateMachine.switch_state(hit_state)
 
@@ -67,7 +65,8 @@ func _drop_collectable():
 	for i in collectable_amount_to_drop:
 		var new_collectable: BaseCollectable = collectable_to_drop_on_die.instantiate()
 		new_collectable.global_position = global_position
-		get_tree().current_scene.add_child(new_collectable)
+		new_collectable.velocity = (Vector2.ONE * 180).rotated(deg_to_rad(randf_range(-90, 90)))
+		get_tree().current_scene.call_deferred("add_child", new_collectable)
 
 func _apply_knockback(intensity: float, knockback_duration: float):
 	knockback = -last_direction * intensity

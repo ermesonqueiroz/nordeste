@@ -42,13 +42,12 @@ var knockback_timer: float = 0.0
 var is_invulnerable: bool = false
 
 var current_water_amount = 0
-var current_level = 10
+var current_level = 1
 var water_amount_to_next_level = 10
 
 var upgrades_applied: Dictionary = {}
 
 func _ready() -> void:
-	# $SpriteGroup.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
 	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
 	_setup_selected_weapon()
@@ -236,3 +235,7 @@ func increase_max_health(amount: int) -> void:
 	max_health += amount
 	current_health += amount
 	health_updated.emit()
+
+func flash() -> Tween:
+	var tween = Utils.flash_node_material($SpriteGroup)
+	return tween

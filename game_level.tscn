@@ -411,6 +411,3 @@ script = ExtResource("9_sk2he")
 _character = NodePath("../CearenseCharacter")
 enabled = false
 metadata/_custom_type_script = "uid://c63k1x1spcdp0"
-
-[node name="FrogEnemy" parent="." unique_id=1834857299 instance=ExtResource("5_f2ouj")]
-position = Vector2(101, 271)

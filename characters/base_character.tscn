@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bh8773j8r1mjo" path="res://characters/base_character.gd" id="1_r08u6"]
 [ext_resource type="Texture2D" uid="uid://dv51kmpf20chc" path="res://characters/dust.png" id="2_cag4a"]
 [ext_resource type="Script" uid="uid://c0w4su8sea4bw" path="res://characters/camera.gd" id="2_xeerb"]
-[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_6ps22"]
+[ext_resource type="Shader" uid="uid://bntyfxdrrxwrx" path="res://shaders/shaded_flash.gdshader" id="3_6ps22"]
 [ext_resource type="AudioStream" uid="uid://jvfi372ge3q8" path="res://characters/hurt.wav" id="3_lii0y"]
 [ext_resource type="Script" uid="uid://cxo64sjp7i3x4" path="res://common/hurtbox.gd" id="4_l7dgf"]
 [ext_resource type="Texture2D" uid="uid://b2hgfltm2y7fw" path="res://characters/reloadbar_under.png" id="5_pomy3"]
@@ -57,7 +57,7 @@ process_material = SubResource("ParticleProcessMaterial_cag4a")
 material = SubResource("ShaderMaterial_dtm77")
 
 [node name="Texture" type="Sprite2D" parent="SpriteGroup" unique_id=418713458]
-self_modulate = Color(4.415934, 4.415934, 4.415934, 1)
+use_parent_material = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1570772349]
 script = ExtResource("4_l7dgf")

@@ -74,12 +74,20 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jfrhj"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gm1p2"]
 radius = 33.0
 height = 74.0
 
 [node name="WaterCollectable" unique_id=596021622 instance=ExtResource("1_wxeup")]
+collision_layer = 4
+collision_mask = 8
 script = ExtResource("2_oh2cy")
+float_speed = 4.0
+float_amplitude = 3.0
+pulse_speed = 6.0
+pulse_intensity = 0.05
 
 [node name="Shadow" type="Sprite2D" parent="." index="0" unique_id=1031820222]
 modulate = Color(1, 1, 1, 0.4)
@@ -93,5 +101,8 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="Collision" parent="." index="2" unique_id=1014183451]
-position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_jfrhj")
+
+[node name="Collision" type="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(851844958) index="0" unique_id=474260212]
+visible = false
 shape = SubResource("CapsuleShape2D_gm1p2")

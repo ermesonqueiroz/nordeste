@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwtsts23651dl"
-path="res://.godot/imported/NORDESTE_04_CHARACTER_R02.png-2ef7120373176e331e7dd5296f849214.ctex"
+uid="uid://dax24vthvrpul"
+path="res://.godot/imported/wall.png-202f71260357ef04e6e8c2cec090a94e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/cearense/NORDESTE_04_CHARACTER_R02.png"
-dest_files=["res://.godot/imported/NORDESTE_04_CHARACTER_R02.png-2ef7120373176e331e7dd5296f849214.ctex"]
+source_file="res://sprites/wall.png"
+dest_files=["res://.godot/imported/wall.png-202f71260357ef04e6e8c2cec090a94e.ctex"]
 
 [params]
 
