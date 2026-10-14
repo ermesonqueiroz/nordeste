@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://ciq0pu8be0ukl" path="res://sprites/characters/main/arm_back.png" id="3_rlfms"]
 [ext_resource type="Texture2D" uid="uid://bbldvpaai4vuo" path="res://sprites/characters/main/texture.png" id="4_mfk0j"]
 [ext_resource type="Texture2D" uid="uid://qa0lin1lndsy" path="res://sprites/characters/main/arm_front.png" id="5_k5olh"]
+[ext_resource type="Script" uid="uid://b31jtx15kdw62" path="res://scripts/characters/character_light.gd" id="8_dt5ch"]
+[ext_resource type="Texture2D" uid="uid://bdxddobpaal1h" path="res://sprites/characters/main/light.png" id="8_jr7ke"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5olh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dt5ch"]
 shader = ExtResource("2_mfk0j")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
@@ -476,6 +478,7 @@ _data = {
 }
 
 [node name="CearenseCharacter" unique_id=1555303638 instance=ExtResource("1_g2pfr")]
+material = SubResource("ShaderMaterial_dt5ch")
 script = ExtResource("2_vpbxj")
 _animations = {
 "idle": "idle",
@@ -503,8 +506,8 @@ offset = Vector2(-7, 0)
 flip_h = true
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="2" unique_id=418713458]
-texture_filter = 1
-material = SubResource("ShaderMaterial_k5olh")
+self_modulate = Color(1, 1, 1, 1)
+use_parent_material = true
 texture = ExtResource("4_mfk0j")
 hframes = 6
 vframes = 4
@@ -523,11 +526,15 @@ position = Vector2(12, 9)
 scale = Vector2(-1, 1)
 gizmo_extents = 49.6
 
+[node name="CharacterLight" type="PointLight2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(2022331021) index="5" unique_id=191727473]
+color = Color(0.5006023, 0.66392267, 0.99999875, 1)
+texture = ExtResource("8_jr7ke")
+script = ExtResource("8_dt5ch")
+
 [node name="HurtBox" parent="." index="2" unique_id=1570772349]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0" unique_id=1568370168]
-visible = false
 position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_vb32k")
 debug_color = Color(0, 1, 0, 0.277)

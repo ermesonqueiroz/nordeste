@@ -9,7 +9,7 @@ class_name Crosshair
 var _tween: Tween
 
 func _ready() -> void:
-	if _character:
+	if _character and _character.weapon:
 		_character.weapon.ammo_updated.connect(_on_ammo_updated)
 		_update_bullets_label()
 

@@ -98,58 +98,20 @@ font_size = 24
 [sub_resource type="Environment" id="Environment_whhu8"]
 background_mode = 3
 glow_enabled = true
-glow_intensity = 0.4
-glow_bloom = 0.3
-glow_hdr_threshold = 0.4
+glow_intensity = 0.1
+glow_bloom = 0.1
 
-[node name="GameLevel" type="Node2D" unique_id=1376921944 node_paths=PackedStringArray("_character")]
+[node name="GameLevel" type="Node2D" unique_id=1376921944 node_paths=PackedStringArray("_character", "boss_spawner")]
 y_sort_enabled = true
 script = ExtResource("1_qsd0w")
 _character = NodePath("CearenseCharacter")
+boss_spawner = NodePath("BossSpawner")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=600797741]
-color = Color(0.16336733, 0.25435162, 0.47294122, 1)
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1205209567]
+color = Color(0.45082474, 0.6258674, 1, 1)
 
 [node name="Terrain" parent="." unique_id=1863512682 instance=ExtResource("1_df5pp")]
 position = Vector2(-2, 0)
-
-[node name="CearenseCharacter" parent="." unique_id=1555303638 instance=ExtResource("3_anq5l")]
-physics_interpolation_mode = 0
-modulate = Color(1.224127, 1.224127, 1.224127, 1)
-position = Vector2(287, 335)
-collision_mask = 1
-
-[node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_character")]
-script = ExtResource("8_v7qp1")
-_enemy_pool = Array[Dictionary]([{
-"cost": 2,
-"min_level": 1,
-"scene": ExtResource("2_v7qp1")
-}, {
-"cost": 1,
-"min_level": 1,
-"scene": ExtResource("10_jpbmx")
-}, {
-"cost": 4,
-"min_level": 5,
-"scene": ExtResource("5_f2ouj")
-}, {
-"cost": 6,
-"min_level": 1,
-"scene": ExtResource("8_1gss8")
-}, {
-"cost": 5,
-"min_level": 1,
-"scene": ExtResource("9_353a4")
-}])
-_character = NodePath("../CearenseCharacter")
-metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
-
-[node name="BossSpawner" type="Node2D" parent="." unique_id=555905329 node_paths=PackedStringArray("_character")]
-script = ExtResource("9_sk2he")
-_character = NodePath("../CearenseCharacter")
-enabled = false
-metadata/_custom_type_script = "uid://c63k1x1spcdp0"
 
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]
 visible = false
@@ -179,6 +141,11 @@ position = Vector2(483, 301)
 amount = 500
 visibility_rect = Rect2(-256, -256, 512, 512)
 process_material = SubResource("ParticleProcessMaterial_vugdd")
+
+[node name="CearenseCharacter" parent="." unique_id=1555303638 instance=ExtResource("3_anq5l")]
+physics_interpolation_mode = 0
+position = Vector2(287, 335)
+collision_mask = 1
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=473141386]
 
@@ -381,10 +348,6 @@ uppercase = true
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Crosshair" parent="GUI" unique_id=740910499 node_paths=PackedStringArray("_character") instance=ExtResource("17_gyjtv")]
-process_mode = 3
-_character = NodePath("../../CearenseCharacter")
-
 [node name="MarginContainer2" type="MarginContainer" parent="GUI" unique_id=1411090492]
 offset_left = 862.0
 offset_top = 8.0
@@ -413,5 +376,41 @@ autoplay = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=341226410]
 environment = SubResource("Environment_whhu8")
 
-[node name="TapuruEnemy" parent="." unique_id=1834857299 instance=ExtResource("10_jpbmx")]
-position = Vector2(32, 343)
+[node name="Crosshair" parent="." unique_id=740910499 node_paths=PackedStringArray("_character") instance=ExtResource("17_gyjtv")]
+process_mode = 3
+_character = NodePath("../CearenseCharacter")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1056206492 node_paths=PackedStringArray("_character")]
+script = ExtResource("8_v7qp1")
+_enemy_pool = Array[Dictionary]([{
+"cost": 2,
+"min_level": 1,
+"scene": ExtResource("2_v7qp1")
+}, {
+"cost": 1,
+"min_level": 1,
+"scene": ExtResource("10_jpbmx")
+}, {
+"cost": 4,
+"min_level": 5,
+"scene": ExtResource("5_f2ouj")
+}, {
+"cost": 6,
+"min_level": 1,
+"scene": ExtResource("8_1gss8")
+}, {
+"cost": 5,
+"min_level": 1,
+"scene": ExtResource("9_353a4")
+}])
+_character = NodePath("../CearenseCharacter")
+metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
+
+[node name="BossSpawner" type="Node2D" parent="." unique_id=555905329 node_paths=PackedStringArray("_character")]
+script = ExtResource("9_sk2he")
+_character = NodePath("../CearenseCharacter")
+enabled = false
+metadata/_custom_type_script = "uid://c63k1x1spcdp0"
+
+[node name="FrogEnemy" parent="." unique_id=1834857299 instance=ExtResource("5_f2ouj")]
+position = Vector2(101, 271)

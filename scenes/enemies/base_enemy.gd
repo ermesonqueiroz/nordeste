@@ -95,13 +95,20 @@ func play_hit_visuals():
 	if hit_particles:
 		hit_particles.restart()
 
-	if texture and texture.material:
-		var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-		tween.tween_method(
-			func(val): texture.material.set_shader_parameter("flash_value", val),
-			0, 1, 0.15
-		)
-		tween.chain().tween_method(
-			func(val): texture.material.set_shader_parameter("flash_value", val),
-			1, 0, 0.15
-		)
+	flash()
+
+func flash() -> void:
+	var mat := sprite_group.material
+
+	if not mat or not mat is ShaderMaterial:
+		return
+
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_method(
+		func(val): mat.set_shader_parameter("flash_value", val),
+		0, 1, 0.15
+	)
+	tween.chain().tween_method(
+		func(val): mat.set_shader_parameter("flash_value", val),
+		1, 0, 0.15
+	)

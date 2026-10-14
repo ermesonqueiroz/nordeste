@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://bh8773j8r1mjo" path="res://characters/base_character.gd" id="1_r08u6"]
 [ext_resource type="Texture2D" uid="uid://dv51kmpf20chc" path="res://characters/dust.png" id="2_cag4a"]
 [ext_resource type="Script" uid="uid://c0w4su8sea4bw" path="res://characters/camera.gd" id="2_xeerb"]
-[ext_resource type="Texture2D" uid="uid://bdxddobpaal1h" path="res://sprites/characters/main/light.png" id="3_6ps22"]
+[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_6ps22"]
 [ext_resource type="AudioStream" uid="uid://jvfi372ge3q8" path="res://characters/hurt.wav" id="3_lii0y"]
-[ext_resource type="Script" uid="uid://ciea6d3m6vglf" path="res://scripts/characters/character_light.gd" id="4_dtm77"]
 [ext_resource type="Script" uid="uid://cxo64sjp7i3x4" path="res://common/hurtbox.gd" id="4_l7dgf"]
 [ext_resource type="Texture2D" uid="uid://b2hgfltm2y7fw" path="res://characters/reloadbar_under.png" id="5_pomy3"]
 [ext_resource type="Texture2D" uid="uid://oknh1y177klk" path="res://characters/reloadbar_progress.png" id="6_xt3k7"]
@@ -36,6 +35,11 @@ scale_curve = SubResource("CurveTexture_cag4a")
 color = Color(0, 0, 0, 1)
 alpha_curve = SubResource("CurveTexture_6ps22")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtm77"]
+shader = ExtResource("3_6ps22")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
 [node name="BaseCharacter" type="CharacterBody2D" unique_id=1555303638 groups=["player"]]
 physics_interpolation_mode = 1
 z_index = 1
@@ -50,13 +54,10 @@ texture = ExtResource("2_cag4a")
 process_material = SubResource("ParticleProcessMaterial_cag4a")
 
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=2022331021]
+material = SubResource("ShaderMaterial_dtm77")
 
 [node name="Texture" type="Sprite2D" parent="SpriteGroup" unique_id=418713458]
-
-[node name="CharacterLight" type="PointLight2D" parent="SpriteGroup" unique_id=191727473]
-color = Color(0.5006023, 0.66392267, 0.99999875, 1)
-texture = ExtResource("3_6ps22")
-script = ExtResource("4_dtm77")
+self_modulate = Color(4.415934, 4.415934, 4.415934, 1)
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1570772349]
 script = ExtResource("4_l7dgf")

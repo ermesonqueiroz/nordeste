@@ -14,12 +14,6 @@
 [ext_resource type="Script" uid="uid://6nbg7pmgsyuk" path="res://scripts/states/enemy/enemy_recovery_state.gd" id="11_crrx6"]
 [ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="13_vjx28"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjx28"]
-resource_local_to_scene = true
-shader = ExtResource("2_q8fnn")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_value = 0.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpxq2"]
 atlas = ExtResource("3_q8fnn")
 region = Rect2(124, 128, 124, 64)
@@ -152,7 +146,6 @@ modulate = Color(1, 1, 1, 0.8)
 texture = ExtResource("6_g456x")
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
-material = SubResource("ShaderMaterial_vjx28")
 sprite_frames = SubResource("SpriteFrames_g456x")
 animation = &"attack"
 autoplay = "idle"

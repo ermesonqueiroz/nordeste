@@ -5,15 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bxv8y585h1m6t" path="res://sprites/enemies/minions/mosquito/texture.png" id="2_xu6hp"]
 [ext_resource type="Texture2D" uid="uid://vfolojlmfiev" path="res://sprites/enemies/minions/mosquito/shadow.png" id="3_2ldwe"]
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="3_dxpoy"]
-[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="3_slj8c"]
 [ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="4_iurcn"]
 [ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="8_jqotc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jqotc"]
-resource_local_to_scene = true
-shader = ExtResource("3_slj8c")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_value = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5o8s"]
 atlas = ExtResource("2_xu6hp")
@@ -71,7 +64,6 @@ modulate = Color(1, 1, 1, 0.6)
 texture = ExtResource("3_2ldwe")
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
-material = SubResource("ShaderMaterial_jqotc")
 sprite_frames = SubResource("SpriteFrames_a51ae")
 animation = &"movement"
 autoplay = "movement"

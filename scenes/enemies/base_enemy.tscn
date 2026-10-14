@@ -11,8 +11,7 @@
 [ext_resource type="Script" uid="uid://brk6ykjfpblgh" path="res://scripts/states/enemy/enemy_die_state.gd" id="9_j2d0b"]
 [ext_resource type="Texture2D" uid="uid://ilt83eidf20d" path="res://scenes/enemies/damage_particle_texture.png" id="10_fngk5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahw5l"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsf37"]
 shader = ExtResource("2_xens1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
@@ -44,18 +43,18 @@ alpha_curve = SubResource("CurveTexture_hcly2")
 font = ExtResource("7_ahw5l")
 outline_color = Color(0, 0, 0, 1)
 
-[node name="BaseEnemy" type="CharacterBody2D" unique_id=1834857299 node_paths=PackedStringArray("die_state", "hit_state")]
+[node name="BaseEnemy" type="CharacterBody2D" unique_id=1834857299 node_paths=PackedStringArray("die_state")]
 z_index = 1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_j7qyq")
 die_state = NodePath("StateMachine/EnemyDieState")
-hit_state = NodePath("")
 
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=1407936606]
+material = SubResource("ShaderMaterial_gsf37")
 
 [node name="Texture" type="AnimatedSprite2D" parent="SpriteGroup" unique_id=1371528666]
-material = SubResource("ShaderMaterial_ahw5l")
+use_parent_material = true
 
 [node name="HitParticles" type="GPUParticles2D" parent="." unique_id=1548375953]
 emitting = false

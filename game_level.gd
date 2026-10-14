@@ -2,6 +2,7 @@ extends Node2D
 class_name GameLevel
 
 @export var _character: BaseCharacter
+@export var boss_spawner: BossSpawner
 
 @onready var _game_over: ColorRect = $GUI/GameOver
 @onready var _level_up: ColorRect = $GUI/LevelUp
@@ -18,7 +19,7 @@ func _ready() -> void:
 
 	_character.health_updated.connect(_on_character_health_updated)
 	_character.level_updated.connect(_on_character_level_updated)
-	$BossSpawner.boss_spawned.connect(_on_boss_spawned)
+	boss_spawner.boss_spawned.connect(_on_boss_spawned)
 
 	if _level_up.has_signal("upgrade_selected"):
 		_level_up.upgrade_selected.connect(_on_upgrade_selected)

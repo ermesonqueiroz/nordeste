@@ -28,7 +28,6 @@ signal level_updated
 @onready var animation: AnimationPlayer = $Animation
 @onready var _audio: AudioStreamPlayer = $Audio
 @onready var _hurtbox: HurtBox = $HurtBox
-@onready var _dust_particles: GPUParticles2D = $DustParticles
 
 var weapon: BaseWeapon
 var projectile: PackedScene = load("res://scenes/projectiles/bullet/bullet_projectile.tscn")
@@ -43,13 +42,13 @@ var knockback_timer: float = 0.0
 var is_invulnerable: bool = false
 
 var current_water_amount = 0
-var current_level = 1
+var current_level = 10
 var water_amount_to_next_level = 10
 
 var upgrades_applied: Dictionary = {}
 
 func _ready() -> void:
-	texture.material.set_shader_parameter("flash_value", 0.0)
+	# $SpriteGroup.material.set_shader_parameter("flash_value", 0.0)
 	water_collected.connect(_on_water_collected)
 	_hurtbox.hitbox_entered.connect(_on_hitbox_entered)
 	_setup_selected_weapon()
@@ -211,11 +210,11 @@ func _on_hitbox_entered(hitbox: HitBox):
 
 	_take_damage(hitbox.damage)
 
-	texture.material.set_shader_parameter("flash_value", 1)
+	$SpriteGroup.material.set_shader_parameter("flash_value", 1)
 	Engine.time_scale = 0.2
 	await get_tree().create_timer(0.1, true, false, true).timeout
 	Engine.time_scale = 1.0
-	texture.material.set_shader_parameter("flash_value", 0)
+	$SpriteGroup.material.set_shader_parameter("flash_value", 0)
 
 	if is_instance_valid(hitbox) and hitbox.get_parent():
 		var attacker_position = hitbox.get_parent().global_position

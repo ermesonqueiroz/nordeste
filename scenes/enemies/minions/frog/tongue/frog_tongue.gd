@@ -50,16 +50,6 @@ func _process(_delta: float) -> void:
 	_links.region_rect.size.y = tongue_size
 	_links.position = _tip.position
 
-func shoot(shoot_direction: Vector2, duration: float) -> void:
-	visible = true
-	direction = shoot_direction
-	_tip.position = position + shoot_direction * 20
-
-	shoot_timer = 0.0
-	total_duration = duration
-	is_shooting = true
-	is_returning = false
-
 func _on_tip_area_entered(area: Area2D) -> void:
 	if not area is HurtBox:
 		return
@@ -73,3 +63,18 @@ func _on_tip_area_entered(area: Area2D) -> void:
 func _trigger_return() -> void:
 	is_returning = true
 	shoot_timer = total_duration - shoot_timer
+
+func shoot(shoot_direction: Vector2, duration: float) -> void:
+	visible = true
+	direction = shoot_direction
+	_tip.position = position + shoot_direction * 20
+
+	shoot_timer = 0.0
+	total_duration = duration
+	is_shooting = true
+	is_returning = false
+
+func flash() -> void:
+	var tween = Utils.flash_node_material(_links)
+	Utils.flash_node_material(_tip, tween)
+
