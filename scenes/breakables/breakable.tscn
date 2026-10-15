@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfw6ek8jli248" path="res://scripts/breakables/breakable.gd" id="1_w2hct"]
 [ext_resource type="Script" uid="uid://cxo64sjp7i3x4" path="res://common/hurtbox.gd" id="2_7sio4"]
 
-[node name="Breakable" type="Node2D" unique_id=689002946]
+[node name="Breakable" type="Node2D" unique_id=1174170278]
 script = ExtResource("1_w2hct")
 
 [node name="Texture" type="AnimatedSprite2D" parent="." unique_id=1536985489]
@@ -12,3 +12,7 @@ script = ExtResource("1_w2hct")
 collision_layer = 18
 script = ExtResource("2_7sio4")
 metadata/_custom_type_script = "uid://cxo64sjp7i3x4"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=94398958]
+collision_layer = 8
+collision_mask = 0

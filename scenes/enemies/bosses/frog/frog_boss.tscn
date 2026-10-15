@@ -21,6 +21,12 @@ shader = ExtResource("5_hcly2")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vp5d0"]
+resource_local_to_scene = true
+shader = ExtResource("5_hcly2")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_anmrg"]
 atlas = ExtResource("6_s1ix7")
 region = Rect2(231, 65, 76, 64)
@@ -245,13 +251,16 @@ collectable_to_drop_on_die = ExtResource("3_s1ix7")
 max_health = 2000.0
 knockback_intensity = 0
 
-[node name="Shadow" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="0" unique_id=325950201]
+[node name="SpriteGroup" parent="." index="0" unique_id=1407936606]
+material = SubResource("ShaderMaterial_s1ix7")
+
+[node name="Shadow" type="Sprite2D" parent="SpriteGroup" index="0" unique_id=325950201]
 modulate = Color(1, 1, 1, 0.8)
 position = Vector2(0, 6)
 texture = ExtResource("4_s1ix7")
 
-[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
-material = SubResource("ShaderMaterial_s1ix7")
+[node name="Texture" parent="SpriteGroup" index="1" unique_id=1371528666]
+material = SubResource("ShaderMaterial_vp5d0")
 sprite_frames = SubResource("SpriteFrames_hcly2")
 animation = &"idle"
 autoplay = "idle"

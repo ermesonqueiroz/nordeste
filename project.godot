@@ -83,6 +83,9 @@ pause={
 
 [layer_names]
 
+2d_physics/layer_1="Character"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Wall"
 2d_physics/layer_4="Breakable"
 2d_physics/layer_5="Collectable"
 

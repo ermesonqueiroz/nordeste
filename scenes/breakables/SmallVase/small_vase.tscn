@@ -23,6 +23,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2hct"]
 radius = 22.090721
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vka6"]
+size = Vector2(18, 24)
+
 [node name="SmallVase" unique_id=1590943576 instance=ExtResource("1_25aew")]
 collectable = ExtResource("2_e3nig")
 
@@ -37,3 +40,7 @@ sprite_frames = SubResource("SpriteFrames_25aew")
 [node name="Collision" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(1744154127) index="0" unique_id=1606465870]
 visible = false
 shape = SubResource("CircleShape2D_w2hct")
+
+[node name="Collision" type="CollisionShape2D" parent="StaticBody2D" parent_id_path=PackedInt32Array(94398958) index="0" unique_id=1375318268]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_5vka6")

@@ -6,7 +6,7 @@ signal water_collected
 signal level_updated
 
 @export_category("Variables")
-@export var _move_speed: float = 128.0
+@export var _move_speed: float = 150.0
 @export var _acceleration: float = 900.0
 @export var _deceleration: float = 1200.0
 
@@ -76,7 +76,11 @@ func _physics_process(delta: float) -> void:
 		if knockback_timer <= 0:
 			knockback = Vector2.ZERO
 
-		move_and_slide()
+		var collision = move_and_collide(velocity * delta)
+
+		if collision:
+			velocity = velocity.bounce(collision.get_normal())
+
 		return
 
 	_move(delta)

@@ -5,13 +5,11 @@
 
 [node name="BaseCollectable" type="CharacterBody2D" unique_id=747584745]
 z_index = 1
+collision_layer = 16
+collision_mask = 4
 script = ExtResource("1_odegq")
 _time_to_despawn = 20.0
 _collect_sfx = ExtResource("2_5axqd")
-float_speed = null
-float_amplitude = null
-pulse_speed = null
-pulse_intensity = null
 
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=960411195]
 

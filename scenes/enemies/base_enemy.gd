@@ -59,6 +59,9 @@ func _take_damage(damage: float) -> void:
 	if hit_state:
 		$StateMachine.switch_state(hit_state)
 
+	if health <= 0 and not hit_state:
+		$StateMachine.switch_state(die_state)
+
 	took_damage.emit()
 
 func _drop_collectable():
