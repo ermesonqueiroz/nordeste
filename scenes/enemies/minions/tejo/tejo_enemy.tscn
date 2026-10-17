@@ -14,114 +14,11 @@
 [ext_resource type="Script" uid="uid://6nbg7pmgsyuk" path="res://scripts/states/enemy/enemy_recovery_state.gd" id="11_crrx6"]
 [ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="13_vjx28"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bpxq2"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(124, 128, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6d3bv"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(248, 128, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ompke"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(372, 128, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1qiio"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(0, 192, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g456x"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(0, 0, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i8rqf"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(124, 0, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ksokm"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(248, 0, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_crrx6"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(372, 0, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vjx28"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(0, 64, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjews"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(124, 64, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2p2wb"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(248, 64, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eglpd"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(372, 64, 124, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lwbor"]
-atlas = ExtResource("3_q8fnn")
-region = Rect2(0, 128, 124, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_g456x"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bpxq2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6d3bv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ompke")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1qiio")
-}],
-"loop": 0,
-"name": &"attack",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g456x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i8rqf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ksokm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_crrx6")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vjx28")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cjews")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2p2wb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eglpd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lwbor")
-}],
-"loop": 1,
-"name": &"movement",
-"speed": 10.0
-}]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crrx6"]
+resource_local_to_scene = true
+shader = ExtResource("2_q8fnn")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g456x"]
 shader = ExtResource("2_q8fnn")
@@ -132,7 +29,84 @@ shader_parameter/flash_value = 1.0
 radius = 12.0
 height = 42.0
 
+[sub_resource type="Animation" id="Animation_vjx28"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_eglpd"]
+resource_name = "attack"
+length = 0.4000100059606135
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_cjews"]
+resource_name = "idle"
+length = 0.4000100059606135
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_2p2wb"]
+resource_name = "movement"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2p2wb"]
+_data = {
+&"RESET": SubResource("Animation_vjx28"),
+&"attack": SubResource("Animation_eglpd"),
+&"idle": SubResource("Animation_cjews"),
+&"movement": SubResource("Animation_2p2wb")
+}
+
 [node name="TejoEnemy" unique_id=1834857299 node_paths=PackedStringArray("attack_state", "windup_state", "hit_state") instance=ExtResource("1_op1fw")]
+collision_mask = 0
 script = ExtResource("2_em32k")
 attack_state = NodePath("StateMachine/EnemyDashAttackState")
 windup_state = NodePath("StateMachine/EnemyWindupState")
@@ -141,18 +115,19 @@ collectable_to_drop_on_die = ExtResource("2_fvbtu")
 move_speed = 70.0
 max_health = 100.0
 
-[node name="Shadow" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="0" unique_id=1122432323]
+[node name="SpriteGroup" parent="." index="0" unique_id=1407936606]
+material = SubResource("ShaderMaterial_crrx6")
+
+[node name="Shadow" type="Sprite2D" parent="SpriteGroup" index="0" unique_id=1122432323]
 modulate = Color(1, 1, 1, 0.8)
 texture = ExtResource("6_g456x")
 
-[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
-sprite_frames = SubResource("SpriteFrames_g456x")
-animation = &"attack"
-autoplay = "idle"
-frame = 3
-frame_progress = 1.0
+[node name="Texture" parent="SpriteGroup" index="1" unique_id=1423452301]
+texture = ExtResource("3_q8fnn")
+hframes = 4
+vframes = 4
 
-[node name="Warning" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="2" unique_id=1002621884]
+[node name="Warning" type="Sprite2D" parent="SpriteGroup" index="2" unique_id=1002621884]
 position = Vector2(0, -30)
 texture = ExtResource("7_crrx6")
 
@@ -210,3 +185,6 @@ script = ExtResource("13_vjx28")
 chase_state = NodePath("../EnemyRecoveryState")
 die_state = NodePath("../EnemyDieState")
 metadata/_custom_type_script = "uid://35tpc4bft43y"
+
+[node name="Animation" parent="." index="9" unique_id=1531151644]
+libraries/ = SubResource("AnimationLibrary_2p2wb")

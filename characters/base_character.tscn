@@ -60,6 +60,7 @@ material = SubResource("ShaderMaterial_dtm77")
 use_parent_material = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1570772349]
+collision_mask = 2
 script = ExtResource("4_l7dgf")
 metadata/_custom_type_script = "uid://cxo64sjp7i3x4"
 

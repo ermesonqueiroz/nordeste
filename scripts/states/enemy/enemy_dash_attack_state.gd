@@ -31,20 +31,16 @@ func enter():
 
 	_elapsed_time = 0.0
 
-	var sprite_frames = _enemy.texture.sprite_frames
-	var frame_count = sprite_frames.get_frame_count("attack")
-	var anim_fps = sprite_frames.get_animation_speed("attack")
 
-	if anim_fps > 0:
-		_dash_duration = frame_count / anim_fps
+	var animation_duration = _enemy.animation.get_animation("attack").length
+
+	if animation_duration > 0:
+		_dash_duration = animation_duration
 	else:
 		_dash_duration = 0.5
 
-	# if collision_shape:
-	#     collision_shape.set_deferred("disabled", true)
-
-	if sprite_frames.has_animation("attack"):
-		_enemy.texture.play("attack")
+	if _enemy.animation.has_animation("attack"):
+		_enemy.animation.play("attack")
 
 	SoundManager.play(woosh_sfx)
 

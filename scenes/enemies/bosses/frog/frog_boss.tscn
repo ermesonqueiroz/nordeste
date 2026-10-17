@@ -27,160 +27,6 @@ shader = ExtResource("5_hcly2")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_anmrg"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(231, 65, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7wa3s"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(308, 65, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tyfsh"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(0, 130, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ctki"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(77, 130, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sdr6a"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(154, 130, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0hrto"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(0, 0, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_myj0p"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(77, 0, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xeo1o"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(154, 0, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6ie4"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(231, 0, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r4hqg"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(308, 0, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_juxkh"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(0, 65, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6njtw"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(77, 65, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h7i3f"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(154, 65, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_osk5a"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(77, 195, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xrams"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(154, 195, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b5u1b"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(231, 130, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3picg"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(308, 130, 76, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s8jcu"]
-atlas = ExtResource("6_s1ix7")
-region = Rect2(0, 195, 76, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hcly2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_anmrg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7wa3s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tyfsh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ctki")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sdr6a")
-}],
-"loop": 0,
-"name": &"attack",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0hrto")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_myj0p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xeo1o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m6ie4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r4hqg")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_juxkh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6njtw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h7i3f")
-}],
-"loop": 0,
-"name": &"movement",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_osk5a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xrams")
-}],
-"loop": 0,
-"name": &"smash_jump_attack",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b5u1b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3picg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s8jcu")
-}],
-"loop": 0,
-"name": &"wind_up",
-"speed": 10.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qd1hi"]
 atlas = ExtResource("7_vp5d0")
 region = Rect2(0, 0, 88, 64)
@@ -244,6 +90,99 @@ radius = 28.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_odk5m"]
 radius = 300.0
 
+[sub_resource type="Animation" id="Animation_s1ix7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_c2mx4"]
+resource_name = "attack"
+length = 0.5000100074507295
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_qd1hi"]
+resource_name = "idle"
+length = 0.5000100074507295
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_vp5d0"]
+resource_name = "movement"
+length = 0.3000100044704974
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_0ltav"]
+resource_name = "smash_jump_attack"
+length = 0.5000100074507295
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 15, 16, 17]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ltav"]
+_data = {
+&"RESET": SubResource("Animation_s1ix7"),
+&"attack": SubResource("Animation_c2mx4"),
+&"idle": SubResource("Animation_qd1hi"),
+&"movement": SubResource("Animation_vp5d0"),
+&"smash_jump_attack": SubResource("Animation_0ltav")
+}
+
 [node name="FrogBoss" unique_id=1834857299 node_paths=PackedStringArray("jump_state") instance=ExtResource("1_gknw1")]
 script = ExtResource("2_rmk6u")
 jump_state = NodePath("StateMachine/FrogJumpState")
@@ -259,11 +198,11 @@ modulate = Color(1, 1, 1, 0.8)
 position = Vector2(0, 6)
 texture = ExtResource("4_s1ix7")
 
-[node name="Texture" parent="SpriteGroup" index="1" unique_id=1371528666]
+[node name="Texture" parent="SpriteGroup" index="1" unique_id=1423452301]
 material = SubResource("ShaderMaterial_vp5d0")
-sprite_frames = SubResource("SpriteFrames_hcly2")
-animation = &"idle"
-autoplay = "idle"
+texture = ExtResource("6_s1ix7")
+hframes = 5
+vframes = 4
 
 [node name="JumpImpact" type="AnimatedSprite2D" parent="." index="1" unique_id=1132074631 node_paths=PackedStringArray("jump_state")]
 position = Vector2(0, 1)
@@ -275,20 +214,28 @@ script = ExtResource("5_mluuk")
 jump_state = NodePath("../StateMachine/FrogJumpState")
 
 [node name="Collision" parent="." index="3" unique_id=1981917045]
+visible = false
 position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_ig1op")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(479947753) index="0" unique_id=49994333]
+[node name="HurtBox" parent="." index="4" unique_id=479947753]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0" unique_id=49994333]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_ig1op")
 debug_color = Color(0, 1, 0, 0.26666668)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1181660510) index="0" unique_id=2096175741]
+[node name="HitBox" parent="." index="5" unique_id=1181660510]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=2096175741]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_vb32k")
 debug_color = Color(1, 0, 0, 0.26666668)
 
 [node name="AttackArea" type="Area2D" parent="." index="6" unique_id=1555107289]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="0" unique_id=447996282]
 shape = SubResource("CircleShape2D_odk5m")
@@ -332,3 +279,6 @@ metadata/_custom_type_script = "uid://bwqywdhf2ywe2"
 [node name="FrogTongue" parent="." index="10" unique_id=2072801992 instance=ExtResource("7_odk5m")]
 position = Vector2(0, 8)
 max_distance = 300.0
+
+[node name="Animation" parent="." index="11" unique_id=1531151644]
+libraries/ = SubResource("AnimationLibrary_0ltav")

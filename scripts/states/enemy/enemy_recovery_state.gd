@@ -11,10 +11,10 @@ func enter():
     _elapsed_time = 0.0
     _enemy.velocity = Vector2.ZERO
 
-    if _enemy.texture.sprite_frames.has_animation("recovery"):
-        _enemy.texture.play("recovery")
-    elif _enemy.texture.sprite_frames.has_animation("idle"):
-        _enemy.texture.play("idle")
+    if _enemy.animation.has_animation("recovery"):
+        _enemy.animation.play("recovery")
+    elif _enemy.animation.has_animation("idle"):
+        _enemy.animation.play("idle")
 
 func update_physics(delta: float):
     _elapsed_time += delta

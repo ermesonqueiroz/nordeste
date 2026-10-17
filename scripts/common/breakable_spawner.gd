@@ -44,5 +44,3 @@ func _spawn_breakables() -> void:
 		small_vase.global_position = offset + character.global_position
 		get_tree().current_scene.call_deferred("add_child", small_vase)
 		placed_breakables.append(small_vase)
-
-		print('[SPAWN] Small Vase ', small_vase.global_position)

@@ -32,8 +32,8 @@ func update_physics(delta: float):
 	_enemy.velocity = _current_target_direction * _enemy.move_speed
 	_enemy.move_and_slide()
 
-	if _enemy.texture.sprite_frames.has_animation("movement"):
-		_enemy.texture.play("movement")
+	if _enemy.animation.has_animation("movement"):
+		_enemy.animation.play("movement")
 
 func _update_target_direction(character):
 	_current_target_direction = _enemy.position.direction_to(character.global_position).normalized()

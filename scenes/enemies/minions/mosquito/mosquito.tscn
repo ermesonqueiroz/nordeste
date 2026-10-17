@@ -6,43 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://vfolojlmfiev" path="res://sprites/enemies/minions/mosquito/shadow.png" id="3_2ldwe"]
 [ext_resource type="PackedScene" uid="uid://d3cswtsor34r1" path="res://scenes/collectables/water/water_collectable.tscn" id="3_dxpoy"]
 [ext_resource type="Script" uid="uid://jdo4kxeg1qw8" path="res://scripts/states/enemy/enemy_chase_state.gd" id="4_iurcn"]
+[ext_resource type="Shader" uid="uid://bhscsaff5gd2s" path="res://shaders/flash.gdshader" id="4_jqotc"]
 [ext_resource type="Script" uid="uid://35tpc4bft43y" path="res://scripts/states/enemy/enemy_hit_state.gd" id="8_jqotc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q5o8s"]
-atlas = ExtResource("2_xu6hp")
-region = Rect2(0, 0, 31, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ldwe"]
-atlas = ExtResource("2_xu6hp")
-region = Rect2(32, 0, 31, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_diepv"]
-atlas = ExtResource("2_xu6hp")
-region = Rect2(64, 0, 31, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jqotc"]
-atlas = ExtResource("2_xu6hp")
-region = Rect2(96, 0, 31, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_a51ae"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q5o8s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ldwe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_diepv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jqotc")
-}],
-"loop": 1,
-"name": &"movement",
-"speed": 10.0
-}]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0fxc"]
+resource_local_to_scene = true
+shader = ExtResource("4_jqotc")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu6hp"]
 size = Vector2(11, 20)
@@ -50,6 +21,45 @@ size = Vector2(11, 20)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb32k"]
 radius = 8.0
 height = 24.0
+
+[sub_resource type="Animation" id="Animation_15srv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pdtxv"]
+resource_name = "movement"
+length = 0.4000100059606135
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteGroup/Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8jgtu"]
+_data = {
+&"RESET": SubResource("Animation_15srv"),
+&"movement": SubResource("Animation_pdtxv")
+}
 
 [node name="Mosquito" unique_id=1834857299 node_paths=PackedStringArray("chase_state", "hit_state") instance=ExtResource("1_pqv3g")]
 script = ExtResource("2_diepv")
@@ -59,15 +69,16 @@ collectable_to_drop_on_die = ExtResource("3_dxpoy")
 move_speed = 30.0
 max_health = 28.0
 
-[node name="Shadow" type="Sprite2D" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="0" unique_id=1159510765]
+[node name="SpriteGroup" parent="." index="0" unique_id=1407936606]
+material = SubResource("ShaderMaterial_u0fxc")
+
+[node name="Shadow" type="Sprite2D" parent="SpriteGroup" index="0" unique_id=1159510765]
 modulate = Color(1, 1, 1, 0.6)
 texture = ExtResource("3_2ldwe")
 
-[node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1407936606) index="1" unique_id=1371528666]
-sprite_frames = SubResource("SpriteFrames_a51ae")
-animation = &"movement"
-autoplay = "movement"
-frame_progress = 0.5719688
+[node name="Texture" parent="SpriteGroup" index="1" unique_id=1423452301]
+texture = ExtResource("2_xu6hp")
+hframes = 4
 
 [node name="Collision" parent="." index="2" unique_id=1981917045]
 position = Vector2(-0.5, 0)
@@ -95,3 +106,6 @@ script = ExtResource("8_jqotc")
 chase_state = NodePath("../EnemyChaseState")
 die_state = NodePath("../EnemyDieState")
 metadata/_custom_type_script = "uid://35tpc4bft43y"
+
+[node name="Animation" parent="." index="8" unique_id=1531151644]
+libraries/ = SubResource("AnimationLibrary_8jgtu")

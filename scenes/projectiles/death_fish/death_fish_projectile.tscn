@@ -33,21 +33,18 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgy74"]
-radius = 8.0
-height = 20.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_y3aew"]
 
 [node name="DeathFishProjectile" unique_id=1912904560 instance=ExtResource("1_eciun")]
 collision_layer = 2
-collision_mask = 1
+collision_mask = 11
 speed = 180.0
 
 [node name="Texture" parent="SpriteGroup" parent_id_path=PackedInt32Array(1065004391) index="0" unique_id=1027365086]
 sprite_frames = SubResource("SpriteFrames_msk2k")
 
 [node name="Collision" parent="." index="1" unique_id=1801896036]
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_vgy74")
+shape = SubResource("CircleShape2D_y3aew")
 
 [node name="SpriteTrail" type="Node2D" parent="." index="2" unique_id=483603719 node_paths=PackedStringArray("texture")]
 script = ExtResource("3_g2qe5")

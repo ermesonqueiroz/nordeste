@@ -54,7 +54,7 @@ die_state = NodePath("StateMachine/EnemyDieState")
 [node name="SpriteGroup" type="Node2D" parent="." unique_id=1407936606]
 material = SubResource("ShaderMaterial_gsf37")
 
-[node name="Texture" type="AnimatedSprite2D" parent="SpriteGroup" unique_id=1371528666]
+[node name="Texture" type="Sprite2D" parent="SpriteGroup" unique_id=1423452301]
 use_parent_material = true
 
 [node name="HitParticles" type="GPUParticles2D" parent="." unique_id=1548375953]
@@ -73,6 +73,7 @@ process_material = SubResource("ParticleProcessMaterial_epbio")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=479947753]
 collision_layer = 2
+collision_mask = 33
 script = ExtResource("3_jtyv1")
 metadata/_custom_type_script = "uid://cxo64sjp7i3x4"
 
@@ -97,3 +98,5 @@ metadata/_custom_type_script = "uid://0qwoj13ei42n"
 [node name="EnemyDieState" type="Node" parent="StateMachine" unique_id=1740252931]
 script = ExtResource("9_j2d0b")
 metadata/_custom_type_script = "uid://brk6ykjfpblgh"
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1531151644]

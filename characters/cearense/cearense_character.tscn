@@ -16,7 +16,7 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vb32k"]
-size = Vector2(23, 33)
+size = Vector2(23, 51)
 
 [sub_resource type="Animation" id="Animation_jr7ke"]
 length = 0.001
@@ -534,8 +534,7 @@ script = ExtResource("8_dt5ch")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0" unique_id=1568370168]
-visible = false
-position = Vector2(0, 8.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_vb32k")
 debug_color = Color(0, 1, 0, 0.277)
 

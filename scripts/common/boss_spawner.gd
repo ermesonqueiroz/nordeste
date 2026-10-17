@@ -13,7 +13,7 @@ var last_boss_spawned_index = -1
 var spawn_enemy_timer: float = 0.0
 
 func _ready() -> void:
-	spawn_enemy_timer = spawn_enemy_interval_seconds
+	spawn_enemy_timer = 0.0
 
 func _process(delta: float) -> void:
 	spawn_enemy_timer -= delta

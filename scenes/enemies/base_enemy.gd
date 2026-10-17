@@ -15,7 +15,8 @@ signal took_damage
 @export var damage_immunity_duration: float = 0
 @export var knockback_intensity: int = 300
 
-@onready var texture: AnimatedSprite2D = $SpriteGroup/Texture
+@onready var texture: Sprite2D = $SpriteGroup/Texture
+@onready var animation: AnimationPlayer = $Animation
 @onready var sprite_group: Node2D = $SpriteGroup
 @onready var hurtbox: HurtBox = $HurtBox
 @onready var hit_particles: GPUParticles2D = $HitParticles

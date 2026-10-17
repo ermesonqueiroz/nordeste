@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://x3nh58tt2w1k" path="res://game_level.gd" id="1_qsd0w"]
 [ext_resource type="PackedScene" uid="uid://8ymptcs7v4pt" path="res://scenes/enemies/minions/mosquito/mosquito.tscn" id="2_v7qp1"]
 [ext_resource type="PackedScene" uid="uid://gx6wyt75v23d" path="res://characters/cearense/cearense_character.tscn" id="3_anq5l"]
+[ext_resource type="PackedScene" uid="uid://b6b4fsdgoevuf" path="res://map/MAPA_INICIAL.tscn" id="3_g55cv"]
 [ext_resource type="PackedScene" uid="uid://dwufmv1ry0ila" path="res://scenes/enemies/minions/frog/frog_enemy.tscn" id="5_f2ouj"]
 [ext_resource type="Texture2D" uid="uid://bepumsi5qo72" path="res://gui/hud_decoration.png" id="7_w051k"]
 [ext_resource type="PackedScene" uid="uid://bp6klenyydvyc" path="res://scenes/enemies/minions/tejo/tejo_enemy.tscn" id="8_1gss8"]
@@ -24,6 +25,7 @@
 [ext_resource type="FontFile" uid="uid://cu5rty6gs4bje" path="res://fonts/m6x11.ttf" id="19_sk2he"]
 [ext_resource type="FontFile" uid="uid://d4drq4ll6m0ly" path="res://fonts/xilosa.ttf" id="22_1gss8"]
 [ext_resource type="Script" uid="uid://bjmr5hulukh7f" path="res://scripts/common/breakable_spawner.gd" id="27_f2ouj"]
+[ext_resource type="PackedScene" uid="uid://cw8f1g7qaxlba" path="res://scenes/enemies/minions/zombie/zombie_enemy.tscn" id="28_w051k"]
 [ext_resource type="Script" uid="uid://cybntdswjjg3r" path="res://survival_time.gd" id="29_sk2he"]
 [ext_resource type="PackedScene" uid="uid://7v52lt3xs4hw" path="res://pause_menu.tscn" id="30_ovhxr"]
 [ext_resource type="AudioStream" uid="uid://bmdlqm5k8ngyf" path="res://sfx/the_wall_loopable.wav" id="31_ovhxr"]
@@ -111,7 +113,10 @@ boss_spawner = NodePath("BossSpawner")
 color = Color(0.45082474, 0.6258674, 1, 1)
 
 [node name="Terrain" parent="." unique_id=1863512682 instance=ExtResource("1_df5pp")]
+visible = false
 position = Vector2(-2, 0)
+
+[node name="MAPA_INICIAL" parent="." unique_id=1737036885 instance=ExtResource("3_g55cv")]
 
 [node name="Foreground" type="Node2D" parent="." unique_id=556226800]
 visible = false
@@ -401,6 +406,10 @@ _enemy_pool = Array[Dictionary]([{
 "cost": 5,
 "min_level": 1,
 "scene": ExtResource("9_353a4")
+}, {
+"cost": 3,
+"min_level": 1,
+"scene": ExtResource("28_w051k")
 }])
 _character = NodePath("../CearenseCharacter")
 metadata/_custom_type_script = "uid://cjsdbbpb0bhvm"
@@ -415,5 +424,23 @@ metadata/_custom_type_script = "uid://c63k1x1spcdp0"
 script = ExtResource("27_f2ouj")
 metadata/_custom_type_script = "uid://bjmr5hulukh7f"
 
-[node name="Mosquito" parent="." unique_id=1834857299 instance=ExtResource("2_v7qp1")]
-position = Vector2(289, 327)
+[node name="ZombieEnemy" parent="." unique_id=1834857299 instance=ExtResource("28_w051k")]
+position = Vector2(233, 343)
+
+[node name="Mosquito" parent="." unique_id=1653641806 instance=ExtResource("2_v7qp1")]
+position = Vector2(186, 311)
+
+[node name="Mosquito2" parent="." unique_id=2057472768 instance=ExtResource("2_v7qp1")]
+position = Vector2(208, 331)
+
+[node name="Mosquito3" parent="." unique_id=1641439527 instance=ExtResource("2_v7qp1")]
+position = Vector2(205, 356)
+
+[node name="Mosquito4" parent="." unique_id=589457048 instance=ExtResource("2_v7qp1")]
+position = Vector2(203, 390)
+
+[node name="Mosquito5" parent="." unique_id=325502076 instance=ExtResource("2_v7qp1")]
+position = Vector2(179, 362)
+
+[node name="Mosquito6" parent="." unique_id=1296986434 instance=ExtResource("2_v7qp1")]
+position = Vector2(183, 336)

@@ -9,7 +9,8 @@ script = ExtResource("1_w2hct")
 [node name="Texture" type="AnimatedSprite2D" parent="." unique_id=1536985489]
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1744154127]
-collision_layer = 18
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("2_7sio4")
 metadata/_custom_type_script = "uid://cxo64sjp7i3x4"
 

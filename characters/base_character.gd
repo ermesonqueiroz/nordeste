@@ -144,8 +144,8 @@ func _level_up() -> void:
 
 	level_updated.emit()
 
-func _take_damage(damage: float) -> void:
-	current_health -= damage
+func _take_damage(_damage: float) -> void:
+	current_health -= 1
 	health_updated.emit()
 
 	_camera.screen_shake(8, 0.3)
